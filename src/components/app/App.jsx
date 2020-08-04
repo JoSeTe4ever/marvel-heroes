@@ -2,10 +2,11 @@ import React from 'react';
 import logo from './logo.svg';
 import './App.css';
 import MarvelButton from '../button/MarvelButton'
+import SearchBar from '../search-bar/SearchBar'
 
 function App() {
   const API_KEY = process.env.REACT_APP_WEATHER_API_KEY;
-  
+
   return (
     <div className="App">
       <header className="App-header">
@@ -22,6 +23,7 @@ function App() {
           Learn React
         </a>
         <MarvelButton text="testing"></MarvelButton>
+        <SearchBar></SearchBar>
       </header>
     </div>
   );
