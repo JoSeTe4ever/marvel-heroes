@@ -4,7 +4,7 @@ export default class MarvelButton extends PureComponent {
     render() {
         return (
             <span className={styles.button}>
-                ejemplo de boton
+                {this.props.text}
             </span>
         )
     }

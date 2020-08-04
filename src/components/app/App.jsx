@@ -21,7 +21,7 @@ function App() {
           rel="noopener noreferrer">
           Learn React
         </a>
-        <MarvelButton></MarvelButton>
+        <MarvelButton text="testing"></MarvelButton>
       </header>
     </div>
   );
