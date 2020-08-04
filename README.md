@@ -2,6 +2,11 @@ Marvel Api project
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+
+## Bit.dev tracking 
+
+https://bit.dev/josete4ever/marvelous-components
+
 ## Available Scripts
 
 In the project directory, you can run:

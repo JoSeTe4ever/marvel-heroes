@@ -1,6 +1,7 @@
 import React from 'react';
 import logo from './logo.svg';
 import './App.css';
+import MarvelButton from '../button/MarvelButton'
 
 function App() {
   const API_KEY = process.env.REACT_APP_WEATHER_API_KEY;
@@ -17,10 +18,10 @@ function App() {
           className="App-link"
           href="https://reactjs.org"
           target="_blank"
-          rel="noopener noreferrer"
-        >
+          rel="noopener noreferrer">
           Learn React
         </a>
+        <MarvelButton></MarvelButton>
       </header>
     </div>
   );

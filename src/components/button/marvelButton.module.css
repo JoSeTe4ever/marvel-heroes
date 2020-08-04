@@ -1,0 +1,8 @@
+.button {
+    background-color: red;
+    font-family: fantasy;
+    text-align: center;
+    text-transform: uppercase;
+    padding: 1rem;
+    cursor: pointer;
+}
