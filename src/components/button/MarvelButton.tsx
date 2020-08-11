@@ -1,6 +1,12 @@
 import React, { PureComponent } from 'react'
 import styles from './marvelButton.module.css';
-export default class MarvelButton extends PureComponent {
+
+
+type ButtonProps = {
+    text: string,
+}
+
+export default class MarvelButton extends PureComponent<ButtonProps> {
     render() {
         return (
             <span className={styles.button}>

@@ -21,10 +21,12 @@
   "scripts": {
     "start": "react-scripts start",
     "bit": "bit",
-    "bit-add": "bit add src/components/button --main src/components/button/MarvelButton.jsx",
+    "bit-add": "bit add src/components/button --main src/components/button/MarvelButton.tsx",
+    "bit-export": "bit export",
+    "bit-init": " bit init --package-manager npm",
     "bit-status": "bit status",
     "bit-tag": "bit tag --all",
-    "bit-import": "bit import bit.envs/compilers/react -c",
+    "bit-import": "bit import bit.envs/compilers/react --override",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"

@@ -7,6 +7,11 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 https://bit.dev/josete4ever/marvelous-components
 
+
+## Typescript migration guide
+
+https://github.com/typescript-cheatsheets/react-typescript-cheatsheet#reacttypescript-cheatsheets
+
 ## Available Scripts
 
 In the project directory, you can run:
