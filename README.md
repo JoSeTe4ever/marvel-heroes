@@ -12,6 +12,17 @@ https://bit.dev/josete4ever/marvelous-components
 
 https://github.com/typescript-cheatsheets/react-typescript-cheatsheet#reacttypescript-cheatsheets
 
+
+
+## .env file
+
+it is mandatory to prefix the variables with REACT_APP in order to the create react app cli to understand it.
+
+## proxy option in package.json 
+
+This is a cool feature to get rid of the CORS problems.
+
+
 ## Available Scripts
 
 In the project directory, you can run:
