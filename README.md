@@ -1,5 +1,6 @@
 Marvel Api project
 
+![alt text](public/1920px-MarvelLogo.svg.png)
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 
@@ -23,7 +24,10 @@ it is mandatory to prefix the variables with REACT_APP in order to the create re
 This is a cool feature to get rid of the CORS problems. If several APIS are needed, you can install the http-middleware package "http-proxy-middleware"
 and add a setupProxy.js file in the src project folder.
 
+## another cool api 
 
+https://superheroapi.com/
+ 
 
 ## Available Scripts
 
