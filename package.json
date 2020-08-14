@@ -49,6 +49,7 @@
   },
   "devDependencies": {
     "bit-bin": "^14.8.8",
+    "eslint-plugin-react-hooks": "^4.0.8",
     "http-proxy-middleware": "^1.0.5"
   },
   "bit": {
