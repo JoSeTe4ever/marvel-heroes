@@ -1,6 +1,8 @@
 Marvel Api project
 
-![alt text](public/1920px-MarvelLogo.svg.png)
+![MARVEL](public/1920px-MarvelLogo.svg.png)
+
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 
