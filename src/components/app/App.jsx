@@ -1,31 +1,28 @@
 import React, { useEffect, useState } from 'react';
-import { getCharacters } from '../../utils/api';
+import { initCharacters } from '../../utils/api';
 import MarvelButton from '../button/MarvelButton';
 import HeroCard from '../hero-card/HeroCard';
 import SearchBar from '../search-bar/SearchBar';
 import './App.css';
 
-function App() {
+const App = () => {
 
-  const [characters, setCharacters] = useState([])
+  //the callback for the useState is the initialState
+  const [characters, setCharacters] = useState([]);
 
   useEffect(() => {
-    const characters = getCharacters().then(characters => {
-      debugger;
-      setCharacters(characters);
-    });
-   });
+    initCharacters(setCharacters);
+  }, []); // passing an empty array as the second argument to useEffect makes it only run on mount and unmount 
 
   return (
     <div className="App">
       <header className="App-header">
         <MarvelButton text="testing"></MarvelButton>
         <SearchBar></SearchBar>
-
-        { characters.map(e =>{
-          return <HeroCard imgUrl="" heroName=""></HeroCard>
+        {characters.map(e => {
+          console.log("e" + e);
+          return <HeroCard heroName={e.name} imgUrl={e.thumbnail.path +  e.thumbnail.extension}></HeroCard>
         })}
-
       </header>
     </div>
   );
