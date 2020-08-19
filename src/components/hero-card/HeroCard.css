@@ -1,3 +1,36 @@
 img.card-thumb-frame__thumbnail {
-    width: 10rem;
+    width: 16rem;
+}
+
+.card {
+
+    background-color: #292c78;
+    border: 0px solid #000000;
+    cursor: pointer;
+    height: 400px;
+    margin-bottom: 20px;
+    border-radius: 10px 10px 10px 10px;
+    -moz-border-radius: 10px 10px 10px 10px;
+    -webkit-border-radius: 10px 10px 10px 10px;
+    transition: transform .2s;
+    /* Animation */
+    width: 300px;
+}
+
+.card:hover {
+    transform: scale(1.05);
+    /* (150% zoom - Note: if the zoom is too large, it will go outside of the viewport) */
+}
+
+.card-description {
+    font-size: 9px;
+}
+
+.card-title {
+    color: white;
+}
+
+.image-container {
+    display: flex;
+    justify-content: center;
 }

@@ -70,6 +70,7 @@ You don’t have to ever use `eject`. The curated feature set is suitable for sm
 ## npm run json-server
 
 This script task runs a server on the port 3004 serving an API for development.
+
 ## API secrets 
 
 it is stored on the .env file.

@@ -1,6 +1,7 @@
-import Axios from "axios";
+
 const apiKey = `apikey=${process.env.REACT_APP_MARVEL_PUBLIC_API_KEY}`;
 const urlDevelopment = `http://localhost:3004/characters`;
+const urlProduction = `http://gateway.marvel.com/v1/public/characters?${apiKey}`;
 //export const getCharacters = (options) => {
 //  return fetch(`http://gateway.marvel.com/v1/public/characters?${apiKey}`)
 //    .then(res => {
@@ -8,7 +9,6 @@ const urlDevelopment = `http://localhost:3004/characters`;
 //      return characters;
 //    });
 //};
-
 
 export const initCharacters = async (setCharacters) => {
   const apiCall = await fetch(`${urlDevelopment}`);
