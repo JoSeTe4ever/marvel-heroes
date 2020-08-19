@@ -28,6 +28,10 @@ img.card-thumb-frame__thumbnail {
 
 .card-title {
     color: white;
+    display: block;
+    width: auto;
+    background-color: #3a3a9b;
+    box-shadow: aquamarine;
 }
 
 .image-container {
