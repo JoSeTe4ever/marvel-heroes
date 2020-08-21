@@ -1,5 +1,6 @@
 img.card-thumb-frame__thumbnail {
     width: 16rem;
+    z-index: 10;
 }
 
 .card {
@@ -35,6 +36,26 @@ img.card-thumb-frame__thumbnail {
 }
 
 .image-container {
-    display: flex;
-    justify-content: center;
+    min-height: 257px;
+    max-height: 257px;
+}
+
+img {
+    max-width: 100%;
+    min-height: 215px;
+    max-height: 203px;
+}
+
+.container {
+    overflow: hidden;
+}
+
+.bg {
+    width: 100%;
+    height: 165px;
+    border-radius: 0 0 100% 100%;
+    background-color: #ffa12c;
+    z-index: 2;
+    position: relative;
+    top: -43px;
 }

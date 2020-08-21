@@ -1,0 +1,6 @@
+.home {
+    background-color: #282c34;
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-around;
+}
