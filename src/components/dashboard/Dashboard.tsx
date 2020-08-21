@@ -6,10 +6,17 @@ import { Home } from "./../home/Home";
 
 const Dashboard: React.FC = () => {
     return <Switch>
-        <Route path="/" component={Home} />
-        <Route path="/characters" component={CharactersDetails} />
-        <Route path="/comics" component={ComicsDetails} />
+            <Route exact path="/" component={Home} />
+            <Route path="/characters/:id" component={CharactersDetails} />
+            <Route path="/comics" component={ComicsDetails} />
+        <Route path="*">
+            <NoMatch></NoMatch>
+        </Route>
     </Switch>
 }
 
 export default Dashboard;
+
+const NoMatch = () => {
+    return <span>NOT FOUND</span>
+}

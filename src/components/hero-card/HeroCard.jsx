@@ -1,22 +1,26 @@
 
-import React, { Component } from 'react';
+import React from 'react';
 import './HeroCard.css';
-export default class HeroCard extends Component {
+import { useHistory } from "react-router-dom";
 
-    render() {
-        return (
-            <div className="card">
-                <span className="card-title">{this.props.heroName}</span>
-                <div className="image-container">
-                    <img src={this.props.imgUrl}
-                        alt={this.props.heroName}
-                        className="card-thumb-frame__thumbnail"></img>
+export const HeroCard = (props) => {
 
-                </div>
-                <span className="card-description">{this.props.heroDescription}</span>
-                <span className="card-comics-count"></span>
-                <span className="card-series-count"></span>
+    const history = useHistory();
+
+    return (
+        <div className="card" onClick={() => {
+            history.push("/characters/32332");
+        }}>
+            <span className="card-title">{props.heroName}</span>
+            <div className="image-container">
+                <img src={props.imgUrl}
+                    alt={props.heroName}
+                    className="card-thumb-frame__thumbnail"></img>
+
             </div>
-        )
-    }
+            <span className="card-description">{props.heroDescription}</span>
+            <span className="card-comics-count"></span>
+            <span className="card-series-count"></span>
+        </div>
+    )
 }
