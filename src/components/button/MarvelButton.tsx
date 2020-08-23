@@ -1,16 +1,21 @@
-import React, { PureComponent } from 'react'
+import React, { PureComponent } from 'react';
+import { setCharactersByQuery } from '../../utils/api';
 import styles from './marvelButton.module.css';
-
 
 type ButtonProps = {
     text: string,
-    clicked: any
+    searchText: string,
+    onClickedAction: any
 }
 
 export default class MarvelButton extends PureComponent<ButtonProps> {
+
     render() {
         return (
-            <span className={styles.button} onClick={() => this.props.clicked()}>
+            <span className={styles.button} onClick={() => {
+
+                setCharactersByQuery(this.props.onClickedAction, this.props.searchText)
+            }}>
                 {this.props.text}
             </span>
         )

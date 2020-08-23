@@ -7,8 +7,8 @@ export class CharactersDetails extends React.Component {
     }
     componentDidMount() {
         const { characterId } = this.props.match.params
-
         const characterDetails = getCharacterDetails(characterId)
+        this.setState(characterDetails);
     }
     render() {
         return <span>CHARACTER DETAILSSSSSSSSSSSS</span>

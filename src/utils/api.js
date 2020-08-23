@@ -1,7 +1,7 @@
 const apiKey = `apikey=${process.env.REACT_APP_MARVEL_PUBLIC_API_KEY}`;
- const urlDevelopment = `http://localhost:3004/characters`;
- const urlProduction = `http://gateway.marvel.com/v1/public/characters?${apiKey}`;
- const url = urlDevelopment;
+const urlDevelopment = `http://localhost:3004/characters`;
+const urlProduction = `http://gateway.marvel.com/v1/public/characters?${apiKey}`;
+const url = urlProduction;
 //export const getCharacters = (options) => {
 //  return fetch(`http://gateway.marvel.com/v1/public/characters?${apiKey}`)
 //    .then(res => {
@@ -13,8 +13,15 @@ const apiKey = `apikey=${process.env.REACT_APP_MARVEL_PUBLIC_API_KEY}`;
 export const initCharacters = async (setCharacters) => {
   const apiCall = await fetch(`${url}`);
   const result = await apiCall.json();
-  setCharacters(result);
+  setCharacters(result.data.results);
 };
+
+export const setCharactersByQuery = async (setCharacters, query) => {
+  const apiCall = await fetch(`${url}&name=${query}`);
+  const result = await apiCall.json();
+  setCharacters(result.data.results);
+};
+
 
 
 export const getCharacterDetails = async (characterId) => {

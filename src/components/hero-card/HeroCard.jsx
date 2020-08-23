@@ -9,7 +9,7 @@ export const HeroCard = (props) => {
 
     return (
         <div className="card" onClick={() => {
-            history.push("/characters/32332");
+            history.push(`/characters/${props.heroId}`);
         }}>
             <span className="card-title">{props.heroName}</span>
             <div className="image-container">

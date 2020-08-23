@@ -1,23 +1,24 @@
 import React from 'react';
+import { useRecoilState, useRecoilValue } from "recoil";
+import { displayedCharacters, searchTextState } from "../../state";
 import MarvelButton from '../button/MarvelButton';
-import SearchBar from '../search-bar/SearchBar';
 import Dashboard from '../dashboard/Dashboard';
-import { useRecoilState } from "recoil";
-import { searchTextState } from "../../state";
+import SearchBar from '../search-bar/SearchBar';
 import './App.css';
 
 
 const App = () => {
 
-  const [text, setText] = useRecoilState(searchTextState);
+  const text = useRecoilValue(searchTextState);
+  const [heroes, setDisplayedCharacters] = useRecoilState(displayedCharacters);
 
   return (
     <div className="App">
       <header className="App-header">
-        <MarvelButton text="search" clicked={setText}></MarvelButton>
+        <MarvelButton text="search" searchText={text} onClickedAction={setDisplayedCharacters}></MarvelButton>
         <SearchBar text={text}></SearchBar>
       </header>
-        <Dashboard></Dashboard>
+      <Dashboard></Dashboard>
       <footer>
 
       </footer>
