@@ -4,3 +4,12 @@
     flex-flow: row wrap;
     justify-content: space-around;
 }
+
+.notFound {
+    position: relative;
+    top: 3rem;
+    font-size: xx-large;
+    color: white;
+    height: 96vh;
+    background-color: #282c34;
+}

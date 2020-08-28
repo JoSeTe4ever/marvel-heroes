@@ -13,17 +13,20 @@ export const Home = () => {
         initCharacters(setCharacters);
     }, []); // passing an empty array as the second argument to useEffect makes it only run on mount and unmount 
 
-
-    return (
-        <div className="home">
-            {characters.map((e: any) => {
-                return <HeroCard
-                    heroDescription={e.description}
-                    key={e.id.toString()}
-                    heroName={e.name}
-                    heroId={e.id.toString()}
-                    imgUrl={`${e.thumbnail.path}.${e.thumbnail.extension}`}></HeroCard>
-            })}
-        </div>
-    )
+    if (characters && characters.length > 0) {
+        return (
+            <div className="home">
+                {characters.map((e: any) => {
+                    return <HeroCard
+                        heroDescription={e.description}
+                        key={e.id.toString()}
+                        heroName={e.name}
+                        heroId={e.id.toString()}
+                        imgUrl={`${e.thumbnail.path}.${e.thumbnail.extension}`}></HeroCard>
+                })}
+            </div>
+        )
+    } else {
+        return <div className="notFound"><span className="">Not found</span></div>
+    }
 }
