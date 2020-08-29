@@ -1,6 +1,11 @@
-import { atom, selector } from "recoil";
+import { atom } from "recoil";
 
 const initialSearchText = "";
+
+export const copyrightInfo = atom({
+    key: 'copyright',
+    default: {},
+});
 
 export const searchTextState = atom({
     key: 'searchText',

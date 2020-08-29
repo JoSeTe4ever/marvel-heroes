@@ -4,3 +4,8 @@
     position: relative;
     top: 6vh;
 }
+
+.highResolution {
+    position: relative;
+    float: left;
+}

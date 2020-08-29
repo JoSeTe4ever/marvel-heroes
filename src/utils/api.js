@@ -4,10 +4,15 @@ const urlProduction = `http://gateway.marvel.com/v1/public`;
 const url = urlProduction;
 
 
-export const initCharacters = async (setCharacters) => {
+export const initInfo = async (setCharacters, setCopyright) => {
   const apiCall = await fetch(`${url}/characters?apikey=${apiKey}`);
   const result = await apiCall.json();
   setCharacters(result.data.results);
+  setCopyright({
+    copyright: result.copyright,
+    attributionText: result.attributionText,
+    attributionHTML: result.attributionHTML
+  });
 };
 
 export const setCharactersByQuery = async (setCharacters, query) => {

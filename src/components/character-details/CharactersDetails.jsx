@@ -19,7 +19,7 @@ export class CharactersDetails extends React.Component {
         if (this.state.characterDetails) {
             return (
                 <div className="characterDetailsContainer">
-                    <img alt="" src={`${this.state.characterDetails.thumbnail.path}.${this.state.characterDetails.thumbnail.extension}`}></img>
+                    <img className="highResolution" alt="" src={`${this.state.characterDetails.thumbnail.path}.${this.state.characterDetails.thumbnail.extension}`}></img>
                     <span>CHARACTER DETAILSSSSSSSSSSSS</span>
                 </div>);
         }
