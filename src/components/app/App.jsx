@@ -1,11 +1,10 @@
 import React from 'react';
+import { useHistory } from "react-router-dom";
 import { useRecoilState, useRecoilValue } from "recoil";
-import { displayedCharacters, searchTextState, copyrightInfo } from "../../state";
-import { ReactComponent as Logo } from './../app/logo.svg';
+import { copyrightInfo, displayedCharacters, searchTextState } from "../../state";
 import MarvelButton from '../button/MarvelButton';
 import Dashboard from '../dashboard/Dashboard';
 import SearchBar from '../search-bar/SearchBar';
-import { useHistory } from "react-router-dom";
 import './App.css';
 
 

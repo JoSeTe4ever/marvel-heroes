@@ -16,3 +16,8 @@ export const displayedCharacters = atom({
     key: 'displayedCharacters',
     default: [],
 });
+
+export const favouritesCharacters = atom({
+    key: 'favouritesCharacters',
+    default: [],
+});

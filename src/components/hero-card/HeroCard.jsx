@@ -2,6 +2,7 @@
 import React from 'react';
 import './HeroCard.css';
 import { useHistory } from "react-router-dom";
+import { Favourite } from "./../favourite/Favourite";
 
 export const HeroCard = (props) => {
 
@@ -21,6 +22,7 @@ export const HeroCard = (props) => {
             <span className="card-description">{props.heroDescription}</span>
             <span className="card-comics-count"></span>
             <span className="card-series-count"></span>
+            <Favourite></Favourite>
         </div>
     )
 }

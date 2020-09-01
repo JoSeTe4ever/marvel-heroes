@@ -5,6 +5,7 @@ import { ComicsDetails } from "./../comics-details/ComicsDetails";
 import { Home } from "./../home/Home";
 
 const Dashboard: React.FC = () => {
+  
     return <Switch>
             <Route exact path="/" component={Home} />
             <Route path="/characters/:id" component={CharactersDetails} />
