@@ -35,6 +35,7 @@ const App = () => {
         {favs.map(e => {
           return e;
         })}
+
       </header>
       <Dashboard></Dashboard>
       <footer>

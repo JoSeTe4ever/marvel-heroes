@@ -16,7 +16,7 @@ export const initInfo = async (setCharacters, setCopyright) => {
 };
 
 export const setCharactersByQuery = async (setCharacters, query) => {
-  const apiCall = await fetch(`${url}/characters?apikey=${apiKey}&name=${query}`);
+  const apiCall = await fetch(`${url}/characters?apikey=${apiKey}&nameStartsWith=${query}`);
   const result = await apiCall.json();
   if (result.data) {
     setCharacters(result.data.results);
