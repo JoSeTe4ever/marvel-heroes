@@ -1,15 +1,15 @@
 import { default as React, useState } from 'react';
 import ReactPaginate from 'react-paginate';
-import "./Paginator.css"
+import "./Paginator.css";
 
 const Paginator = (props) => {
-
+    console.log("props" + JSON.stringify(props.paginationInfo));
     const [paginationState, setPaginationState] = useState({
-        offset: 0,
+        offset: props.paginationInfo.offset,
         data: props.data,
-        perPage: 12,
+        perPage: 20,
         currentPage: 0,
-        pageCount: 50
+        pageCount: Math.round(props.paginationInfo.total / 20)
     });
 
     const handlePageClick = (e) => {

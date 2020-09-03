@@ -1,7 +1,7 @@
 import React from 'react';
 import { useHistory } from "react-router-dom";
 import { useRecoilState, useRecoilValue } from "recoil";
-import { copyrightInfo, displayedCharacters, searchTextState, favouritesCharacters } from "../../state";
+import { copyrightInfo, displayedCharacters, searchTextState, favouritesCharacters, pagination } from "../../state";
 import MarvelButton from '../button/MarvelButton';
 import Dashboard from '../dashboard/Dashboard';
 import SearchBar from '../search-bar/SearchBar';
@@ -16,6 +16,7 @@ const App = () => {
   const favs = useRecoilValue(favouritesCharacters);
 
   const [heroes, setDisplayedCharacters] = useRecoilState(displayedCharacters);
+  const [paginationInfo, setPaginationInfo] = useRecoilState(pagination);
 
   const _navigateHome = () => {
     setDisplayedCharacters(heroes);
@@ -29,7 +30,8 @@ const App = () => {
         <span dangerouslySetInnerHTML={{ __html: copyright.attributionHTML }}></span>
         <span>{copyright.copyright}</span>
         <img className="logo" src="/1920px-MarvelLogo.svg.png" onClick={_navigateHome}></img>
-        <MarvelButton text="search" searchText={text} onClickedAction={setDisplayedCharacters}></MarvelButton>
+        <MarvelButton text="search" searchText={text} onClickedAction={setDisplayedCharacters}
+          pagination={setPaginationInfo}></MarvelButton>
         <SearchBar text={text}></SearchBar>
 
         {favs.map(e => {

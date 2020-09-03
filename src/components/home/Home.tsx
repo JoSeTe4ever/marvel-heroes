@@ -1,6 +1,6 @@
 import { default as React, useEffect } from 'react';
-import { useRecoilState } from 'recoil';
-import { displayedCharacters, copyrightInfo } from '../../state';
+import { useRecoilState, useRecoilValue } from 'recoil';
+import { displayedCharacters, copyrightInfo, pagination } from '../../state';
 import { HeroCard } from '../hero-card/HeroCard';
 import Paginator from "../paginator/Paginator"
 import './Home.css';
@@ -10,6 +10,7 @@ export const Home = () => {
 
     const [characters, setCharacters] = useRecoilState(displayedCharacters);
     const [copyright, setCopyright] = useRecoilState(copyrightInfo);
+    const paginationInfo = useRecoilValue(pagination);
 
     useEffect(() => {
         initInfo(setCharacters, setCopyright);
@@ -18,7 +19,7 @@ export const Home = () => {
     if (characters && characters.length > 0) {
         return (
             <div>
-                <Paginator data={characters}></Paginator>
+                <Paginator data={characters} paginationInfo={paginationInfo}></Paginator>
                 <div className="home">
                     {characters.map((e: any) => {
                         return <HeroCard

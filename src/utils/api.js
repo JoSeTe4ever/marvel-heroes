@@ -15,10 +15,23 @@ export const initInfo = async (setCharacters, setCopyright) => {
   });
 };
 
-export const setCharactersByQuery = async (setCharacters, query) => {
+export const setCharactersByQuery = async (setPagination, setCharacters, query) => {
   const apiCall = await fetch(`${url}/characters?apikey=${apiKey}&nameStartsWith=${query}`);
   const result = await apiCall.json();
+  debugger; // aqui hay que meter la info de la oaginacion.
   if (result.data) {
+    const {
+      offset,
+      limit,
+      total,
+      count
+    } = result.data;
+    setPagination({
+      offset,
+      limit,
+      total,
+      count
+    });
     setCharacters(result.data.results);
   } else {
     setCharacters([]);

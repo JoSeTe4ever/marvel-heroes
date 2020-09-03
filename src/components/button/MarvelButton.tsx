@@ -5,7 +5,8 @@ import styles from './marvelButton.module.css';
 type ButtonProps = {
     text: string,
     searchText: string,
-    onClickedAction: any
+    onClickedAction: any,
+    pagination: any
 }
 
 export default class MarvelButton extends PureComponent<ButtonProps> {
@@ -13,8 +14,7 @@ export default class MarvelButton extends PureComponent<ButtonProps> {
     render() {
         return (
             <span className={styles.button} onClick={() => {
-
-                setCharactersByQuery(this.props.onClickedAction, this.props.searchText)
+                setCharactersByQuery(this.props.pagination, this.props.onClickedAction, this.props.searchText)
             }}>
                 {this.props.text}
             </span>

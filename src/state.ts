@@ -21,3 +21,13 @@ export const favouritesCharacters = atom({
     key: 'favouritesCharacters',
     default: [],
 });
+
+export const pagination = atom({
+    key: 'paginationInfo',
+    default: {
+        offset: 0,
+        limit: 0,
+        total: 0,
+        count: 0
+    },
+});
