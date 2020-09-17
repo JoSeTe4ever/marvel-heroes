@@ -1,12 +1,15 @@
 
 import React from 'react';
-import './HeroCard.css';
 import { useHistory } from "react-router-dom";
+import { useRecoilValue } from 'recoil';
+import { favouritesCharacters } from "../../state";
 import { Favourite } from "./../favourite/Favourite";
+import './HeroCard.css';
 
 export const HeroCard = (props) => {
 
     const history = useHistory();
+    const favourites = useRecoilValue(favouritesCharacters);
 
     return (
         <div className="card" onClick={() => {
@@ -22,7 +25,7 @@ export const HeroCard = (props) => {
             <span className="card-description">{props.heroDescription}</span>
             <span className="card-comics-count"></span>
             <span className="card-series-count"></span>
-            <Favourite></Favourite>
+            <Favourite isSelected={favourites.some(e => e.toString() === props.heroId.toString())}></Favourite>
         </div>
     )
 }

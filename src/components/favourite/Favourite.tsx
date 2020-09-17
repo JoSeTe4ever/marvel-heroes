@@ -18,7 +18,7 @@ export class Favourite extends Component<{ isSelected: false }, FavouriteState> 
   render() {
     return <div className="iconContainer">
       <IconContext.Provider value={{ color: "yellow", className: "icon", size: "2rem"}}>
-        {this.state.selected ? <AiFillStar /> : <AiOutlineStar />}
+        {this.props.isSelected ? <AiFillStar /> : <AiOutlineStar />}
       </IconContext.Provider>
     </div>
   }

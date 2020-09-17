@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { useRecoilState, useRecoilValue } from 'recoil';
+import { useRecoilValue } from 'recoil';
 import { HeroCard } from '../hero-card/HeroCard';
 import { url, apiKey } from "../../utils/api"
 import { favouritesCharacters } from "../../state";
@@ -12,9 +12,7 @@ export const FavouritesCharacters = () => {
     const promisesArray = [];
 
     useEffect(() => {
-        debugger;
         favourites.map(charId => {
-            
             promisesArray.push(fetch(`${url}/characters/${charId}?apikey=${apiKey}`).then(result => {
                 const obtained = result.json();
                 return obtained;
