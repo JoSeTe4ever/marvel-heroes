@@ -24,6 +24,11 @@ const App = () => {
     history.push(`/`);
   }
 
+  const _navigateFavourites = () => {
+    setText("");
+    history.push(`/favourites`);
+  }
+
   return (
     <div className="App">
       <header className="App-header">
@@ -34,9 +39,7 @@ const App = () => {
           pagination={setPaginationInfo}></MarvelButton>
         <SearchBar text={text}></SearchBar>
 
-        {favs.map(e => {
-          return e;
-        })}
+        {favs && favs.length ? <span className="favourites" onClick={_navigateFavourites}>❤️</span> : ''}
 
       </header>
       <Dashboard></Dashboard>

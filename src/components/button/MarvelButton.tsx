@@ -6,7 +6,7 @@ type ButtonProps = {
     text: string,
     searchText: string,
     onClickedAction: any,
-    pagination: any
+    pagination: Function
 }
 
 export default class MarvelButton extends PureComponent<ButtonProps> {

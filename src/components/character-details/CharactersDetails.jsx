@@ -24,7 +24,10 @@ export const CharactersDetails = (props) => {
         return (
             <div className="characterDetailsContainer">
                 <MarvelButton text="add to favourites" onClickedAction={() => {
-                    setFavouritesCharacters([...favourites, characterDetails.id])
+                    //Add only once.
+                    if (!favourites.some(e => e === characterDetails.id)) {
+                        setFavouritesCharacters([...favourites, characterDetails.id])
+                    }
                 }}></MarvelButton>
                 <img className="highResolution" alt="" src={`${characterDetails.thumbnail.path}.${characterDetails.thumbnail.extension}`}></img>
                 <span>CHARACTER DETAILSSSSSSSSSSSS</span>

@@ -1,7 +1,8 @@
-const apiKey = `${process.env.REACT_APP_MARVEL_PUBLIC_API_KEY}`;
 const urlDevelopment = `http://localhost:3004/characters`;
 const urlProduction = `http://gateway.marvel.com/v1/public`;
-const url = urlProduction;
+
+export const url = urlProduction;
+export const apiKey = `${process.env.REACT_APP_MARVEL_PUBLIC_API_KEY}`;
 
 
 export const initInfo = async (setCharacters, setCopyright) => {
@@ -18,7 +19,7 @@ export const initInfo = async (setCharacters, setCopyright) => {
 export const setCharactersByQuery = async (setPagination, setCharacters, query) => {
   const apiCall = await fetch(`${url}/characters?apikey=${apiKey}&nameStartsWith=${query}`);
   const result = await apiCall.json();
-  debugger; // aqui hay que meter la info de la oaginacion.
+  debugger; // TODO aqui hay que meter la info de la oaginacion.
   if (result.data) {
     const {
       offset,
@@ -26,12 +27,14 @@ export const setCharactersByQuery = async (setPagination, setCharacters, query) 
       total,
       count
     } = result.data;
-    setPagination({
-      offset,
-      limit,
-      total,
-      count
-    });
+    if(setPagination) {
+      setPagination({
+        offset,
+        limit,
+        total,
+        count
+      });
+    }
     setCharacters(result.data.results);
   } else {
     setCharacters([]);
