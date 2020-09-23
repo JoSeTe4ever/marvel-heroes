@@ -1,10 +1,16 @@
 .App {
   text-align: center;
+  height: 100vh;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.logo{
+  width: 158px;
+  height: auto;
+  position: relative;
+  float: left;
+  left: 100px;
+  cursor: pointer;
+  top: 2rem;
 }
 
 @media (prefers-reduced-motion: no-preference) {
@@ -28,6 +34,10 @@
 
 .App-link {
   color: #61dafb;
+}
+
+.favourites{
+  cursor: pointer;
 }
 
 @keyframes App-logo-spin {

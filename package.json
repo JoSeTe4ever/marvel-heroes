@@ -17,6 +17,8 @@
     "json-server": "^0.16.1",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
+    "react-icons": "^3.11.0",
+    "react-paginate": "^6.3.2",
     "react-router-dom": "^5.2.0",
     "react-scripts": "3.4.1",
     "recoil": "0.0.10",
@@ -55,6 +57,7 @@
   "devDependencies": {
     "bit-bin": "^14.8.8",
     "eslint-plugin-react-hooks": "^4.0.8",
+    "gh-pages": "^3.1.0",
     "http-proxy-middleware": "^1.0.5"
   },
   "bit": {

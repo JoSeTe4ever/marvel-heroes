@@ -16,7 +16,6 @@ https://bit.dev/josete4ever/marvelous-components
 https://github.com/typescript-cheatsheets/react-typescript-cheatsheet#reacttypescript-cheatsheets
 
 
-
 ## .env file
 
 it is mandatory to prefix the variables with REACT_APP in order to the create react app cli to understand it.

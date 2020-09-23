@@ -41,7 +41,7 @@ img.card-thumb-frame__thumbnail {
     max-height: 257px;
 }
 
-img {
+.image-container>img {
     max-width: 100%;
     min-height: 215px;
     max-height: 203px;
@@ -59,4 +59,9 @@ img {
     z-index: 2;
     position: relative;
     top: -43px;
+}
+
+.iconContainer {
+    position: relative;
+    float: right;
 }

@@ -1,0 +1,11 @@
+.characterDetailsContainer {
+    height: 100vh;
+    background-color: #282c34;
+    position: relative;
+    top: 6vh;
+}
+
+.highResolution {
+    position: relative;
+    float: left;
+}
