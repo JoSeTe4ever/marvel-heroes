@@ -10,4 +10,6 @@
     -moz-border-radius: 18px 15px 15px 15px;
     -webkit-border-radius: 18px 15px 15px 15px;
     border: 0px solid #000000;
+    padding: 4px;
+    font-size: 20px;
 }

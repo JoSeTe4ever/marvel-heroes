@@ -28,6 +28,7 @@ export const setCharactersByQuery = async (setPagination, setCharacters, query) 
       count
     } = result.data;
     if(setPagination) {
+      debugger;
       setPagination({
         offset,
         limit,

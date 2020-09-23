@@ -32,12 +32,22 @@
 
 }
 
+footer {
+  text-align: center;
+  padding: 15px;
+  background-color: #282c34;
+  color: white;
+}
+
 .App-link {
   color: #61dafb;
 }
 
 .favourites{
   cursor: pointer;
+  float: right;
+  padding-right: 20px;
+  padding-top: 10px;
 }
 
 @keyframes App-logo-spin {

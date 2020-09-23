@@ -32,18 +32,21 @@ const App = () => {
   return (
     <div className="App">
       <header className="App-header">
-        <span dangerouslySetInnerHTML={{ __html: copyright.attributionHTML }}></span>
-        <span>{copyright.copyright}</span>
+
         <img className="logo" src="/1920px-MarvelLogo.svg.png" onClick={_navigateHome}></img>
+
+        <SearchBar text={text}></SearchBar>
+        
         <MarvelButton text="search" searchText={text} onClickedAction={setDisplayedCharacters}
           pagination={setPaginationInfo}></MarvelButton>
-        <SearchBar text={text}></SearchBar>
 
         {favs && favs.length ? <span className="favourites" onClick={_navigateFavourites}>❤️</span> : ''}
 
       </header>
       <Dashboard></Dashboard>
-      <footer>
+      <footer className="App-footer">
+        <span dangerouslySetInnerHTML={{ __html: copyright.attributionHTML }}></span>
+        <span>{copyright.copyright}</span>
       </footer>
     </div>
   );
