@@ -48,6 +48,7 @@ footer {
   float: right;
   padding-right: 20px;
   padding-top: 10px;
+  background: transparent;
 }
 
 @keyframes App-logo-spin {

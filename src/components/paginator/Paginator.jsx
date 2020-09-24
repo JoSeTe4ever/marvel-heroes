@@ -1,9 +1,14 @@
-import { default as React, useState, useEffect } from 'react';
+import { default as React, useEffect, useState } from 'react';
 import ReactPaginate from 'react-paginate';
+import { useRecoilState } from 'recoil';
+import { displayedCharacters, pagination } from '../../state';
+import { setCharactersByQuery } from '../../utils/api';
 import "./Paginator.css";
 
 const Paginator = (props) => {
     const pageCount = Math.round(props.paginationInfo.total / 20);
+    const [characters, setCharacters] = useRecoilState(displayedCharacters);
+    const [paginationInfo, setPagination] = useRecoilState(pagination);
 
     const [paginationState, setPaginationState] = useState({
         offset: props.paginationInfo.offset,
@@ -15,6 +20,7 @@ const Paginator = (props) => {
     console.log("paginationState" + JSON.stringify(paginationState));
 
     useEffect(() => {
+        //setCharactersByQuery(setPagination, setCharacters, "" + "&limit=20&offset=20")
         console.log('TODO CALLING REST MARVEL API', paginationState);
      }, [paginationState]);
 

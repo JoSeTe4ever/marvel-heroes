@@ -3,6 +3,7 @@ import { useRecoilValue } from 'recoil';
 import { HeroCard } from '../hero-card/HeroCard';
 import { url, apiKey } from "../../utils/api"
 import { favouritesCharacters } from "../../state";
+import './FavouritesCharacters.css';
 
 export const FavouritesCharacters = () => {
 
@@ -27,7 +28,7 @@ export const FavouritesCharacters = () => {
     if (loaded && fullCharArray && fullCharArray.length > 0) {
         return (
             <div>
-                <div className="home">
+                <div className="favouritesContainer">
                     {fullCharArray.map((e) => {
                         return <HeroCard
                             heroDescription={e.description}

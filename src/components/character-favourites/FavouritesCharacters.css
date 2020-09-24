@@ -1,0 +1,8 @@
+.favouritesContainer {
+    background-color: #192439;
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-around;
+    height: 84vh;
+    padding-top: 7rem;
+}
