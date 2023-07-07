@@ -15,14 +15,18 @@
     "awesome-debounce-promise": "^2.1.0",
     "axios": "^0.19.2",
     "json-server": "^0.16.1",
-    "react": "^16.13.1",
-    "react-dom": "^16.13.1",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
     "react-icons": "^3.11.0",
-    "react-paginate": "^6.3.2",
+    "react-paginate": "^8.2.0",
     "react-router-dom": "^5.2.0",
     "react-scripts": "5.0.1",
     "recoil": "0.7.7",
-    "typescript": "^3.9.7"
+    "typescript": "^3.9.7",
+    "sass": "1.62.1",
+    "prop-types": "15.8.1",
+    "perfect-scrollbar": "1.5.5",
+    "bootstrap": "4.6.2"
   },
   "proxy": "http://gateway.marvel.com",
   "scripts": {
