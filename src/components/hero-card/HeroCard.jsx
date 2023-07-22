@@ -22,7 +22,7 @@ export const HeroCard = (props) => {
                     className="card-thumb-frame__thumbnail"></img>
 
             </div>
-            <span className="card-description">{props.heroDescription}</span>
+            <div className="card-description">{props.heroDescription}</div>
             <span className="card-comics-count"></span>
             <span className="card-series-count"></span>
             <Favourite isSelected={favourites.some(e => e.toString() === props.heroId.toString())}></Favourite>

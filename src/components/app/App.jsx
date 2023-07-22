@@ -33,7 +33,7 @@ const App = () => {
     <div className="App">
       <header className="App-header">
 
-        <img className="logo" src="/1920px-MarvelLogo.svg.png" onClick={_navigateHome}></img>
+        <img className="logo" src="./img/1920px-MarvelLogo.svg.png" onClick={_navigateHome}></img>
 
         <SearchBar text={text}></SearchBar>
         

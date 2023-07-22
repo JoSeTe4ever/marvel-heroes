@@ -16,6 +16,8 @@ img.card-thumb-frame__thumbnail {
     transition: transform .2s;
     /* Animation */
     width: 300px;
+    display: flex;
+    flex-direction: column;
 }
 
 .card:hover {
@@ -24,8 +26,11 @@ img.card-thumb-frame__thumbnail {
 }
 
 .card-description {
-    font-size: 9px;
     color: white;
+    margin: 1rem 1rem;
+    text-align: justify;
+    font-size: 16px;
+    overflow-y: hidden;
 }
 
 .card-title {
