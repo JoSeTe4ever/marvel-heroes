@@ -18,6 +18,7 @@ img.card-thumb-frame__thumbnail {
     width: 300px;
     display: flex;
     flex-direction: column;
+    position: relative;
 }
 
 .card:hover {
@@ -67,6 +68,8 @@ img.card-thumb-frame__thumbnail {
 }
 
 .iconContainer {
-    position: relative;
-    float: right;
+    position: absolute;
+    bottom: 0px;
+    right: 0rem;
+    margin-left: auto;
 }
