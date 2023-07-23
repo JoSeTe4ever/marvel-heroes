@@ -27,7 +27,7 @@ export const setCharactersByQuery = async (setPagination, setCharacters, query) 
       total,
       count
     } = result.data;
-    if(setPagination) {
+    if (setPagination) {
       setPagination({
         offset,
         limit,
@@ -47,6 +47,16 @@ export const getCharacterDetails = async (characterId) => {
   return result.data.results;
 };
 
+
+export const getSearchSuggestions = async (searchCriteria) => {
+  if (searchCriteria) {
+    const apiCall = await fetch(`${url}/characters?apikey=${apiKey}&nameStartsWith=${searchCriteria}`);
+    const result = await apiCall.json();
+    return result.data.results;
+  }
+  return [];
+
+};
 
 export const getComics = (options) => {};
 export const getCreator = (options) => {};
