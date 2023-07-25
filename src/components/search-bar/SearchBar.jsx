@@ -12,6 +12,7 @@ const SearchBar = (props) => {
     const [text, setText] = useRecoilState(searchTextState);
 
     //TODO check how we can use useReducer instead of useState
+
     const [debouncedInputValue, setDebouncedInputValue] = useState('');
     const [suggestions, setSuggestions] = useState([]);
     const [isLoading, setIsloaing] = useState(false);
