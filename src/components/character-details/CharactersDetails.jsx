@@ -10,15 +10,16 @@ export const CharactersDetails = (props) => {
 
     const [characterDetails, setCharacterDetails] = useState(undefined);
     const [favourites, setFavouritesCharacters] = useRecoilState(favouritesCharacters);
+    const { id } = props.match.params;
 
     useEffect(() => {
-        const { id } = props.match.params
+
         getCharacterDetails(id).then(details => {
             if (details && details.length > 0) {
                 setCharacterDetails(details[0]);
             }
         })
-    }, []); //
+    }, [id]); //
 
     if (characterDetails) {
         return (

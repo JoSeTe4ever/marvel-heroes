@@ -12,12 +12,14 @@ const SearchBar = (props) => {
     const [text, setText] = useRecoilState(searchTextState);
     const [debouncedInputValue, setDebouncedInputValue] = useState('');
     const [suggestions, setSuggestions] = useState([]);
+    const [isLoading, setIsloaing] = useState(false);
 
     const onChange = (event) => {
         setText(event.target.value);
     };
 
     useEffect(() => {
+        setIsloaing(true);
         const timeoutId = setTimeout(() => {
             setDebouncedInputValue(text);
             getSearchSuggestions(text).then((response) => {
@@ -28,23 +30,29 @@ const SearchBar = (props) => {
                     }
                 });
                 setSuggestions(heroesNames);
+                setIsloaing(false);
             });
         }, 500);
         return () => clearTimeout(timeoutId);
     }, [text, 500]);
 
     return (
-        <div className='SearchBar-suggestions__input'>
-            <input type="text" value={text} onChange={onChange}></input>
+        <div className='SearchBar-suggestions__container'>
+            <input type="text" className='suggestions__input' value={text} onChange={onChange}></input>
+
+
+            { text && text.length > 0 ? 
             <ul className='SearchBar-suggestions__list'>
 
                 {suggestions.map((e) => {
                     return <li className='suggestions__list--element' onClick={() => {
+                        setText('')
                         history.push(`/characters/${e.heroId}`);
                     }}>{e.name}</li>
                 })}
-                {suggestions.length > 0 ? <li className='suggestions__list--final-element'>All search results</li> : null}
-            </ul>
+                {isLoading ? <li className='suggestions__list--final-element'>isLoading</li> : null}
+                {isLoading === false && text.length > 0 ? <li className='suggestions__list--final-element'>All search results</li> : null}
+            </ul> : null}
         </div>
     )
 }

@@ -1,41 +1,57 @@
 ul.SearchBar-suggestions__list {
-    list-style-type: none;
-    padding: 0;
-    text-align: justify;
-    font-size: 0.7rem;
-    background: rgb(2,0,36);
-    background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(69,69,167,1) 100%, rgba(0,212,255,1) 100%);
-    line-height: 2.2rem;
+  list-style-type: none;
+  padding: 0;
+  text-align: justify;
+  font-size: 0.7rem;
+  background: rgb(2, 0, 36);
+  background: linear-gradient(
+    90deg,
+    rgba(2, 0, 36, 1) 0%,
+    rgba(69, 69, 167, 1) 100%,
+    rgba(0, 212, 255, 1) 100%
+  );
+  line-height: 2.2rem;
+  padding: 0.1rem 0.5rem;
+
+  .suggestions__list--element {
     padding: 0.1rem 0.5rem;
-
-    .suggestions__list--element {
-        padding: 0.1rem 0.5rem;
-        margin: 0.1rem 0;
-        border-radius: 0.5rem;
-        cursor: pointer;
-        transition: all 0.2s ease-in-out;
-        &:hover{
-            background-color: #fff;
-            color: #000;
-        }
+    margin: 0.1rem 0;
+    border-radius: 0.5rem;
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+    &:hover {
+      background-color: #fff;
+      color: #000;
     }
+  }
 
-    .suggestions__list--final-element {
-        font-weight: bolder;
-        text-align: center;
-        cursor: pointer;
-        font-size: 0.9rem;
-    }
+  .suggestions__list--final-element {
+    font-weight: bolder;
+    text-align: center;
+    cursor: pointer;
+    font-size: 0.9rem;
+  }
 }
 
-div.SearchBar-suggestions__input{
-    width: 100%;
-    max-width: 13rem;
-    height: 100%;
-    border: none;
-    outline: none;
-    font-size: 1.5rem;
-    padding: 0 1rem;
-    background-color: transparent;
-    color: #fff;
+div.SearchBar-suggestions__container {
+  width: 100%;
+  max-width: 13rem;
+  height: 100%;
+  border: none;
+  outline: none;
+  font-size: 1.5rem;
+  padding: 0 1rem;
+  background-color: transparent;
+  color: #fff;
+
+  .suggestions__input {
+    border: 1px solid #ccc;
+    box-shadow: none;
+    padding: 0 16px;
+    border-radius: 5px;
+    color: #5e646b;
+    font-family: inherit;
+    font-size: 14px;
+    height: 42px;;
+  }
 }
