@@ -43,6 +43,7 @@ In the project directory, you can run:
 
 * change all the components to typescript
 * change all the css classes to BEM
+* continue with stories view
   
 
 ### `npm start`

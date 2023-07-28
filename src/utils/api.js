@@ -16,6 +16,11 @@ export const initInfo = async (setCharacters, setCopyright) => {
   });
 };
 
+export const getStories = async (options) => {
+  const apiCall = await fetch(`${url}/stories?apikey=${apiKey}`);
+  return await apiCall.json();
+};
+
 export const setCharactersByQuery = async (setPagination, setCharacters, query) => {
   const apiCall = await fetch(`${url}/characters?apikey=${apiKey}&nameStartsWith=${query}`);
   const result = await apiCall.json();
@@ -61,5 +66,5 @@ export const getSearchSuggestions = async (searchCriteria) => {
 export const getComics = (options) => {};
 export const getCreator = (options) => {};
 export const getSeries = (options) => {};
-export const getStories = (options) => {};
+
 export const getEvents = (options) => {};

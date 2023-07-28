@@ -5,6 +5,7 @@ import { ComicsDetails } from "./../comics-details/ComicsDetails";
 import { Home } from "./../home/Home";
 import { FavouritesCharacters } from "../character-favourites/FavouritesCharacters";
 import Characters from "../characters/Characters";
+import { Stories } from "../stories/Stories";
 
 const Dashboard: React.FC = () => {
     return <Switch>
@@ -14,9 +15,10 @@ const Dashboard: React.FC = () => {
             <Route path="/comics/:id" component={ComicsDetails} />
             <Route path="/comics/:id" component={ComicsDetails} />
             <Route path="/favourites" component={FavouritesCharacters} />
-        <Route path="*">
+            <Route path="/stories" component={Stories} />
+            <Route path="*">
             <NoMatch></NoMatch>
-        </Route>
+            </Route>
     </Switch>
 }
 
