@@ -38,6 +38,13 @@ https://superheroapi.com/
 
 In the project directory, you can run:
 
+
+//TODO LIST 
+
+* change all the components to typescript
+* change all the css classes to BEM
+  
+
 ### `npm start`
 
 Runs the app in the development mode.<br />
@@ -109,3 +116,8 @@ This section has moved here: https://facebook.github.io/create-react-app/docs/de
 ### `npm run build` fails to minify
 
 This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+
+
+Interesting links 
+
+https://www.pinterest.es/pin/953285446100141809/
