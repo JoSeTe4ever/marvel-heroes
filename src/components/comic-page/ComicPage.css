@@ -7,7 +7,7 @@
 .comic__container {
     display: flex;
     flex-direction: column;
-    width: 80rem;
+    width: 60rem;
 }
 
 .row {
@@ -23,7 +23,6 @@
 
 .row__strip30 {
     position: relative;
-    flex-basis: 30%;
     border: 2px solid orange;
     overflow: hidden;
 }
@@ -43,7 +42,6 @@
 }
 
 .row__strip70 {
-    flex-basis: 70%;
     position: relative;
     border: 2px solid orange;
     overflow: hidden;
