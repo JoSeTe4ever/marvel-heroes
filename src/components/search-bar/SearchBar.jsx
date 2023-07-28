@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { useRecoilState } from "recoil";
 import { searchTextState } from "../../state";
-import { getSearchSuggestions } from './../../utils/api';
+import { getSearchSuggestions, setCharactersByQuery } from './../../utils/api';
 import { useHistory } from "react-router-dom";
+import { displayedCharacters, pagination } from "../../state";
 
 import './SearchBar.css';
 
@@ -10,6 +11,8 @@ const SearchBar = (props) => {
 
     const history = useHistory();
     const [text, setText] = useRecoilState(searchTextState);
+    const [characters, setCharacters] = useRecoilState(displayedCharacters);
+    const [paginationInfo, setPagination] = useRecoilState(pagination);
 
     //TODO check how we can use useReducer instead of useState
 
@@ -43,7 +46,6 @@ const SearchBar = (props) => {
         <div className='SearchBar-suggestions__container'>
             <input type="text" className='suggestions__input' value={text} onChange={onChange}></input>
 
-
             { text && text.length > 0 ? 
             <ul className='SearchBar-suggestions__list'>
 
@@ -54,7 +56,9 @@ const SearchBar = (props) => {
                     }}>{e.name}</li>
                 })}
                 {isLoading ? <li className='suggestions__list--final-element'>isLoading</li> : null}
-                {isLoading === false && text.length > 0 ? <li className='suggestions__list--final-element'>All search results</li> : null}
+                {isLoading === false && text.length > 0 ? <li className='suggestions__list--final-element' onClick={() => {
+                    setCharactersByQuery(setPagination, setCharacters, text + "&limit=20&offset=20")
+                }}>All search results</li> : null}
             </ul> : null}
         </div>
     )
