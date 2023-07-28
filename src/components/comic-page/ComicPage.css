@@ -23,7 +23,7 @@
 
 .row__strip30 {
     position: relative;
-    border: 2px solid orange;
+    border: 2px solid rgb(255, 255, 255);
     overflow: hidden;
 }
 
@@ -33,17 +33,28 @@
     transform: scale(1.1);
 }
 
+.row__strip30:hover .strip__info.strip__info-character-position,
+.row__strip70:hover .strip__info.strip__info-character-position{
+    top: 40%;
+    right: 33%;
+}
+
+.row__strip30:hover .strip__info.strip__info-character-position-new{
+    top: 40%;
+    left: 10%;
+}
+
 .row__strip30:hover .strip__info,
 .row__strip70:hover .strip__info
  {
     opacity: 1;
     z-index: 3;
     transform: scale(1.1);
-}
+} 
 
 .row__strip70 {
     position: relative;
-    border: 2px solid orange;
+    border: 2px solid rgb(255, 255, 255);
     overflow: hidden;
 }
 
@@ -70,4 +81,14 @@
     right: 50%;
     transition: all 300ms ease-in-out;
     font-size: 4rem;
+}
+.strip__info.strip__info-character-position{
+    top: 40%;
+    right: 33%;
+}
+
+
+.strip__info.strip__info-character-position-new{
+    top: 40%;
+    left: 10%;
 }
