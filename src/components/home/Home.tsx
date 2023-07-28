@@ -5,6 +5,7 @@ import { HeroCard } from '../hero-card/HeroCard';
 import Paginator from "../paginator/Paginator"
 import './Home.css';
 import { initInfo } from '../../utils/api';
+import { ComicPage } from '../comic-page/ComicPage';
 
 export const Home = () => {
 
@@ -20,6 +21,9 @@ export const Home = () => {
         return (
             <div>
                 <Paginator data={characters} paginationInfo={paginationInfo}></Paginator>
+
+                <ComicPage></ComicPage>
+
                 <div className="home">
                     {characters.map((e: any) => {
                         return <HeroCard
