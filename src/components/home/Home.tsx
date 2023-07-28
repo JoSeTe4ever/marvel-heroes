@@ -1,11 +1,10 @@
 import { default as React, useEffect } from 'react';
 import { useRecoilState, useRecoilValue } from 'recoil';
-import { displayedCharacters, copyrightInfo, pagination } from '../../state';
-import { HeroCard } from '../hero-card/HeroCard';
-import Paginator from "../paginator/Paginator"
-import './Home.css';
+import { copyrightInfo, displayedCharacters, pagination } from '../../state';
 import { initInfo } from '../../utils/api';
 import { ComicPage } from '../comic-page/ComicPage';
+import Paginator from "../paginator/Paginator";
+import './Home.css';
 
 export const Home = () => {
 
@@ -19,21 +18,8 @@ export const Home = () => {
 
     if (characters && characters.length > 0) {
         return (
-            <div>
-                <Paginator data={characters} paginationInfo={paginationInfo}></Paginator>
-
+            <div className="home">
                 <ComicPage></ComicPage>
-
-                <div className="home">
-                    {characters.map((e: any) => {
-                        return <HeroCard
-                            heroDescription={e.description}
-                            key={e.id.toString()}
-                            heroName={e.name}
-                            heroId={e.id.toString()}
-                            imgUrl={`${e.thumbnail.path}.${e.thumbnail.extension}`}></HeroCard>
-                    })}
-                </div>
             </div>
         )
     } else {

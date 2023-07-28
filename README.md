@@ -121,3 +121,16 @@ This section has moved here: https://facebook.github.io/create-react-app/docs/tr
 Interesting links 
 
 https://www.pinterest.es/pin/953285446100141809/
+
+                <Paginator data={characters} paginationInfo={paginationInfo}></Paginator>
+
+                <div>
+                    {characters.map((e: any) => {
+                        return <HeroCard
+                            heroDescription={e.description}
+                            key={e.id.toString()}
+                            heroName={e.name}
+                            heroId={e.id.toString()}
+                            imgUrl={`${e.thumbnail.path}.${e.thumbnail.extension}`}></HeroCard>
+                    })}
+                </div>
