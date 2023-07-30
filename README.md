@@ -5,6 +5,9 @@ Marvel Api project
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+MARVEL API DEFINITION 
+
+https://developer.marvel.com/docs#!/public/
 
 ## Bit.dev tracking 
 
@@ -45,6 +48,19 @@ In the project directory, you can run:
 * change all the css classes to BEM
 * continue with stories view
   
+// THINGS LEARNED 
+
+  Line 6:15:  Effect callbacks are synchronous to prevent race conditions. Put the async function inside:
+
+useEffect(() => {
+  async function fetchData() {
+    // You can await here
+    const response = await MyAPI.getData(someId);
+    // ...
+  }
+  fetchData();
+}, [someId]); // Or [] if effect doesn't need props or state
+
 
 ### `npm start`
 

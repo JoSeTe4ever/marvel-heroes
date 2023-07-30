@@ -3,10 +3,15 @@ import { getStories } from '../../utils/api';
 
 export function Stories() {
     const [stories, setStories] = useState([]);
-    useEffect(async () => {
-        const data = await getStories();
-        debugger;
-    }, []); // passing an empty array as the second argument to useEffect makes it only run on mount and unmount 
+    useEffect(() => {
+        async function fetchData() {
+          // You can await here
+          const response = await  getStories();
+          const storiesArray = response.data.results;
+          setStories(storiesArray);
+        }
+        fetchData();
+      }, []); // Or [] if effect doesn't need props or state
 
     return (
         <div>Stories</div>

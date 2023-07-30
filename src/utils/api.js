@@ -21,6 +21,83 @@ export const getStories = async (options) => {
   return await apiCall.json();
 };
 
+//getStoriesByEventId
+export const getStoriesByEventId = async (eventId) => {
+  const apiCall = await fetch(`${url}/events/${eventId}/stories?apikey=${apiKey}`);
+  return await apiCall.json();
+};
+
+
+export const getCreators = (options) => {
+  const apiCall = fetch(`${url}/creators?apikey=${apiKey}`);
+  return apiCall.json();
+};
+
+export const getCreatorDetails = async (creatorId) => {
+  const apiCall = await fetch(`${url}/creators/${creatorId}?apikey=${apiKey}`);
+  return await apiCall.json();
+};
+
+export const getStoriesByCreatorId = async (creatorId) => {
+  const apiCall = await fetch(`${url}/creators/${creatorId}/stories?apikey=${apiKey}`);
+  return await apiCall.json();
+};
+
+export const getSeriesbycreatorId = async (creatorId) => {
+  const apiCall = await fetch(`${url}/creators/${creatorId}/series?apikey=${apiKey}`);
+  return await apiCall.json();
+};
+
+export const getEventsByCreatorId = async (creatorId) => {
+  const apiCall = await fetch(`${url}/creators/${creatorId}/events?apikey=${apiKey}`);
+  return await apiCall.json();
+};
+
+export const getComicsByCreatorId = async (creatorId) => {
+  const apiCall = await fetch(`${url}/creators/${creatorId}/comics?apikey=${apiKey}`);
+  return await apiCall.json();
+};
+
+export const getSeries = async (options) => {
+  const apiCall = await fetch(`${url}/series?apikey=${apiKey}`);
+  return await apiCall.json();
+};
+
+export const getComics = async (options) => {
+  const apiCall = await fetch(`${url}/comics?apikey=${apiKey}`);
+  return await apiCall.json();
+}
+
+export const getComicDetails = async (comicId) => {
+  const apiCall = await fetch(`${url}/comics/${comicId}?apikey=${apiKey}`);
+  return await apiCall.json();
+};
+
+export const getCharactersByComicId = async (comicId) => {
+  const apiCall = await fetch(`${url}/comics/${comicId}/characters?apikey=${apiKey}`);
+  return await apiCall.json();
+};
+
+export const getCreatorsByComicId = async (comicId) => {
+  const apiCall = await fetch(`${url}/comics/${comicId}/creators?apikey=${apiKey}`);
+  return await apiCall.json();
+};
+
+export const getEventsByComicId = async (comicId) => {
+  const apiCall = await fetch(`${url}/comics/${comicId}/events?apikey=${apiKey}`);
+  return await apiCall.json();
+};
+
+export const getStoriesByComicId = async (comicId) => {
+  const apiCall = await fetch(`${url}/comics/${comicId}/stories?apikey=${apiKey}`);
+  return await apiCall.json();
+};
+
+export const getEvents = (options) => {
+  const apiCall = fetch(`${url}/events?apikey=${apiKey}`);
+  return apiCall.json();
+};
+
 export const setCharactersByQuery = async (setPagination, setCharacters, query) => {
   const apiCall = await fetch(`${url}/characters?apikey=${apiKey}&nameStartsWith=${query}`);
   const result = await apiCall.json();
@@ -52,6 +129,37 @@ export const getCharacterDetails = async (characterId) => {
   return result.data.results;
 };
 
+// Fetches lists of characters filtered by a story id.
+export const getCharactersByStoryId = async (storyId) => {
+  const apiCall = await fetch(`${url}/characters/${storyId}?apikey=${apiKey}`);
+  const result = await apiCall.json();
+  return result.data.results;
+};
+
+export const getComicsByCharacterId = async (characterId) => {
+  const apiCall = await fetch(`${url}/characters/${characterId}/comics?apikey=${apiKey}`);
+  const result = await apiCall.json();
+  return result.data.results;
+};
+
+export const getEventsByCharacterId = async (characterId) => {
+  const apiCall = await fetch(`${url}/characters/${characterId}/events?apikey=${apiKey}`);
+  const result = await apiCall.json();
+  return result.data.results;
+};
+
+export const getSeriesByCharacterId = async (characterId) => {
+  const apiCall = await fetch(`${url}/characters/${characterId}/series?apikey=${apiKey}`);
+  const result = await apiCall.json();
+  return result.data.results;
+};
+
+export const getStoriesByCharacterId = async (characterId) => {
+  const apiCall = await fetch(`${url}/characters/${characterId}/stories?apikey=${apiKey}`);
+  const result = await apiCall.json();
+  return result.data.results;
+};
+
 
 export const getSearchSuggestions = async (searchCriteria) => {
   if (searchCriteria) {
@@ -62,9 +170,3 @@ export const getSearchSuggestions = async (searchCriteria) => {
   return [];
 
 };
-
-export const getComics = (options) => {};
-export const getCreator = (options) => {};
-export const getSeries = (options) => {};
-
-export const getEvents = (options) => {};
