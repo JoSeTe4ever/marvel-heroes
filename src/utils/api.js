@@ -4,16 +4,9 @@ const urlProduction = `http://gateway.marvel.com/v1/public`;
 export const url = urlProduction;
 export const apiKey = `${process.env.REACT_APP_MARVEL_PUBLIC_API_KEY}`;
 
-
-export const initInfo = async (setCharacters, setCopyright) => {
+export const getCharacters = async (options) => {
   const apiCall = await fetch(`${url}/characters?apikey=${apiKey}`);
-  const result = await apiCall.json();
-  setCharacters(result.data.results);
-  setCopyright({
-    copyright: result.copyright,
-    attributionText: result.attributionText,
-    attributionHTML: result.attributionHTML
-  });
+  return await apiCall.json();
 };
 
 export const getStories = async (options) => {

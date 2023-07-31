@@ -1,5 +1,5 @@
 .characters__container {
-    background-color: #192439;
+    background: linear-gradient(to bottom right, var(--infinity-stone-space), rgba(0, 0, 0, 0.55));
     display: flex;
     flex-flow: row wrap;
     justify-content: space-around;

@@ -59,7 +59,9 @@ export const ComicPage = () => {
                         events
                     </div>
                 </div>
-                <div className="row__strip70 stoneSoul">
+                <div className="row__strip70 stoneSoul" onClick={() => {
+                        history.push(`/comics`);
+                }}>
                 <div className="strip__mask">
                     <img src="img/marvelComics.jpg" alt="characters" className="strip__img" />
                     </div>

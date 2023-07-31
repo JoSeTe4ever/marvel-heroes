@@ -1,17 +1,17 @@
 :root {
-  --infinity-stone-space: #9370DB; /* Purple - Space Stone */
-  --infinity-stone-reality: #FF4500; /* Red - Reality Stone */
-  --infinity-stone-power: #FFD700; /* Yellow - Power Stone */
-  --infinity-stone-mind: #6495ED; /* Blue - Mind Stone */
-  --infinity-stone-time: #32CD32; /* Green - Time Stone */
-  --infinity-stone-soul: #8A2BE2; /* Indigo - Soul Stone */
+  --infinity-stone-space: #101974; /* Purple - Space Stone */
+  --infinity-stone-reality: #F5043B; /* Red - Reality Stone */
+  --infinity-stone-power: #F90BF3; /* Yellow - Power Stone */
+  --infinity-stone-mind: #FCEB03; /* Blue - Mind Stone */
+  --infinity-stone-time: #04E5B1; /* Green - Time Stone */
+  --infinity-stone-soul: #D98255; /* Indigo - Soul Stone */
 
-  --infinity-stone-space-transparent: rgba(147, 112, 219, 0.55); /* Purple - Space Stone */
-  --infinity-stone-reality-transparent: rgba(255, 69, 0, 0.55); /* Red - Reality Stone */
-  --infinity-stone-power-transparent: rgba(255, 215, 0, 0.55); /* Yellow - Power Stone */
-  --infinity-stone-mind-transparent: rgba(100, 149, 237, 0.55); /* Blue - Mind Stone */
-  --infinity-stone-time-transparent: rgba(56, 235, 56, 0.55); /* Green - Time Stone */
-  --infinity-stone-soul-transparent: rgba(138, 43, 226, 0.55); /* Indigo - Soul Stone */
+  --infinity-stone-space-transparent: rgba(16, 25, 116, 0.55); /* Purple - Space Stone */
+  --infinity-stone-reality-transparent: rgba(245, 4, 59, 0.55); /* Red - Reality Stone */
+  --infinity-stone-power-transparent: rgba(249, 11, 243, 0.55); /* Yellow - Power Stone */
+  --infinity-stone-mind-transparent: rgba(252, 235, 3, 0.55); /* Blue - Mind Stone */
+  --infinity-stone-time-transparent: rgba(4, 229, 177, 0.55); /* Green - Time Stone */
+  --infinity-stone-soul-transparent: rgba(217, 130, 85, 0.55); /* Indigo - Soul Stone */
 }
 
 body {
