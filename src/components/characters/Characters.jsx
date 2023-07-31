@@ -1,17 +1,17 @@
 import React, { useEffect, useState } from "react";
+import { useRecoilValue } from "recoil";
+import { copyrightInfo, pagination } from "../../state";
 import { getCharacters } from "../../utils/api";
-import { useRecoilState, useRecoilValue } from "recoil";
-import { copyrightInfo, displayedCharacters, pagination } from "../../state";
-import Paginator from "../paginator/Paginator";
 import { HeroCard } from "../hero-card/HeroCard";
 import { Loading } from "../loading/Loading";
+import Paginator from "../paginator/Paginator";
 
 import "./Characters.css";
 
 function Characters() {
   const [isLoading, setIsLoading] = useState(true);
-  const [characters, setCharacters] = useRecoilState(displayedCharacters);
-  const [copyright, setCopyright] = useRecoilState(copyrightInfo);
+  const [characters, setCharacters] = useState([]);
+  const [copyright, setCopyright] = useState(copyrightInfo);
   const paginationInfo = useRecoilValue(pagination);
 
   useEffect(() => {
@@ -33,7 +33,7 @@ function Characters() {
   return (
     <>
       <div className="characters__container">
-        
+
         {isLoading ? <Loading></Loading> : null}
 
         {!isLoading && characters.length === 0 ? (

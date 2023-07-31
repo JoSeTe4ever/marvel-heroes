@@ -153,13 +153,11 @@ export const getStoriesByCharacterId = async (characterId) => {
   return result.data.results;
 };
 
-
-export const getSearchSuggestions = async (searchCriteria) => {
+export const getCharactersSearchSuggestions = async (searchCriteria) => {
   if (searchCriteria) {
     const apiCall = await fetch(`${url}/characters?apikey=${apiKey}&nameStartsWith=${searchCriteria}&limit=8`);
     const result = await apiCall.json();
     return result.data.results;
   }
   return [];
-
 };
