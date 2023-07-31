@@ -11,7 +11,7 @@ export const ComicPage = () => {
     return (
         <div className="comic__container">
             <div className="row">
-                <div className="row__strip30" onClick={() => {
+                <div className="row__strip30 stoneSpace" onClick={() => {
                         history.push(`/characters`);
                 }}>
                     <div className="strip__mask">
@@ -21,7 +21,7 @@ export const ComicPage = () => {
                         characters
                     </div>
                 </div>
-                <div className="row__strip70"  onClick={() => {
+                <div className="row__strip70 stoneTime"  onClick={() => {
                         history.push(`/stories`);
                 }}>
                     <div className="strip__mask">
@@ -33,7 +33,7 @@ export const ComicPage = () => {
                 </div>
             </div>
             <div className="row">
-                <div className="row__strip70">
+                <div className="row__strip70 stonePower">
                     <div className="strip__mask">
                         <img src="img/avengers-infinity-war-how-this-story-ended-in-the-infinity-gauntlet-comics-story.webp" alt="events" className="strip__img" />
                     </div>
@@ -41,7 +41,7 @@ export const ComicPage = () => {
                         series
                     </div>
                 </div>
-                <div className="row__strip30">
+                <div className="row__strip30 stoneReality">
                     <div className="strip__mask">
                     <img src="img/marvelCreator.avif" alt="characters" className="strip__img" />
                     </div>
@@ -51,7 +51,7 @@ export const ComicPage = () => {
                 </div>
             </div>
             <div className="row">
-                <div className="row__strip30">
+                <div className="row__strip30 stoneMind">
                 <div className="strip__mask">
                     <img src="img/marvelEvents.avif" alt="characters" className="strip__img" />
                     </div>
@@ -59,7 +59,7 @@ export const ComicPage = () => {
                         events
                     </div>
                 </div>
-                <div className="row__strip70">
+                <div className="row__strip70 stoneSoul">
                 <div className="strip__mask">
                     <img src="img/marvelComics.jpg" alt="characters" className="strip__img" />
                     </div>

@@ -1,3 +1,19 @@
+:root {
+  --infinity-stone-space: #9370DB; /* Purple - Space Stone */
+  --infinity-stone-reality: #FF4500; /* Red - Reality Stone */
+  --infinity-stone-power: #FFD700; /* Yellow - Power Stone */
+  --infinity-stone-mind: #6495ED; /* Blue - Mind Stone */
+  --infinity-stone-time: #32CD32; /* Green - Time Stone */
+  --infinity-stone-soul: #8A2BE2; /* Indigo - Soul Stone */
+
+  --infinity-stone-space-transparent: rgba(147, 112, 219, 0.55); /* Purple - Space Stone */
+  --infinity-stone-reality-transparent: rgba(255, 69, 0, 0.55); /* Red - Reality Stone */
+  --infinity-stone-power-transparent: rgba(255, 215, 0, 0.55); /* Yellow - Power Stone */
+  --infinity-stone-mind-transparent: rgba(100, 149, 237, 0.55); /* Blue - Mind Stone */
+  --infinity-stone-time-transparent: rgba(56, 235, 56, 0.55); /* Green - Time Stone */
+  --infinity-stone-soul-transparent: rgba(138, 43, 226, 0.55); /* Indigo - Soul Stone */
+}
+
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
