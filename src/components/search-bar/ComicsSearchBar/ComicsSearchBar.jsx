@@ -3,7 +3,7 @@ import { useHistory, useLocation } from "react-router-dom";
 import { useRecoilState } from "recoil";
 import { searchTextState } from "../../../state";
 import {
-    getCharactersSearchSuggestions
+    getComicsSearchSuggestions
 } from "../../../utils/api";
 
 import "./ComicsSearchBar.css";
@@ -34,10 +34,10 @@ const CharactersSearchBar = (props) => {
     setIsloaing(true);
     const timeoutId = setTimeout(() => {
       setDebouncedInputValue(text);
-      getCharactersSearchSuggestions(text).then((response) => {
+      getComicsSearchSuggestions(text).then((response) => {
         const comicNames = response.map((comic) => {
           return {
-            name: comic.name,
+            name: comic.title,
             comicId: comic.id,
           };
         });
