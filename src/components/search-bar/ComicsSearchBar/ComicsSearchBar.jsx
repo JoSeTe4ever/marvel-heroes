@@ -1,19 +1,18 @@
-import React, { useState, useEffect } from "react";
-import { useRecoilState } from "recoil";
-import { searchTextState } from "../../state";
-import { getCharactersSearchSuggestions, setCharactersByQuery } from "./../../utils/api";
+import React, { useEffect, useState } from "react";
 import { useHistory, useLocation } from "react-router-dom";
-import { displayedCharacters, pagination } from "../../state";
+import { useRecoilState } from "recoil";
+import { searchTextState } from "../../../state";
+import {
+    getCharactersSearchSuggestions
+} from "../../../utils/api";
 
-import "./SearchBar.css";
+import "./ComicsSearchBar.css";
 
-const SearchBar = (props) => {
-  
+const CharactersSearchBar = (props) => {
   const history = useHistory();
   const location = useLocation();
   const [text, setText] = useRecoilState(searchTextState);
-  const [characters, setCharacters] = useRecoilState(displayedCharacters);
-  const [paginationInfo, setPagination] = useRecoilState(pagination);
+  const [comics, setComics] = useState([]);
 
   //TODO check how we can use useReducer instead of useState
 
@@ -28,7 +27,7 @@ const SearchBar = (props) => {
   useEffect(() => {
     // Obtiene la ruta actual
     const currentPath = location.pathname;
-    console.log('' + currentPath);
+    console.log("" + currentPath);
   }, [location]);
 
   useEffect(() => {
@@ -36,13 +35,13 @@ const SearchBar = (props) => {
     const timeoutId = setTimeout(() => {
       setDebouncedInputValue(text);
       getCharactersSearchSuggestions(text).then((response) => {
-        const heroesNames = response.map((heroe) => {
+        const comicNames = response.map((comic) => {
           return {
-            name: heroe.name,
-            heroId: heroe.id,
+            name: comic.name,
+            comicId: comic.id,
           };
         });
-        setSuggestions(heroesNames);
+        setSuggestions(comicNames);
         setIsloaing(false);
       });
     }, 500);
@@ -66,7 +65,7 @@ const SearchBar = (props) => {
                 className="suggestions__list--element"
                 onClick={() => {
                   setText("");
-                  history.push(`/characters/${e.heroId}`);
+                  history.push(`/comics/${e.comicId}`);
                 }}
               >
                 {e.name}
@@ -80,7 +79,7 @@ const SearchBar = (props) => {
             <li
               className="suggestions__list--final-element"
               onClick={() => {
-                setCharactersByQuery(
+                setComicsByQuery(
                   setPagination,
                   setCharacters,
                   text + "&limit=20&offset=20"
@@ -96,4 +95,4 @@ const SearchBar = (props) => {
   );
 };
 
-export default SearchBar;
+export default CharactersSearchBar;
