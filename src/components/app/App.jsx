@@ -10,7 +10,8 @@ import {
 } from "../../state";
 import MarvelButton from "../button/MarvelButton";
 import Dashboard from "../dashboard/Dashboard";
-import CharactersSearchBar from "../search-bar/CharactersSearchBar/CharactersSearchBar";
+import searchBarFactory from "../search-bar/searchBarFactory";
+
 import "./App.css";
 
 const App = () => {
@@ -42,7 +43,7 @@ const App = () => {
           onClick={_navigateHome}
         ></img>
 
-        <CharactersSearchBar text={text}></CharactersSearchBar>
+        {searchBarFactory('comics')}
 
         <MarvelButton
           text="search"

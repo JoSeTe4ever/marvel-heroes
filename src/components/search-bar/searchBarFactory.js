@@ -2,6 +2,11 @@
 // this is used to dynamically render the search bar component depending on the page the user is on
 import React from "react";
 import CharactersSearchBar from "./CharactersSearchBar/CharactersSearchBar";
+import ComicsSearchBar from "./ComicsSearchBar/ComicsSearchBar";
+import CreatorsSearchBar from "./CreatorsSearchBar/CreatorsSearchBar";
+import EventsSearchBar from "./EventsSearchBar/EventsSearchBar";
+import SeriesSearchBar from "./SeriesSearchBar/SeriesSearchBar";
+import StoriesSearchBar from "./StoriesSearchBar/StoriesSearchBar";
 
 const searchBarFactory = (type) => {
   switch (type) {
@@ -21,3 +26,5 @@ const searchBarFactory = (type) => {
       return null; // implement generalist search bar component
   }
 };
+
+export default searchBarFactory;

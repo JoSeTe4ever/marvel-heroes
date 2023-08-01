@@ -78,13 +78,6 @@ const CharactersSearchBar = (props) => {
           {isLoading === false && text.length > 0 ? (
             <li
               className="suggestions__list--final-element"
-              onClick={() => {
-                setComicsByQuery(
-                  setPagination,
-                  setCharacters,
-                  text + "&limit=20&offset=20"
-                );
-              }}
             >
               All search results
             </li>
