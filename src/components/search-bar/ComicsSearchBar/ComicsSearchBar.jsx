@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useHistory, useLocation } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 import { useRecoilState } from "recoil";
 import { searchTextState } from "../../../state";
 import {
@@ -10,7 +10,6 @@ import "./ComicsSearchBar.css";
 
 const CharactersSearchBar = (props) => {
   const history = useHistory();
-  const location = useLocation();
   const [text, setText] = useRecoilState(searchTextState);
   const [comics, setComics] = useState([]);
 
@@ -23,12 +22,6 @@ const CharactersSearchBar = (props) => {
   const onChange = (event) => {
     setText(event.target.value);
   };
-
-  useEffect(() => {
-    // Obtiene la ruta actual
-    const currentPath = location.pathname;
-    console.log("" + currentPath);
-  }, [location]);
 
   useEffect(() => {
     setIsloaing(true);

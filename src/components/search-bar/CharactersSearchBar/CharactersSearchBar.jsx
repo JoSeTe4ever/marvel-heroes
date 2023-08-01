@@ -1,18 +1,16 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect, useState } from "react";
+import { useHistory } from "react-router-dom";
 import { useRecoilState } from "recoil";
-import { searchTextState } from "../../../state";
+import { displayedCharacters, pagination, searchTextState } from "../../../state";
 import {
   getCharactersSearchSuggestions,
   setCharactersByQuery,
 } from "../../../utils/api";
-import { useHistory, useLocation } from "react-router-dom";
-import { displayedCharacters, pagination } from "../../../state";
 
 import "./CharactersSearchBar.css";
 
 const CharactersSearchBar = (props) => {
   const history = useHistory();
-  const location = useLocation();
   const [text, setText] = useRecoilState(searchTextState);
   const [characters, setCharacters] = useRecoilState(displayedCharacters);
   const [paginationInfo, setPagination] = useRecoilState(pagination);
@@ -26,12 +24,6 @@ const CharactersSearchBar = (props) => {
   const onChange = (event) => {
     setText(event.target.value);
   };
-
-  useEffect(() => {
-    // Obtiene la ruta actual
-    const currentPath = location.pathname;
-    console.log("" + currentPath);
-  }, [location]);
 
   useEffect(() => {
     setIsloaing(true);
@@ -61,7 +53,7 @@ const CharactersSearchBar = (props) => {
       ></input>
 
       {text && text.length > 0 ? (
-        <ul className="SearchBar-suggestions__list">
+        <ul className="SearchBar-characters-suggestions__list">
           {suggestions.map((e) => {
             return (
               <li

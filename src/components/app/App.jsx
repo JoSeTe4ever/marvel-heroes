@@ -1,5 +1,5 @@
-import React from "react";
-import { useHistory } from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import { useHistory, useLocation } from "react-router-dom";
 import { useRecoilState, useRecoilValue } from "recoil";
 import {
   copyrightInfo,
@@ -16,12 +16,18 @@ import "./App.css";
 
 const App = () => {
   const history = useHistory();
+  const location = useLocation();
   const [text, setText] = useRecoilState(searchTextState);
   const copyright = useRecoilValue(copyrightInfo);
   const favs = useRecoilValue(favouritesCharacters);
 
   const [heroes, setDisplayedCharacters] = useRecoilState(displayedCharacters);
   const [paginationInfo, setPaginationInfo] = useRecoilState(pagination);
+  const [currentPath, setCurrentPath] = useState("");
+
+  useEffect(() => {
+    setCurrentPath(location.pathname.slice(1));
+  }, [location]);
 
   const _navigateHome = () => {
     setDisplayedCharacters(heroes);
@@ -43,7 +49,7 @@ const App = () => {
           onClick={_navigateHome}
         ></img>
 
-        {searchBarFactory('comics')}
+        {searchBarFactory(currentPath)}
 
         <MarvelButton
           text="search"

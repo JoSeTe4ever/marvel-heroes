@@ -11,8 +11,8 @@ import Comics from "../comics/Comics";
 const Dashboard: React.FC = () => {
     return <Switch>
             <Route exact path="/" component={Home} />
-            <Route path="/characters" component={Characters} />
             <Route path="/characters/:id" component={CharactersDetails} />
+            <Route path="/characters" component={Characters} />
             <Route path="/comics" component={Comics} />
             <Route path="/comics/:id" component={ComicsDetails} />
             <Route path="/favourites" component={FavouritesCharacters} />
