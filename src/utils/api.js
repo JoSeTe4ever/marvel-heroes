@@ -5,7 +5,25 @@ export const url = urlProduction;
 export const apiKey = `${process.env.REACT_APP_MARVEL_PUBLIC_API_KEY}`;
 
 export const getCharacters = async (options) => {
-  const apiCall = await fetch(`${url}/characters?apikey=${apiKey}`);
+  let buildableUrl = `${url}/characters?apikey=${apiKey}`;
+  // append url parameters to url if they exist in options object
+  if (options) {
+    const { nameStartsWith, orderBy, limit, offset } = options;
+    if (nameStartsWith) {
+      buildableUrl += `&nameStartsWith=${nameStartsWith}`;
+    }
+    if (orderBy) {
+      buildableUrl += `&orderBy=${orderBy}`;
+    }
+    if (limit) {
+      buildableUrl += `&limit=${limit}`;
+    }
+    if (offset) {
+      buildableUrl += `&offset=${offset}`;
+    }
+  }
+
+  const apiCall = await fetch(`${buildableUrl}`);
   return await apiCall.json();
 };
 

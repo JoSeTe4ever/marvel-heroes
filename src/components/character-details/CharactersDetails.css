@@ -56,14 +56,14 @@
     position: relative;
     float: left;
 
-    .characterImage__mask{
-        position: absolute;
-        z-index: 7;
-        background-color: rgba(0, 0, 0, 0.5);
-        width: 30rem;
-        overflow: hidden;
-        background:transparent url(./../../../public/img/loading.gif) center center no-repeat;
-
+    .characterImage__mask {
+      position: absolute;
+      z-index: 7;
+      background-color: rgba(0, 0, 0, 0.5);
+      width: 30rem;
+      overflow: hidden;
+      background: transparent url(./../../../public/img/loading.gif) center
+        center no-repeat;
     }
   }
 
@@ -75,5 +75,50 @@
       padding: 1rem;
       text-align: left;
     }
+  }
+}
+
+.navigation__list {
+  display: flex;
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+  flex-wrap: wrap;
+  text-transform: uppercase;
+  max-width: 53rem;
+  justify-content: center;
+  gap: 2rem;
+
+  .navigation__item {
+    cursor: pointer;
+    text-align: center;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+  }
+
+
+  .navigation__item.comics:hover {
+    border-bottom: 2px solid var(--comics);
+    border-radius: 5px;
+    transform: scale(1.1);
+  }
+
+  .navigation__item.events:hover {
+    border-bottom: 2px solid var(--events);
+    border-radius: 5px;
+    transform: scale(1.1);
+  }
+
+  .navigation__item.series:hover {
+    border-bottom: 2px solid var(--series);
+    border-radius: 5px;
+    transform: scale(1.1);
+  }
+
+  .navigation__item.stories:hover {
+    border-bottom: 2px solid var(--stories);
+    border-radius: 5px;
+    transform: scale(1.1);
   }
 }

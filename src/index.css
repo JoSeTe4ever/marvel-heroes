@@ -12,6 +12,13 @@
   --infinity-stone-mind-transparent: rgba(252, 235, 3, 0.55); /* Blue - Mind Stone */
   --infinity-stone-time-transparent: rgba(4, 229, 177, 0.55); /* Green - Time Stone */
   --infinity-stone-soul-transparent: rgba(217, 130, 85, 0.55); /* Indigo - Soul Stone */
+
+  --comics: var(--infinity-stone-soul);
+  --events: var(--infinity-stone-mind);
+  --creators: var(--infinity-stone-reality);
+  --series: var(--infinity-stone-power);
+  --stories: var(--infinity-stone-time);
+  --characters: var(--infinity-stone-space);
 }
 
 body {

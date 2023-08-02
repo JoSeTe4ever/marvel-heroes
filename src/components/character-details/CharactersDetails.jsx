@@ -46,6 +46,13 @@ export const CharactersDetails = (props) => {
               </div>
             </div>
           </div>
+          
+          <ul className="navigation__list">
+              <li className="navigation__item comics">comics</li>
+              <li className="navigation__item events">events</li>
+              <li className="navigation__item series">series</li>
+              <li className="navigation__item stories">stories</li>
+            </ul>
         </>
       )}
     </div>

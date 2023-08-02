@@ -9,6 +9,9 @@ import Paginator from "../paginator/Paginator";
 import "./Characters.css";
 
 function Characters() {
+  const [offset, setOffset] = useState(0);
+  const limit = 10; // Number of items to fetch per API call
+
   const [isLoading, setIsLoading] = useState(true);
   const [characters, setCharacters] = useState([]);
   const [copyright, setCopyright] = useState(copyrightInfo);
@@ -17,9 +20,9 @@ function Characters() {
   useEffect(() => {
     async function fetchData() {
       // You can await here
-      const response = await getCharacters();
+      const response = await getCharacters({ offset: offset });
       const charactersArray = response.data.results;
-      setCharacters(charactersArray);
+      setCharacters([...characters , ...charactersArray]);
       setIsLoading(false);
       setCopyright({
         copyright: response.copyright,
@@ -28,12 +31,28 @@ function Characters() {
       });
     }
     fetchData();
-  }, []); // passing an empty array as the second argument to useEffect makes it only run on mount and unmount
+  }, [offset]); // passing an empty array as the second argument to useEffect makes it only run on mount and unmount
 
+  useEffect(() => {
+    window.addEventListener("scroll", handleScroll);
+
+    // Clean up the event listener when the component unmounts
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
+
+  const handleScroll = () => {
+    const { scrollTop, scrollHeight, clientHeight } = document.documentElement;
+    // Check if the user has reached the bottom of the page
+    if (scrollTop + clientHeight >= scrollHeight - 100) {
+      setOffset((prevOffset) => prevOffset + 20)
+    }
+  };
+  
   return (
     <>
       <div className="characters__container">
-
         {isLoading ? <Loading></Loading> : null}
 
         {!isLoading && characters.length === 0 ? (
@@ -41,7 +60,7 @@ function Characters() {
             <span className="verticalCenter">Not found</span>
           </div>
         ) : null}
-        
+
         {characters.map((e) => {
           return (
             <HeroCard
