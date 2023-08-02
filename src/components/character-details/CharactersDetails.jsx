@@ -7,11 +7,17 @@ import { Loading } from "../loading/Loading";
 import "./CharactersDetails.css";
 
 export const CharactersDetails = (props) => {
+  const [activeTab, setActiveTab] = useState("");
+
   const [isLoading, setIsLoading] = useState(true);
   const [characterDetails, setCharacterDetails] = useState(undefined);
   const [favourites, setFavouritesCharacters] =
     useRecoilState(favouritesCharacters);
   const { id } = props.match.params;
+
+  const handleTabClick = (tabIdString) => {
+    setActiveTab(tabIdString);
+  };
 
   useEffect(() => {
     getCharacterDetails(id).then((details) => {
@@ -46,13 +52,40 @@ export const CharactersDetails = (props) => {
               </div>
             </div>
           </div>
-          
+
           <ul className="navigation__list">
-              <li className="navigation__item comics">comics</li>
-              <li className="navigation__item events">events</li>
-              <li className="navigation__item series">series</li>
-              <li className="navigation__item stories">stories</li>
-            </ul>
+            <li
+              className="navigation__item comics"
+              onClick={() => handleTabClick("comics")}
+            >
+              comics
+            </li>
+            <li
+              className="navigation__item events"
+              onClick={() => handleTabClick("events")}
+            >
+              events
+            </li>
+            <li
+              className="navigation__item series"
+              onClick={() => handleTabClick("series")}
+            >
+              series
+            </li>
+            <li
+              className="navigation__item stories"
+              onClick={() => handleTabClick("stories")}
+            >
+              stories
+            </li>
+          </ul>
+
+          <div className="infoCharacterDetailsContainer">
+            {activeTab === "comics" ? () => {} : null}
+            {activeTab === "events" ? () => {} : null}
+            {activeTab === "series" ? () => {} : null}
+            {activeTab === "stories" ? () => {} : null}
+          </div>
         </>
       )}
     </div>

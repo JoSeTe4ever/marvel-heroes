@@ -57,7 +57,6 @@
     float: left;
 
     .characterImage__mask {
-      position: absolute;
       z-index: 7;
       background-color: rgba(0, 0, 0, 0.5);
       width: 30rem;
@@ -81,44 +80,42 @@
 .navigation__list {
   display: flex;
   list-style-type: none;
-  padding: 0;
   margin: 0;
   flex-wrap: wrap;
   text-transform: uppercase;
-  max-width: 53rem;
   justify-content: center;
   gap: 2rem;
+  background-color: #fff;
+  font-size: 18px;
+  bottom: -2px;
+  right: -6px;
+  color: black;
+  transform: skew(-15deg);
 
   .navigation__item {
     cursor: pointer;
     text-align: center;
-    border-radius: 5px;
     cursor: pointer;
     transition: all 0.3s ease-in-out;
   }
 
-
   .navigation__item.comics:hover {
-    border-bottom: 2px solid var(--comics);
-    border-radius: 5px;
+    border-bottom: 3px solid var(--comics);
     transform: scale(1.1);
   }
 
   .navigation__item.events:hover {
     border-bottom: 2px solid var(--events);
-    border-radius: 5px;
     transform: scale(1.1);
   }
 
   .navigation__item.series:hover {
     border-bottom: 2px solid var(--series);
-    border-radius: 5px;
     transform: scale(1.1);
   }
 
   .navigation__item.stories:hover {
     border-bottom: 2px solid var(--stories);
-    border-radius: 5px;
     transform: scale(1.1);
   }
 }

@@ -13,14 +13,14 @@ function StorieCard(props) {
     </div>
   );
 }
-export function Stories() {
+
+function Stories() {
   const [stories, setStories] = useState([]);
   useEffect(() => {
     async function fetchData() {
       // You can await here
       const response = await getStories();
       const storiesArray = response.data.results;
-      debugger;
       setStories(storiesArray);
     }
     fetchData();
@@ -40,3 +40,5 @@ export function Stories() {
     </div>
   );
 }
+
+export default Stories;
