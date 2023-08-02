@@ -85,8 +85,8 @@ export const getSeries = async (options) => {
 
 export const getComics = async (options) => {
   // append url parameters to url if they exist in options object
-  let buildableUrl = `${url}/characters?apikey=${apiKey}`;
-  
+  let buildableUrl = `${url}/comics?apikey=${apiKey}`;
+
   if (options) {
     const { titleStartsWith, orderBy, limit, offset } = options;
     if (titleStartsWith) {

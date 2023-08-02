@@ -25,9 +25,9 @@ function Comics() {
   useEffect(() => {
     async function fetchData() {
       // You can await here
-      const response = await getComics({offset, limit});
+      const response = await getComics({ offset, limit });
       const comicsArray = response.data.results;
-      setComics(comicsArray);
+      setComics([...comics, ...comicsArray]);
       setIsLoading(false);
     }
     fetchData();
