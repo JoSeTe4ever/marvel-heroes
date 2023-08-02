@@ -17,19 +17,38 @@ function ComicCard(props) {
 
 function Comics() {
   //component state comics
+  const [offset, setOffset] = useState(0);
+  const limit = 20; // Number of items to fetch per API call
   const [comics, setComics] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     async function fetchData() {
       // You can await here
-      const response = await getComics();
+      const response = await getComics({offset, limit});
       const comicsArray = response.data.results;
       setComics(comicsArray);
       setIsLoading(false);
     }
     fetchData();
-  }, []); // Or [] if effect doesn't need props or state
+  }, [offset]); // Or [] if effect doesn't need props or state
+
+  useEffect(() => {
+    window.addEventListener("scroll", handleScroll);
+
+    // Clean up the event listener when the component unmounts
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
+
+  const handleScroll = () => {
+    const { scrollTop, scrollHeight, clientHeight } = document.documentElement;
+    // Check if the user has reached the bottom of the page
+    if (scrollTop + clientHeight >= scrollHeight - 100) {
+      setOffset((prevOffset) => prevOffset + 20);
+    }
+  };
 
   return (
     <>

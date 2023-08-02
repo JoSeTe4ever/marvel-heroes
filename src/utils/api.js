@@ -84,7 +84,26 @@ export const getSeries = async (options) => {
 };
 
 export const getComics = async (options) => {
-  const apiCall = await fetch(`${url}/comics?apikey=${apiKey}`);
+  // append url parameters to url if they exist in options object
+  let buildableUrl = `${url}/characters?apikey=${apiKey}`;
+  
+  if (options) {
+    const { titleStartsWith, orderBy, limit, offset } = options;
+    if (titleStartsWith) {
+      buildableUrl += `&titleStartsWith=${titleStartsWith}`;
+    }
+    if (orderBy) {
+      buildableUrl += `&orderBy=${orderBy}`;
+    }
+    if (limit) {
+      buildableUrl += `&limit=${limit}`;
+    }
+    if (offset) {
+      buildableUrl += `&offset=${offset}`;
+    }
+  }
+
+  const apiCall = await fetch(`${buildableUrl}`);
   return await apiCall.json();
 };
 

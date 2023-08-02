@@ -10,7 +10,7 @@ import "./Characters.css";
 
 function Characters() {
   const [offset, setOffset] = useState(0);
-  const limit = 10; // Number of items to fetch per API call
+  const limit = 20; // Number of items to fetch per API call
 
   const [isLoading, setIsLoading] = useState(true);
   const [characters, setCharacters] = useState([]);
@@ -20,9 +20,9 @@ function Characters() {
   useEffect(() => {
     async function fetchData() {
       // You can await here
-      const response = await getCharacters({ offset: offset });
+      const response = await getCharacters({ offset, limit });
       const charactersArray = response.data.results;
-      setCharacters([...characters , ...charactersArray]);
+      setCharacters([...characters, ...charactersArray]);
       setIsLoading(false);
       setCopyright({
         copyright: response.copyright,
@@ -46,10 +46,10 @@ function Characters() {
     const { scrollTop, scrollHeight, clientHeight } = document.documentElement;
     // Check if the user has reached the bottom of the page
     if (scrollTop + clientHeight >= scrollHeight - 100) {
-      setOffset((prevOffset) => prevOffset + 20)
+      setOffset((prevOffset) => prevOffset + 20);
     }
   };
-  
+
   return (
     <>
       <div className="characters__container">
