@@ -1,8 +1,7 @@
-import React, { useState, useEffect } from "react";
-import { getCharacterDetails } from "../../utils/api";
-import MarvelButton from "./../button/MarvelButton";
+import React, { useEffect, useState } from "react";
 import { useRecoilState } from "recoil";
 import { favouritesCharacters } from "../../state";
+import { getCharacterDetails } from "../../utils/api";
 import { Loading } from "../loading/Loading";
 
 import "./CharactersDetails.css";
@@ -25,26 +24,30 @@ export const CharactersDetails = (props) => {
 
   return (
     <div className="characterDetailsContainer">
-      <MarvelButton
-        text="add to favourites"
-        onClickedAction={() => {
-          //Add only once.
-          if (!favourites.some((e) => e === characterDetails.id)) {
-            setFavouritesCharacters([...favourites, characterDetails.id]);
-          }
-        }}
-      ></MarvelButton>
       {isLoading ? (
         <Loading></Loading>
       ) : (
-        <img
-          className="highResolution"
-          alt=""
-          src={`${characterDetails?.thumbnail?.path}.${characterDetails?.thumbnail?.extension}`}
-        ></img>
+        <>
+          <span className="infoCharacter__name">{characterDetails.name}</span>
+          <div className="infoCharacterDetailsContainer">
+            <div className="infoCharacter__left">
+              <span className="infoCharacter__description">description</span>
+              <span className="infoCharacter__description">
+                {characterDetails.description}
+              </span>
+            </div>
+            <div className="infoCharacter__right">
+              <div className="characterImage__mask">
+                <img
+                  className="highResolution"
+                  alt=""
+                  src={`${characterDetails?.thumbnail?.path}.${characterDetails?.thumbnail?.extension}`}
+                ></img>
+              </div>
+            </div>
+          </div>
+        </>
       )}
-
-      <span>CHARACTER DETAILSSSSSSSSSSSS</span>
     </div>
   );
 };

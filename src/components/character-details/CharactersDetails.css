@@ -1,11 +1,79 @@
 .characterDetailsContainer {
-    height: 100vh;
-    background-color: #282c34;
-    position: relative;
-    top: 6vh;
+  height: 100vh;
+  background: linear-gradient(
+    90deg,
+    rgba(2, 0, 36, 1) 0%,
+    rgba(69, 69, 167, 1) 100%,
+    rgba(0, 212, 255, 1) 100%
+  );
+  color: white;
+  position: relative;
+  top: 4rem;
+
+  .infoCharacter__name {
+    text-transform: uppercase;
+    font-family: "Banger";
+    src: url(./../../../public/fonts/Bangers-Regular.ttf) format("truetype");
+    font-size: 5rem;
+    display: block;
+    text-align: left;
+    padding-left: 3rem;
+    background: linear-gradient(
+      90deg,
+      rgba(2, 0, 36, 1) 0%,
+      rgba(69, 69, 167, 1) 100%,
+      rgba(0, 212, 255, 1) 100%
+    );
+  }
 }
 
 .highResolution {
+  position: relative;
+  float: left;
+  width: 30rem;
+}
+
+.infoCharacterDetailsContainer {
+  display: flex;
+
+  .infoCharacter__left {
+    width: 50%;
+    height: 100%;
     position: relative;
     float: left;
+    display: flex;
+
+    span {
+      display: block;
+      padding: 1rem;
+      text-align: left;
+    }
+  }
+
+  .infoCharacter__right {
+    width: 50%;
+    height: 100%;
+    position: relative;
+    float: left;
+
+    .characterImage__mask{
+        position: absolute;
+        z-index: 7;
+        background-color: rgba(0, 0, 0, 0.5);
+        width: 30rem;
+        overflow: hidden;
+        background:transparent url(./../../../public/img/loading.gif) center center no-repeat;
+
+    }
+  }
+
+  .infoCharacter__left {
+    display: flex;
+
+    .infoCharacter__description {
+      display: block;
+      padding: 1rem;
+      text-align: left;
+    }
+  }
 }
