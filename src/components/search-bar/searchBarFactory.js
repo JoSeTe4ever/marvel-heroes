@@ -6,7 +6,6 @@ import ComicsSearchBar from "./ComicsSearchBar/ComicsSearchBar";
 import CreatorsSearchBar from "./CreatorsSearchBar/CreatorsSearchBar";
 import EventsSearchBar from "./EventsSearchBar/EventsSearchBar";
 import SeriesSearchBar from "./SeriesSearchBar/SeriesSearchBar";
-import StoriesSearchBar from "./StoriesSearchBar/StoriesSearchBar";
 
 const searchBarFactory = (type) => {
   switch (type) {
@@ -20,8 +19,6 @@ const searchBarFactory = (type) => {
       return <EventsSearchBar />;
     case "series":
       return <SeriesSearchBar />;
-    case "stories":
-      return <StoriesSearchBar />;
     default:
       return null; // implement generalist search bar component
   }

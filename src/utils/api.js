@@ -239,3 +239,14 @@ export const getComicsSearchSuggestions = async (searchCriteria) => {
   }
   return [];
 };
+
+export const getSeriesSearchSuggestions = async (searchCriteria) => {
+  if (searchCriteria) {
+    const apiCall = await fetch(
+      `${url}/comics?apikey=${apiKey}&titleStartsWith=${searchCriteria}&limit=8`
+    );
+    const result = await apiCall.json();
+    return result.data.results;
+  }
+  return [];
+};

@@ -8,7 +8,7 @@ import {
 
 import "./ComicsSearchBar.css";
 
-const CharactersSearchBar = (props) => {
+const ComicsSearchBar = (props) => {
   const history = useHistory();
   const [text, setText] = useRecoilState(searchTextState);
   const [comics, setComics] = useState([]);
@@ -81,4 +81,4 @@ const CharactersSearchBar = (props) => {
   );
 };
 
-export default CharactersSearchBar;
+export default ComicsSearchBar;
