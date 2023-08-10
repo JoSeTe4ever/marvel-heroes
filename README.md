@@ -62,6 +62,11 @@ useEffect(() => {
 }, [someId]); // Or [] if effect doesn't need props or state
 
 
+## DEPLOYED IN NETLIFY
+
+https://app.netlify.com/
+https://jose-parreno-loves-marvelheroes.netlify.app/
+
 ### `npm start`
 
 Runs the app in the development mode.<br />
