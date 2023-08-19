@@ -8,7 +8,6 @@
   /* Adjust the gap between comic items as needed */
   display: flex;
   flex-wrap: wrap;
-  height: 100%;
   justify-content: space-around;
 }
 
