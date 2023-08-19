@@ -1,14 +1,22 @@
 import React, { useEffect, useState } from "react";
 import { getComics } from "../../utils/api";
 import { Loading } from "../loading/Loading";
+import { useHistory } from "react-router-dom";
 
 import "./Comics.css";
 
 function ComicCard(props) {
+
+  const history = useHistory();
+
   return (
-    <div className="comic__item">
-      <div className="comic__image">
-        <img src={props.imgUrl} alt={props.comicName}></img>
+    <div className="comic__item" onClick={
+      () => {
+        history.push(`/comics/${props.comicId}`);
+      }
+    }>
+      <div>
+        <img className="comic__image" src={props.imgUrl} alt={props.comicName}></img>
       </div>
       <div className="comic__name">{props.comicName}</div>
     </div>
@@ -17,8 +25,8 @@ function ComicCard(props) {
 
 function Comics() {
   //component state comics
-  const [offset, setOffset] = useState(0);
   const limit = 20; // Number of items to fetch per API call
+  const [offset, setOffset] = useState(0);
   const [comics, setComics] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
 
@@ -57,6 +65,7 @@ function Comics() {
         {comics.map((e) => {
           return (
             <ComicCard
+              comicId={e.id}
               comicName={e.title}
               key={e.id.toString()}
               imgUrl={`${e.thumbnail.path}.${e.thumbnail.extension}`}

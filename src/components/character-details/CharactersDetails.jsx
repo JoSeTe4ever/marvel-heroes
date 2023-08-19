@@ -1,8 +1,13 @@
 import React, { useEffect, useState } from "react";
 import { useRecoilState } from "recoil";
 import { favouritesCharacters } from "../../state";
-import { getCharacterDetails } from "../../utils/api";
+import {
+  getCharacterDetails, getComicsByCharacterId,
+  getEventsByCharacterId, getStoriesByCharacterId,
+  getSeriesByCharacterId
+} from "../../utils/api";
 import { Loading } from "../loading/Loading";
+import ComicsByCharacter from "./comicsByCharacter/ComicsByCharacter";
 
 import "./CharactersDetails.css";
 
@@ -11,6 +16,12 @@ export const CharactersDetails = (props) => {
 
   const [isLoading, setIsLoading] = useState(true);
   const [characterDetails, setCharacterDetails] = useState(undefined);
+  const [comicsByCharacter, setComicsByCharacter] = useState([]);
+  const [eventsByCharacter, setEventsByCharacter] = useState([]);
+  const [seriesByCharacter, setSeriesByCharacter] = useState([]);
+  const [storiesByCharacter, setStoriesByCharacter] = useState([]);
+
+
   const [favourites, setFavouritesCharacters] =
     useRecoilState(favouritesCharacters);
   const { id } = props.match.params;
@@ -26,7 +37,31 @@ export const CharactersDetails = (props) => {
         setIsLoading(false);
       }
     });
-  }, [id]); //
+
+    getComicsByCharacterId(id).then((comicDetails) => {
+      if (comicDetails && comicDetails.length > 0) {
+        setComicsByCharacter(comicDetails);
+      }
+    });
+
+    getEventsByCharacterId(id).then((eventDetails) => {
+      if (eventDetails && eventDetails.length > 0) {
+        setEventsByCharacter(eventDetails);
+      }
+    });
+
+    getSeriesByCharacterId(id).then((seriesDetails) => {
+      if (seriesDetails && seriesDetails.length > 0) {
+        setSeriesByCharacter(seriesDetails);
+      }
+    });
+
+    getStoriesByCharacterId(id).then((storiesDetails) => {
+      if (storiesDetails && storiesDetails.length > 0) {
+        setStoriesByCharacter(storiesDetails);
+      }
+    });
+  }, [id]);
 
   return (
     <div className="characterDetailsContainer">
@@ -81,10 +116,10 @@ export const CharactersDetails = (props) => {
           </ul>
 
           <div className="infoCharacterDetailsContainer">
-            {activeTab === "comics" ? () => {} : null}
-            {activeTab === "events" ? () => {} : null}
-            {activeTab === "series" ? () => {} : null}
-            {activeTab === "stories" ? () => {} : null}
+            {activeTab === "comics" ? <ComicsByCharacter comics={comicsByCharacter} /> : null}
+            {activeTab === "events" ? <span>events</span> : null}
+            {activeTab === "series" ? <span>series</span> : null}
+            {activeTab === "stories" ? <span>stories</span> : null}
           </div>
         </>
       )}

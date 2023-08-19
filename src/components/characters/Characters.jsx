@@ -4,7 +4,6 @@ import { copyrightInfo, pagination } from "../../state";
 import { getCharacters } from "../../utils/api";
 import { HeroCard } from "../hero-card/HeroCard";
 import { Loading } from "../loading/Loading";
-import Paginator from "../paginator/Paginator";
 
 import "./Characters.css";
 
@@ -73,7 +72,6 @@ function Characters() {
           );
         })}
       </div>
-      <Paginator data={characters} paginationInfo={paginationInfo}></Paginator>
     </>
   );
 }

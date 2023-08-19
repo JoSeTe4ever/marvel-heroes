@@ -25,6 +25,16 @@ const App = () => {
   const [paginationInfo, setPaginationInfo] = useRecoilState(pagination);
   const [currentPath, setCurrentPath] = useState("");
 
+  const validSearchablePages =  {
+    "": true,
+    "favourites": true,
+    "comics": true,
+    "characters": true,
+    "series": true,
+    "stories": true,
+    "events": true,
+  }
+
   useEffect(() => {
     setCurrentPath(location.pathname.slice(1));
   }, [location]);
@@ -44,6 +54,7 @@ const App = () => {
     <div className="App">
       <header className="App-header">
         <img
+          alt="Marvel logo Home navigation"
           className="logo"
           src="./img/1920px-MarvelLogo.svg.png"
           onClick={_navigateHome}
@@ -51,12 +62,13 @@ const App = () => {
 
         {searchBarFactory(currentPath)}
 
-        <MarvelButton
+        {currentPath !== '' && location.pathname.length <= 1 ? <MarvelButton
           text="search"
           searchText={text}
           onClickedAction={setDisplayedCharacters}
           pagination={setPaginationInfo}
-        ></MarvelButton>
+        ></MarvelButton> : null}
+
 
         {favs && favs.length ? (
           <span className="favourites" onClick={_navigateFavourites}>
@@ -73,7 +85,7 @@ const App = () => {
         ></span>
         <span>{copyright.copyright}</span>
       </footer>
-    </div>
+    </div >
   );
 };
 
