@@ -12,7 +12,7 @@
 }
 
 .comic__item {
-  width: calc(100% / 6);
+  flex: 1 0 21%;
   background-color: #f0f0f0;
   padding: 20px;
   border-radius: 10px;

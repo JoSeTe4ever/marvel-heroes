@@ -1,0 +1,14 @@
+.comic__img {
+    max-width: 18rem;
+    margin: 2rem;
+}
+
+.comics__img-container{
+    display: flex;
+    flex-wrap: wrap;
+    cursor: pointer;
+}
+
+.comics__img-child-container{
+    flex: 1 0 21%;
+}
