@@ -54,15 +54,15 @@
   position: absolute;
 }
 .row__strip70.stoneSoul:hover .strip__mask::before {
-    content: "";
-    background-color: var(--infinity-stone-soul-transparent);
-    z-index: 7;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    position: absolute;
-  }
+  content: "";
+  background-color: var(--infinity-stone-soul-transparent);
+  z-index: 7;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+}
 
 .row__strip70.stoneTime:hover .strip__mask::before {
   content: "";
@@ -87,15 +87,15 @@
 }
 
 .row__strip30.stoneMind:hover .strip__mask::before {
-    content: "";
-    background-color: var(--infinity-stone-mind-transparent);
-    z-index: 7;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    position: absolute;
-  }
+  content: "";
+  background-color: var(--infinity-stone-mind-transparent);
+  z-index: 7;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+}
 
 .row__strip30:hover .strip__info.strip__info-character-position,
 .row__strip70:hover .strip__info.strip__info-character-position {
@@ -153,4 +153,12 @@
 .strip__info.strip__info-character-position-new {
   top: 40%;
   left: 10%;
+}
+
+@media only screen and (max-width: 959px) {
+  .row {
+    cursor: pointer;
+    display: table;
+    height: 20rem;
+  }
 }

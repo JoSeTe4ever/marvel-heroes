@@ -2,17 +2,19 @@ import React, { useEffect, useState } from "react";
 import { useRecoilState } from "recoil";
 import { favouritesCharacters } from "../../state";
 import {
-  getCharacterDetails, getComicsByCharacterId,
-  getEventsByCharacterId, getStoriesByCharacterId,
-  getSeriesByCharacterId
+  getCharacterDetails,
+  getComicsByCharacterId,
+  getEventsByCharacterId,
+  getStoriesByCharacterId,
+  getSeriesByCharacterId,
 } from "../../utils/api";
 import { Loading } from "../loading/Loading";
-import ComicsByCharacter from "./comicsByCharacter/ComicsByCharacter";
+import ComicsByCharacter from "./ComicsByCharacter/ComicsByCharacter";
 
 import "./CharactersDetails.css";
 
 export const CharactersDetails = (props) => {
-  const [activeTab, setActiveTab] = useState("");
+  const [activeTab, setActiveTab] = useState("comics");
 
   const [isLoading, setIsLoading] = useState(true);
   const [characterDetails, setCharacterDetails] = useState(undefined);
@@ -20,7 +22,6 @@ export const CharactersDetails = (props) => {
   const [eventsByCharacter, setEventsByCharacter] = useState([]);
   const [seriesByCharacter, setSeriesByCharacter] = useState([]);
   const [storiesByCharacter, setStoriesByCharacter] = useState([]);
-
 
   const [favourites, setFavouritesCharacters] =
     useRecoilState(favouritesCharacters);
@@ -70,7 +71,12 @@ export const CharactersDetails = (props) => {
       ) : (
         <>
           <span className="infoCharacter__name">{characterDetails.name}</span>
-          <div className="infoCharacterDetailsContainer">
+          <div
+            className="infoCharacterDetailsContainer"
+            style={{
+              backgroundImage: `url(${characterDetails?.thumbnail?.path}.${characterDetails?.thumbnail?.extension})`,
+            }}
+          >
             <div className="infoCharacter__left">
               <span className="infoCharacter__description">description</span>
               <span className="infoCharacter__description">
@@ -79,11 +85,6 @@ export const CharactersDetails = (props) => {
             </div>
             <div className="infoCharacter__right">
               <div className="characterImage__mask">
-                <img
-                  className="highResolution"
-                  alt=""
-                  src={`${characterDetails?.thumbnail?.path}.${characterDetails?.thumbnail?.extension}`}
-                ></img>
               </div>
             </div>
           </div>
@@ -116,7 +117,9 @@ export const CharactersDetails = (props) => {
           </ul>
 
           <div className="infoCharacterDetailsContainer">
-            {activeTab === "comics" ? <ComicsByCharacter comics={comicsByCharacter} /> : null}
+            {activeTab === "comics" ? (
+              <ComicsByCharacter comics={comicsByCharacter} />
+            ) : null}
             {activeTab === "events" ? <span>events</span> : null}
             {activeTab === "series" ? <span>series</span> : null}
             {activeTab === "stories" ? <span>stories</span> : null}

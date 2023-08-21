@@ -35,6 +35,9 @@
 
 .infoCharacterDetailsContainer {
   display: flex;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
 
   .infoCharacter__left {
     width: 50%;
@@ -42,7 +45,8 @@
     position: relative;
     float: left;
     display: flex;
-
+    min-height: 21rem;
+    
     span {
       display: block;
       padding: 1rem;
