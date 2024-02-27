@@ -9,7 +9,6 @@ import {
   getSeriesByCharacterId,
 } from "../../utils/api";
 import { Loading } from "../loading/Loading";
-import {ComicsByCharacter} from "./comicsByCharacter/comicsByCharacter";
 
 import "./CharactersDetails.css";
 
@@ -117,9 +116,6 @@ export const CharactersDetails = (props) => {
           </ul>
 
           <div className="infoCharacterDetailsContainer">
-            {activeTab === "comics" ? (
-              <ComicsByCharacter comics={comicsByCharacter} />
-            ) : null}
             {activeTab === "events" ? <span>events</span> : null}
             {activeTab === "series" ? <span>series</span> : null}
             {activeTab === "stories" ? <span>stories</span> : null}
