@@ -9,7 +9,7 @@ import {
   getSeriesByCharacterId,
 } from "../../utils/api";
 import { Loading } from "../loading/Loading";
-import {ComicsByCharacter} from "./ComicsByCharacter/ComicsByCharacter";
+import {ComicsByCharacter} from "./comicsByCharacter/comicsByCharacter";
 
 import "./CharactersDetails.css";
 
