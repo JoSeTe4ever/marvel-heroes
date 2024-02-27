@@ -43,7 +43,7 @@ export const ComicPage = () => {
                 </div>
                 <div className="row__strip30 stoneReality">
                     <div className="strip__mask">
-                    <img src="img/marvelCreator.avif" alt="characters" className="strip__img" />
+                    <img src="img/MarvelCreator.avif" alt="characters" className="strip__img" />
                     </div>
                     <div className="strip__info strip__info-character-position">
                         creators
