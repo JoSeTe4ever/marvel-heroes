@@ -43,6 +43,9 @@ div.SearchBar-suggestions__container {
   padding: 0 1rem;
   background-color: transparent;
   color: #fff;
+  align-items: center;
+  display: flex;
+  flex-direction: row;
 
   .suggestions__input {
     border: 1px solid #ccc;
@@ -52,6 +55,6 @@ div.SearchBar-suggestions__container {
     color: #5e646b;
     font-family: inherit;
     font-size: 14px;
-    height: 42px;;
+    height: 42px;
   }
 }

@@ -65,7 +65,7 @@
       background-color: rgba(0, 0, 0, 0.5);
       width: 30rem;
       overflow: hidden;
-      background: transparent url(./../../../public/img/loading.gif) center
+      background: transparent url(/public/img/loading.gif) center
         center no-repeat;
     }
   }

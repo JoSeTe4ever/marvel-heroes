@@ -9,6 +9,7 @@ import {
   getSeriesByCharacterId,
 } from "../../utils/api";
 import { Loading } from "../loading/Loading";
+import { useParams } from 'react-router-dom';
 
 import "./CharactersDetails.css";
 
@@ -24,7 +25,14 @@ export const CharactersDetails = (props) => {
 
   const [favourites, setFavouritesCharacters] =
     useRecoilState(favouritesCharacters);
-  const { id } = props.match.params;
+
+     // Use useParams to get the id from the URL if it's defined in the route
+     const { id: paramId } = useParams();
+
+     // Check if the id is defined in props.match.params or extract it from the URL
+     const id = props.match?.params?.id || paramId || window.location.pathname.split('/').pop();
+
+
 
   const handleTabClick = (tabIdString) => {
     setActiveTab(tabIdString);

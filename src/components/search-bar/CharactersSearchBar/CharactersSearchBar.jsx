@@ -1,7 +1,11 @@
 import React, { useEffect, useState } from "react";
 import { useHistory } from "react-router-dom";
 import { useRecoilState } from "recoil";
-import { displayedCharacters, pagination, searchTextState } from "../../../state";
+import {
+  displayedCharacters,
+  pagination,
+  searchTextState,
+} from "../../../state";
 import {
   getCharactersSearchSuggestions,
   setCharactersByQuery,
@@ -44,14 +48,15 @@ const CharactersSearchBar = (props) => {
   }, [text, 500]);
 
   return (
-    <div className="SearchBar-suggestions__container">
-      <input
-        type="text"
-        className="suggestions__input"
-        value={text}
-        onChange={onChange}
-      ></input>
-
+    <div className="SearchBar-jopi">
+      <div className="SearchBar-suggestions__container">
+        <input
+          type="text"
+          className="suggestions__input"
+          value={text}
+          onChange={onChange}
+        ></input>
+      </div>
       {text && text.length > 0 ? (
         <ul className="SearchBar-characters-suggestions__list">
           {suggestions.map((e) => {
