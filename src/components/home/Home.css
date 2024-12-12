@@ -1,22 +1,21 @@
 .home {
-    background-color: #192439;
-    display: flex;
-    flex-flow: row wrap;
-    justify-content: space-around;
-    min-height: calc(100vh - 10.2rem);
-    padding-top: 7rem;
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-around;
+  min-height: calc(100vh - 10.2rem);
+  padding-top: 7rem;
 }
 
 .notFound {
-    position: relative;
-    top: 3rem;
-    font-size: xx-large;
-    color: white;
-    height: 96vh;
-    background-color: #282c34;
-    line-height: 10;
+  position: relative;
+  top: 3rem;
+  font-size: xx-large;
+  color: white;
+  height: 96vh;
+  background-color: #282c34;
+  line-height: 10;
 }
 
 .verticalCenter {
-    vertical-align: middle
+  vertical-align: middle;
 }
