@@ -48,8 +48,8 @@ In the project directory, you can run:
 * change all the css classes to BEM
 * continue with stories view
 * put a hint text on the search box 
-* put the loading to full mode while navigating (marvel logo)
-* 
+* put the loading to full mode while navigating (marvel logo) in all pages
+* make the character details screen work (check otraideaUxBorrar.webp)
 
 
 // THINGS LEARNED 
