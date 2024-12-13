@@ -57,4 +57,11 @@ div.SearchBar-suggestions__container {
     font-size: 14px;
     height: 42px;
   }
+
+  input::placeholder {
+    color: red;
+    opacity: 0.4;
+    font-family: "Banger", Verdana, Tahoma;
+    font-size: large;
+  }
 }

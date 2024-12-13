@@ -40,6 +40,8 @@ img.card-thumb-frame__thumbnail {
     width: auto;
     background-color: #3a3a9b;
     box-shadow: aquamarine;
+    font-family: "Banger", Verdana, Tahoma;
+    font-size: 1.4rem;
 }
 
 .image-container {

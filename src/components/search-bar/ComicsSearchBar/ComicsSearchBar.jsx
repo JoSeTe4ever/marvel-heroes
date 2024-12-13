@@ -46,6 +46,7 @@ const ComicsSearchBar = (props) => {
       <input
         type="text"
         className="suggestions__input"
+        placeholder="comic name"
         value={text}
         onChange={onChange}
       ></input>

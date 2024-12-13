@@ -47,7 +47,11 @@ In the project directory, you can run:
 * change all the components to typescript
 * change all the css classes to BEM
 * continue with stories view
-  
+* put a hint text on the search box 
+* put the loading to full mode while navigating (marvel logo)
+* 
+
+
 // THINGS LEARNED 
 
   Line 6:15:  Effect callbacks are synchronous to prevent race conditions. Put the async function inside:

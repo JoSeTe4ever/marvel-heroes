@@ -53,6 +53,7 @@ const CharactersSearchBar = (props) => {
         <input
           type="text"
           className="suggestions__input"
+          placeholder="character name"
           value={text}
           onChange={onChange}
         ></input>
