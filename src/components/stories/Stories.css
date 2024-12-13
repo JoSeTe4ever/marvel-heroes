@@ -4,5 +4,10 @@
     flex-wrap: wrap;
     justify-content: center;
     margin: 0 auto;
-    max-width: 1200px;  
+}
+
+.full-screen {
+    width: 100vw;  /* 100% del ancho de la ventana */
+    height: 100vh; /* 100% del alto de la ventana */
+    background-color: lightblue; /* Color de fondo para visualizar */
 }

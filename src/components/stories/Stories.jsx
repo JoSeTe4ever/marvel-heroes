@@ -32,7 +32,7 @@ function Stories() {
   }, []); // Or [] if effect doesn't need props or state
 
   return (
-    <div className="stories__container">
+    <div className="stories__container full-screen">
       {isLoading ? <Loading></Loading> : null}
       {stories.map((e) => {
         return (
