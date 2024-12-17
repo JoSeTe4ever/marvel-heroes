@@ -8,22 +8,19 @@ import "./ComicsByCharacter.css";
 export const ComicsByCharacter = ({ comics }) => {
     const history = useHistory();
     return (
-        <>
-            <div className='comics__img-container'>
-                {comics?.map((comic) => {
-                    return (
-                        <div className='comics__img-child-container' onClick={
-                            () => {
-                                history.push(`/comics/${comic.id}`);
-                            }
-                        }>
-                            <img className='comic__img' src={`${comic.thumbnail.path}.${comic.thumbnail.extension}`} alt={comic.title} />
-                            <div>{comic.title}</div>
-                        </div>
-                    );
-                })}
-            </div>
-        </>
-
+        <div className='comics__img-container'>
+            {comics?.map((comic) => {
+                return (
+                    <div className='comics__img-child-container' key={comic.id} onClick={
+                        () => {
+                            history.push(`/comics/${comic.id}`);
+                        }
+                    }>
+                        <img className='comic__img' src={`${comic.thumbnail.path}.${comic.thumbnail.extension}`} alt={comic.title} />
+                        <div className='comic__title'>{comic.title}</div>
+                    </div>
+                );
+            })}
+        </div>
     )
 }

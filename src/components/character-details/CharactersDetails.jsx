@@ -87,7 +87,6 @@ export const CharactersDetails = (props) => {
             }}
           >
             <div className="infoCharacter__left">
-              <span className="infoCharacter__description">description</span>
               <span className="infoCharacter__description">
                 {characterDetails.description}
               </span>
@@ -126,7 +125,7 @@ export const CharactersDetails = (props) => {
           </ul>
 
           <div className="infoCharacterDetailsContainer">
-            {activeTab === "comics" ? <ComicsByCharacter></ComicsByCharacter> : null}
+            {activeTab === "comics" ? <ComicsByCharacter comics={comicsByCharacter}></ComicsByCharacter> : null}
             {activeTab === "events" ? <span>events</span> : null}
             {activeTab === "series" ? <span>series</span> : null}
             {activeTab === "stories" ? <StoriesByCharacter stories={storiesByCharacter}></StoriesByCharacter> : null}

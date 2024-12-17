@@ -3,20 +3,25 @@
 }
 
 .comics__img-container {
+  width: 100%;
   display: flex;
   flex-wrap: wrap;
   cursor: pointer;
-  gap: 20px;
+  /* gap: 20px; */
   padding: 2rem;
   background: rgb(217, 130, 85);
-  background: linear-gradient(
-    90deg,
-    rgba(217, 130, 85, 1) 0%,
-    rgba(217, 130, 85, 1) 43%,
-    rgba(236, 173, 141, 1) 100%
-  );
+  background: linear-gradient(90deg, rgba(217, 130, 85, 1) 0%, rgba(217, 130, 85, 1) 43%, rgba(236, 173, 141, 1) 100%);
 }
 
 .comics__img-child-container {
   flex: 1 0 21%;
+}
+
+.comic__title {
+  color: white;
+  display: block;
+  width: auto;
+  box-shadow: aquamarine;
+  font-family: "Banger", Verdana, Tahoma;
+  font-size: 1.4rem;
 }
