@@ -56,7 +56,7 @@ const App = () => {
         <img
           alt="Marvel logo Home navigation"
           className="logo"
-          src="/img/1920px-MarvelLogo.svg.png"
+          src="/img/1920px-MarvelLogo.svg.jpg"
           onClick={_navigateHome}
         ></img>
 

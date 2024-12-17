@@ -15,7 +15,7 @@ export const ComicPage = () => {
                         history.push(`/characters`);
                 }}>
                     <div className="strip__mask">
-                        <img src="img/spiderman.jpeg" alt="characters" className="strip__img" />
+                        <img src="img/spiderman.jpg" alt="characters" className="strip__img" />
                     </div>
                     <div className="strip__info strip__info-character-position-new">
                         characters
@@ -35,7 +35,7 @@ export const ComicPage = () => {
             <div className="row">
                 <div className="row__strip70 stonePower">
                     <div className="strip__mask">
-                        <img src="img/avengers-infinity-war-how-this-story-ended-in-the-infinity-gauntlet-comics-story.webp" alt="events" className="strip__img" />
+                        <img src="img/avengers-infinity-war-how-this-story-ended-in-the-infinity-gauntlet-comics-story.jpg" alt="events" className="strip__img" />
                     </div>
                     <div className="strip__info strip__info-character-position">
                         series
@@ -53,7 +53,7 @@ export const ComicPage = () => {
             <div className="row">
                 <div className="row__strip30 stoneMind">
                 <div className="strip__mask">
-                    <img src="img/marvelEvents.avif" alt="characters" className="strip__img" />
+                    <img src="img/marvelEvents.jpg" alt="characters" className="strip__img" />
                     </div>
                     <div className="strip__info strip__info-character-position">
                         events

@@ -1,11 +1,9 @@
 .characterDetailsContainer {
   height: 100vh;
-  background: linear-gradient(
-    90deg,
-    rgba(2, 0, 36, 1) 0%,
-    rgba(69, 69, 167, 1) 100%,
-    rgba(0, 212, 255, 1) 100%
-  );
+  background: linear-gradient(90deg,
+      rgba(2, 0, 36, 1) 0%,
+      rgba(69, 69, 167, 1) 100%,
+      rgba(0, 212, 255, 1) 100%);
   color: white;
   position: relative;
   top: 5rem;
@@ -19,12 +17,10 @@
     display: block;
     text-align: left;
     padding-left: 3rem;
-    background: linear-gradient(
-      90deg,
-      rgba(2, 0, 36, 1) 0%,
-      rgba(69, 69, 167, 1) 100%,
-      rgba(0, 212, 255, 1) 100%
-    );
+    background: linear-gradient(90deg,
+        rgba(2, 0, 36, 1) 0%,
+        rgba(69, 69, 167, 1) 100%,
+        rgba(0, 212, 255, 1) 100%);
   }
 }
 
@@ -46,7 +42,7 @@
     float: left;
     display: flex;
     min-height: 21rem;
-    
+
     span {
       display: block;
       padding: 1rem;
@@ -65,8 +61,7 @@
       background-color: rgba(0, 0, 0, 0.5);
       width: 30rem;
       overflow: hidden;
-      background: transparent url(/public/img/loading.gif) center
-        center no-repeat;
+      background: transparent url(/public/img/loading.gif) center center no-repeat;
     }
   }
 
@@ -77,6 +72,7 @@
       display: block;
       padding: 1rem;
       text-align: left;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif
     }
   }
 }
