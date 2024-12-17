@@ -1,5 +1,11 @@
 .comic__img {
   max-width: 18rem;
+  transition: box-shadow 0.3s ease-in-out, transform 0.2s ease-in-out;
+}
+
+.comic__img:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
 }
 
 .comics__img-container {

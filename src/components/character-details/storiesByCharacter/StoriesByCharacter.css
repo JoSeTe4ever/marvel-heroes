@@ -4,8 +4,9 @@
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     background-color: var(--stories-light);
     border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 8px #0000001a;
     width: 100%;
+    cursor: pointer;
   }
   
   /* Título */
@@ -13,7 +14,7 @@
     font-size: 28px;
     font-weight: bold;
     margin-bottom: 20px;
-    color: var(--stories-dark);
+    color: white;
     text-align: center;
     text-transform: uppercase;
     letter-spacing: 1px;
@@ -28,14 +29,14 @@
   
   /* Ítems individuales */
   .story-item {
-    background-color: #ffffff;
+    background-color: var(--stories);
     border: 1px solid var(--stories);
     border-radius: 6px;
     margin: 10px 0;
     padding: 15px;
     transition: box-shadow 0.3s ease-in-out, transform 0.2s ease-in-out;
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
   }
   
   .story-item:hover {
@@ -55,7 +56,7 @@
   /* Tipo de historia */
   .story-type {
     font-size: 14px;
-    color: var(--stories);
+    color: var(--stories-dark);
     margin-bottom: 10px;
   }
   
