@@ -46,6 +46,7 @@ In the project directory, you can run:
 * put a hint text on the search box 
 * put the loading to full mode while navigating (marvel logo) in all pages
 * make the character details screen work (check otraideaUxBorrar.webp)
+* implement the comic details by Id view.
 
 
 // THINGS LEARNED 
