@@ -19,6 +19,10 @@
   --series: var(--infinity-stone-power);
   --stories: var(--infinity-stone-time);
   --characters: var(--infinity-stone-space);
+
+  --stories: #04E5B1; /* Color principal */
+  --stories-light: #e0f8f4; /* Verde muy claro para el fondo */
+  --stories-dark: #039f81; /* Tono más oscuro del verde */
 }
 
 body {

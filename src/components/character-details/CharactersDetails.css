@@ -8,7 +8,8 @@
   );
   color: white;
   position: relative;
-  top: 4rem;
+  top: 5rem;
+  padding-top: 1rem;
 
   .infoCharacter__name {
     text-transform: uppercase;
@@ -37,7 +38,6 @@
   display: flex;
   background-position: center;
   background-repeat: no-repeat;
-  background-size: cover;
 
   .infoCharacter__left {
     width: 50%;

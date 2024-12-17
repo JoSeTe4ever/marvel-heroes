@@ -10,6 +10,8 @@ import {
 } from "../../utils/api";
 import { Loading } from "../loading/Loading";
 import { useParams } from 'react-router-dom';
+import { StoriesByCharacter } from './storiesByCharacter/StoriesByCharacter'
+import {ComicsByCharacter} from './comicsByCharacter/ComicsByCharacter'
 
 import "./CharactersDetails.css";
 
@@ -26,11 +28,11 @@ export const CharactersDetails = (props) => {
   const [favourites, setFavouritesCharacters] =
     useRecoilState(favouritesCharacters);
 
-     // Use useParams to get the id from the URL if it's defined in the route
-     const { id: paramId } = useParams();
+  // Use useParams to get the id from the URL if it's defined in the route
+  const { id: paramId } = useParams();
 
-     // Check if the id is defined in props.match.params or extract it from the URL
-     const id = props.match?.params?.id || paramId || window.location.pathname.split('/').pop();
+  // Check if the id is defined in props.match.params or extract it from the URL
+  const id = props.match?.params?.id || paramId || window.location.pathname.split('/').pop();
 
 
 
@@ -124,9 +126,10 @@ export const CharactersDetails = (props) => {
           </ul>
 
           <div className="infoCharacterDetailsContainer">
+            {activeTab === "comics" ? <ComicsByCharacter></ComicsByCharacter> : null}
             {activeTab === "events" ? <span>events</span> : null}
             {activeTab === "series" ? <span>series</span> : null}
-            {activeTab === "stories" ? <span>stories</span> : null}
+            {activeTab === "stories" ? <StoriesByCharacter stories={storiesByCharacter}></StoriesByCharacter> : null}
           </div>
         </>
       )}

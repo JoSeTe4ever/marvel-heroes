@@ -28,10 +28,6 @@ https://github.com/creativetimofficial/black-dashboard-react#quick-start
 
 it is mandatory to prefix the variables with REACT_APP in order to the create react app cli to understand it.
 
-## proxy option in package.json 
-
-This is a cool feature to get rid of the CORS problems. If several APIS are needed, you can install the http-middleware package "http-proxy-middleware"
-and add a setupProxy.js file in the src project folder.
 
 ## another cool api 
 
