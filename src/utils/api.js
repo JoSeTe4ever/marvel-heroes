@@ -133,6 +133,7 @@ export const getEventsByComicId = async (comicId) => {
   return await apiCall.json();
 };
 
+
 export const getStoriesByComicId = async (comicId) => {
   const apiCall = await fetch(
     `${url}/comics/${comicId}/stories?apikey=${apiKey}`

@@ -1,0 +1,50 @@
+.comicDetailsContainer {
+    display: flex;
+    padding: 7rem 3rem 2rem 2rem;
+}
+
+.comicDetails__left {
+    flex: 1;
+}
+
+.comicDetails__right {
+    flex: 2;
+    padding: 20px;
+}
+
+.comicDetails__image {
+    width: 100%;
+    height: auto;
+}
+
+.comicDetails__title {
+    font-size: 24px;
+    font-weight: bold;
+    font-family: "Banger", Verdana, Tahoma;
+    font-size: 1.4rem;
+    letter-spacing: 10px;
+}
+
+.comicDetails__description {
+    margin-top: 10px;
+    font-size: 16px;
+}
+
+.comicDetails__navigation {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+.comicDetails__navigation li {
+    cursor: pointer;
+    padding: 10px;
+    background-color: #eee;
+    border-radius: 5px;
+}
+
+.comicDetails__content {
+    margin-top: 20px;
+}
