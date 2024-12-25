@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useRef } from "react";
+import React, { useEffect, useState } from "react";
 import { useRecoilState } from "recoil";
 import { favouritesCharacters } from "../../state";
 import {
@@ -12,6 +12,8 @@ import { Loading } from "../loading/Loading";
 import { useParams } from "react-router-dom";
 import { StoriesByCharacter } from "./StoriesByCharacter/StoriesByCharacter";
 import { ComicsByCharacter } from "./ComicsByCharacter/ComicsByCharacter";
+import CircleAvatar from "../circle-avatar/circle-avatar";
+import { MarvelObjectType } from "../../models/marvelObjectType";
 
 import "./CharactersDetails.css";
 
@@ -108,23 +110,29 @@ export const CharactersDetails = (props) => {
   useEffect(() => {
     if (entry) {
       console.log(entry);
-
-      /*if (entry.intersectionRatio > 0.2 && entry.intersectionRatio < 0.8) {
-		element.classList.add("animation");
-	  } else {
-		element.classList.remove("animation");
-	  }*/
-
       if (!entry.isIntersecting && !element.classList.contains("fixed")) {
         element.classList.add("fixed");
-      } 
-
-      if (entry.isIntersecting && element.classList.contains("fixed")) {
-        //element.classList.remove("fixed");
-        console.log('here')
-      } 
+        setIsFixed(true);
+      }
     }
   }, [entry]);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (window.scrollY < 50) {
+        if (element.classList.contains("fixed")) {
+          setIsFixed(false);
+          element.classList.remove("fixed");
+        }
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll);
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, [element]);
 
   return (
     <div className="characterDetailsContainer">
@@ -132,9 +140,17 @@ export const CharactersDetails = (props) => {
         <Loading></Loading>
       ) : (
         <>
-          <span className="infoCharacter__name" ref={setElement}>
-            {characterDetails.name}
-          </span>
+          <div className="infoCharacter__header">
+            {isFixed ? (
+              <CircleAvatar
+                marvelResponseObject={characterDetails}
+                type={MarvelObjectType.Character}
+              />
+            ) : null}
+            <span className="infoCharacter__name" ref={setElement}>
+              {characterDetails.name}
+            </span>
+          </div>
           <div
             className="infoCharacterDetailsContainer"
             style={{
