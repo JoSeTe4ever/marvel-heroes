@@ -10,7 +10,7 @@ import {
 } from "../../utils/api";
 import { Loading } from "../loading/Loading";
 import { useParams } from "react-router-dom";
-import { StoriesByCharacter } from "./StoriesByCharacter/StoriesByCharacter";
+import { StoriesByCharacter } from "./storiesByCharacter2/StoriesByCharacter";
 import {ComicsByCharacter} from './comicsByCharacter2/ComicsByCharacter'
 import CircleAvatar from "../circle-avatar/circle-avatar";
 import { MarvelObjectType } from "../../models/marvelObjectType";
