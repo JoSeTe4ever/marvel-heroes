@@ -35,6 +35,7 @@ const CircleAvatar: React.FC<CircleAvatarProps> = ({ marvelResponseObject, type 
                 width: '150px',
                 height: '150px',
                 position: 'fixed',
+                zIndex: 9999,
             }}
         >
             <img
