@@ -1,27 +1,39 @@
 .characterDetailsContainer {
   height: 100vh;
-  background: linear-gradient(90deg,
-      rgba(2, 0, 36, 1) 0%,
-      rgba(69, 69, 167, 1) 100%,
-      rgba(0, 212, 255, 1) 100%);
+  background: linear-gradient(
+    90deg,
+    rgba(2, 0, 36, 1) 0%,
+    rgba(69, 69, 167, 1) 100%,
+    rgba(0, 212, 255, 1) 100%
+  );
   color: white;
   position: relative;
   top: 5rem;
   padding-top: 1rem;
+}
 
-  .infoCharacter__name {
-    text-transform: uppercase;
-    font-family: "Banger";
-    src: url(./../../../public/fonts/Bangers-Regular.ttf) format("truetype");
-    font-size: 5rem;
-    display: block;
-    text-align: left;
-    padding-left: 3rem;
-    background: linear-gradient(90deg,
-        rgba(2, 0, 36, 1) 0%,
-        rgba(69, 69, 167, 1) 100%,
-        rgba(0, 212, 255, 1) 100%);
-  }
+.infoCharacter__name {
+  text-transform: uppercase;
+  font-family: "Banger";
+  src: url(./../../../public/fonts/Bangers-Regular.ttf) format("truetype");
+  font-size: 5rem;
+  display: block;
+  text-align: left;
+  padding-left: 3rem;
+  background: linear-gradient(
+    90deg,
+    rgba(2, 0, 36, 0.5) 0%,
+    rgba(69, 69, 167, 0.5) 50%,
+    rgba(0, 212, 255, 0.5) 100%
+  );
+}
+
+.fixed {
+  position: fixed;
+  width: 100%;
+  top: 0;
+  left: 0;
+  z-index: 9000;
 }
 
 .highResolution {
@@ -61,7 +73,8 @@
       background-color: rgba(0, 0, 0, 0.5);
       width: 30rem;
       overflow: hidden;
-      background: transparent url(/public/img/loading.gif) center center no-repeat;
+      background: transparent url(/public/img/loading.gif) center center
+        no-repeat;
     }
   }
 
@@ -72,7 +85,7 @@
       display: block;
       padding: 1rem;
       text-align: left;
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif
+      font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
     }
   }
 }

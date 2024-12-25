@@ -6,8 +6,9 @@ import {
     getEventsByComicId, getStoriesByComicId
 } from '../../utils/api';
 import { Loading } from '../loading/Loading';
-
+import { MarvelObjectType } from '../../models/marvelObjectType';
 import './ComicsDetails.css';
+import ImageCarousel from '../image-carousel/image-carousel';
 
 interface ComicsDetailsProps {
     match?: {
@@ -46,6 +47,9 @@ export const ComicsDetails = (props: ComicsDetailsProps) => {
     };
 
     useEffect(() => {
+
+        let isMounted = true;
+
         getComicDetails(id).then((details) => {
             if (details && details.data && Array.isArray(details.data.results) && details.data.results.length > 0) {
                 setComicDetails(details.data.results[0]);
@@ -54,22 +58,29 @@ export const ComicsDetails = (props: ComicsDetailsProps) => {
         });
 
         getCharactersByComicId(id).then((characterDetails) => {
-            if (characterDetails && characterDetails.length > 0) {
-                setCharactersByComic(characterDetails);
+            if (characterDetails && characterDetails.data && Array.isArray(characterDetails.data.results) && characterDetails.data.results.length > 0) {
+                setCharactersByComic(characterDetails.data.results);
             }
         });
 
         getEventsByComicId(id).then((eventDetails) => {
-            if (eventDetails && eventDetails.length > 0) {
-                setEventsByComic(eventDetails);
+            if (eventDetails && eventDetails.data && Array.isArray(eventDetails.data.results) && eventDetails.data.results.length > 0) {
+                setEventsByComic(eventDetails.data.results);
             }
         });
 
         getStoriesByComicId(id).then((storiesDetails) => {
-            if (storiesDetails && storiesDetails.length > 0) {
-                setStoriesByComic(storiesDetails);
+            if (storiesDetails && storiesDetails.data && Array.isArray(storiesDetails.data.results) && storiesDetails.data.results.length > 0) {
+                setStoriesByComic(storiesDetails.data.results);
             }
+
+            
         });
+
+        return () => {
+            isMounted = false;
+        };
+
     }, [id]);
 
     return (
@@ -89,7 +100,10 @@ export const ComicsDetails = (props: ComicsDetailsProps) => {
                         <span className="comicDetails__title">{comicDetails?.title}</span>
                         <span className="comicDetails__description">{comicDetails?.description}</span>
                         <ul className="comicDetails__navigation">
-                            <li onClick={() => handleTabClick('characters')}>Characters</li>
+                            <li onClick={() => handleTabClick('characters')}>
+                                <span>Characters</span>
+                                <ImageCarousel type={MarvelObjectType.Character} marvelObjects={charactersByComic}></ImageCarousel>
+                            </li>
                             <li onClick={() => handleTabClick('events')}>Events</li>
                             <li onClick={() => handleTabClick('series')}>Series</li>
                             <li onClick={() => handleTabClick('stories')}>Stories</li>

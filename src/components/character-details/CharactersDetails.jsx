@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import { useRecoilState } from "recoil";
 import { favouritesCharacters } from "../../state";
 import {
@@ -9,13 +9,17 @@ import {
   getSeriesByCharacterId,
 } from "../../utils/api";
 import { Loading } from "../loading/Loading";
-import { useParams } from 'react-router-dom';
-import { StoriesByCharacter } from './storiesByCharacter/StoriesByCharacter'
-import {ComicsByCharacter} from './comicsByCharacter/ComicsByCharacter'
+import { useParams } from "react-router-dom";
+import { StoriesByCharacter } from "./StoriesByCharacter/StoriesByCharacter";
+import { ComicsByCharacter } from "./ComicsByCharacter/ComicsByCharacter";
 
 import "./CharactersDetails.css";
 
 export const CharactersDetails = (props) => {
+  const [element, setElement] = useState();
+  const [entry, updateEntry] = useState();
+
+  const [isFixed, setIsFixed] = useState(false);
   const [activeTab, setActiveTab] = useState("comics");
 
   const [isLoading, setIsLoading] = useState(true);
@@ -32,9 +36,10 @@ export const CharactersDetails = (props) => {
   const { id: paramId } = useParams();
 
   // Check if the id is defined in props.match.params or extract it from the URL
-  const id = props.match?.params?.id || paramId || window.location.pathname.split('/').pop();
-
-
+  const id =
+    props.match?.params?.id ||
+    paramId ||
+    window.location.pathname.split("/").pop();
 
   const handleTabClick = (tabIdString) => {
     setActiveTab(tabIdString);
@@ -73,13 +78,63 @@ export const CharactersDetails = (props) => {
     });
   }, [id]);
 
+  useEffect(() => {
+    if (!isLoading && element) {
+      const observer = new IntersectionObserver(
+        ([entry]) => {
+          updateEntry(entry);
+        },
+        {
+          root: null,
+          rootMargin: "0px",
+          threshold: 0,
+
+          /* required options*/
+          trackVisibility: true,
+          delay: 100, // minimum 100
+        }
+      );
+
+      observer.observe(element);
+
+      return () => {
+        if (element) {
+          observer.unobserve(element);
+        }
+      };
+    }
+  }, [element, isLoading]);
+
+  useEffect(() => {
+    if (entry) {
+      console.log(entry);
+
+      /*if (entry.intersectionRatio > 0.2 && entry.intersectionRatio < 0.8) {
+		element.classList.add("animation");
+	  } else {
+		element.classList.remove("animation");
+	  }*/
+
+      if (!entry.isIntersecting && !element.classList.contains("fixed")) {
+        element.classList.add("fixed");
+      } 
+
+      if (entry.isIntersecting && element.classList.contains("fixed")) {
+        //element.classList.remove("fixed");
+        console.log('here')
+      } 
+    }
+  }, [entry]);
+
   return (
     <div className="characterDetailsContainer">
       {isLoading ? (
         <Loading></Loading>
       ) : (
         <>
-          <span className="infoCharacter__name">{characterDetails.name}</span>
+          <span className="infoCharacter__name" ref={setElement}>
+            {characterDetails.name}
+          </span>
           <div
             className="infoCharacterDetailsContainer"
             style={{
@@ -92,8 +147,7 @@ export const CharactersDetails = (props) => {
               </span>
             </div>
             <div className="infoCharacter__right">
-              <div className="characterImage__mask">
-              </div>
+              <div className="characterImage__mask"></div>
             </div>
           </div>
 
@@ -125,10 +179,16 @@ export const CharactersDetails = (props) => {
           </ul>
 
           <div className="infoCharacterDetailsContainer">
-            {activeTab === "comics" ? <ComicsByCharacter comics={comicsByCharacter}></ComicsByCharacter> : null}
+            {activeTab === "comics" ? (
+              <ComicsByCharacter comics={comicsByCharacter}></ComicsByCharacter>
+            ) : null}
             {activeTab === "events" ? <span>events</span> : null}
             {activeTab === "series" ? <span>series</span> : null}
-            {activeTab === "stories" ? <StoriesByCharacter stories={storiesByCharacter}></StoriesByCharacter> : null}
+            {activeTab === "stories" ? (
+              <StoriesByCharacter
+                stories={storiesByCharacter}
+              ></StoriesByCharacter>
+            ) : null}
           </div>
         </>
       )}
