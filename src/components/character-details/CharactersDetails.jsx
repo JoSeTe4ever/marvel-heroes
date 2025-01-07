@@ -158,12 +158,10 @@ export const CharactersDetails = (props) => {
             }}
           >
             <div className="infoCharacter__left">
-              <span className="infoCharacter__description">
+              <div className="strip__mask__character"></div>
+              <div className="infoCharacter__description">
                 {characterDetails.description}
-              </span>
-            </div>
-            <div className="infoCharacter__right">
-              <div className="characterImage__mask"></div>
+              </div>
             </div>
           </div>
 

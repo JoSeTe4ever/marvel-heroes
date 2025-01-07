@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { getStories } from "../../utils/api";
 import { Loading } from "../loading/Loading";
+import { StoriesByCharacter } from "../character-details/storiesByCharacter2/StoriesByCharacter";
 import "./Stories.css";
 
 function StorieCard(props) {
@@ -33,16 +34,11 @@ function Stories() {
 
   return (
     <div className="stories__container full-screen">
-      {isLoading ? <Loading></Loading> : null}
-      {stories.map((e) => {
-        return (
-          <StorieCard
-            storieName={e.title}
-            key={e.id.toString()}
-            imgUrl={`${e.thumbnail?.path}.${e.thumbnail?.extension}`}
-          ></StorieCard>
-        );
-      })}
+      {isLoading ? <Loading></Loading> :
+        <StoriesByCharacter
+          stories={stories}
+        ></StoriesByCharacter>}
+
     </div>
   );
 }

@@ -1,87 +1,87 @@
 /* Contenedor principal */
 .stories-container {
-    padding: 20px;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background-color: var(--stories-light);
-    border-radius: 8px;
-    box-shadow: 0 4px 8px #0000001a;
-    width: 100%;
-    cursor: pointer;
-  }
-  
-  /* Título */
-  .stories-title {
-    font-size: 28px;
-    font-weight: bold;
-    margin-bottom: 20px;
-    color: white;
-    text-align: center;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-  }
-  
-  /* Lista de historias */
-  .stories-list {
-    list-style-type: none;
-    padding: 0;
-    margin: 0;
-  }
-  
-  /* Ítems individuales */
-  .story-item {
-    background-color: var(--stories);
-    border: 1px solid var(--stories);
-    border-radius: 6px;
-    margin: 10px 0;
-    padding: 15px;
-    transition: box-shadow 0.3s ease-in-out, transform 0.2s ease-in-out;
-    display: flex;
-    flex-direction: row;
-  }
-  
-  .story-item:hover {
-    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
-    transform: translateY(-5px);
-    border-color: var(--stories-dark);
-  }
-  
-  /* Nombre de la historia */
-  .story-name {
-    font-size: 20px;
-    font-weight: 600;
-    color: var(--stories-dark);
-    margin: 0 0 5px 0;
-  }
-  
-  /* Tipo de historia */
-  .story-type {
-    font-size: 14px;
-    color: var(--stories-dark);
-    margin-bottom: 10px;
-  }
-  
-  /* Enlace */
-  .story-link {
-    align-self: flex-start;
-    background-color: var(--stories);
-    color: #ffffff;
-    padding: 8px 12px;
-    border-radius: 4px;
-    text-decoration: none;
-    font-size: 14px;
-    font-weight: 500;
-    transition: background-color 0.3s ease-in-out, transform 0.2s ease-in-out;
-  }
-  
-  .story-link:hover {
-    background-color: var(--stories-dark);
-    transform: scale(1.05);
-    text-decoration: none;
-  }
-  
-  /* Mensaje de no disponibilidad */
-  .no-stories {
-    font-size: 16px;
-    text-align: center;
-    color: var(--stories-dark);
-  }
+  padding: 20px;
+  background-color: var(--stories-light);
+  border-radius: 8px;
+  box-shadow: 0 4px 8px #0000001a;
+  width: 100%;
+  cursor: pointer;
+}
+
+/* Título */
+.stories-title {
+  font-size: 28px;
+  font-weight: bold;
+  margin-bottom: 20px;
+  color: white;
+  text-align: center;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+/* Lista de historias */
+.stories-list {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+  font-family: "Banger";
+  src: url(./../../../../public/fonts/Bangers-Regular.ttf) format("truetype");
+}
+
+/* Ítems individuales */
+.story-item {
+  background-color: var(--stories);
+  border: 1px solid var(--stories);
+  border-radius: 6px;
+  margin: 10px 0;
+  padding: 15px;
+  transition: box-shadow 0.3s ease-in-out, transform 0.2s ease-in-out;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.story-item:hover {
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+  transform: translateY(-5px);
+  border-color: var(--stories-dark);
+}
+
+/* Nombre de la historia */
+.story-name {
+  font-size: 20px;
+  font-weight: 600;
+  color: #ffffff;
+  font-weight: 100;
+}
+
+/* Tipo de historia */
+.story-type {
+  font-size: 14px;
+  color: var(--stories-dark);
+  margin-bottom: 10px;
+}
+
+/* Enlace */
+.story-link {
+  background-color: var(--stories);
+  color: #ffffff;
+  border-radius: 4px;
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: 500;
+  transition: background-color 0.3s ease-in-out, transform 0.2s ease-in-out;
+}
+
+.story-link:hover {
+  background-color: var(--stories-dark);
+  transform: scale(1.05);
+  text-decoration: none;
+}
+
+/* Mensaje de no disponibilidad */
+.no-stories {
+  font-size: 16px;
+  text-align: center;
+  color: var(--stories-dark);
+}
