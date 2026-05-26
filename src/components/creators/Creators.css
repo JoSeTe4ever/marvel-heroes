@@ -1,0 +1,391 @@
+/* ===== CREATORS PAGE — REALITY STONE RED / COMIC-STRIP STYLE ===== */
+
+/* ---------- Page ---------- */
+.creators-page {
+  min-height: 100vh;
+  background-color: #1a0005;
+  background-image: radial-gradient(circle, rgba(245, 4, 59, 0.12) 1.2px, transparent 1.2px);
+  background-size: 18px 18px;
+  padding-top: 5rem;
+  padding-bottom: 4rem;
+}
+
+/* ---------- Hero header ---------- */
+.creators-hero {
+  position: relative;
+  overflow: hidden;
+  background: #0d0003;
+  padding: 3rem 1rem 2.5rem;
+  text-align: center;
+  border-bottom: 5px solid #F5043B;
+  box-shadow: 0 6px 0 #F5043B;
+}
+
+.creators-hero__halftone {
+  position: absolute;
+  inset: 0;
+  background-image: radial-gradient(circle, rgba(245,4,59,0.2) 1.5px, transparent 1.5px);
+  background-size: 14px 14px;
+  pointer-events: none;
+}
+
+.creators-hero__title {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 0;
+  line-height: 1;
+}
+
+.creators-hero__title-marvel {
+  font-family: "Banger", Impact, sans-serif;
+  font-size: clamp(2.5rem, 8vw, 6rem);
+  color: #F5043B;
+  letter-spacing: 0.08em;
+  text-shadow: 4px 4px 0 #000, -2px -2px 0 #000;
+}
+
+.creators-hero__title-creators {
+  font-family: "Banger", Impact, sans-serif;
+  font-size: clamp(3rem, 10vw, 8rem);
+  color: #fff;
+  letter-spacing: 0.06em;
+  text-shadow: 5px 5px 0 #F5043B, -3px -3px 0 #000, 3px -3px 0 #000, -3px 3px 0 #000;
+}
+
+.creators-hero__sub {
+  font-family: "Banger", Impact, sans-serif;
+  font-size: clamp(1rem, 3vw, 1.5rem);
+  color: #F5043B;
+  letter-spacing: 0.14em;
+  margin: 0.75rem 0 0;
+  text-shadow: 2px 2px 0 #000;
+  position: relative;
+}
+
+/* ---------- Search ---------- */
+.creators-search {
+  display: flex;
+  justify-content: center;
+  padding: 2rem 1rem 1rem;
+}
+
+.creators-search__bubble {
+  display: flex;
+  align-items: stretch;
+  background: #0d0003;
+  border: 3px solid #F5043B;
+  border-radius: 50px;
+  box-shadow: 4px 4px 0 #F5043B;
+  overflow: hidden;
+  max-width: 560px;
+  width: 100%;
+}
+
+.creators-search__input {
+  flex: 1;
+  border: none;
+  outline: none;
+  padding: 0.75rem 1.25rem;
+  font-size: 1rem;
+  font-family: "Banger", sans-serif;
+  letter-spacing: 0.05em;
+  background: transparent;
+  color: #fff;
+}
+
+.creators-search__input::placeholder { color: #555; font-family: inherit; }
+
+.creators-search__btn {
+  background: #F5043B;
+  color: #fff;
+  border: none;
+  padding: 0 1.5rem;
+  font-family: "Banger", sans-serif;
+  font-size: 1.1rem;
+  letter-spacing: 0.1em;
+  cursor: pointer;
+  transition: background 0.15s;
+  border-left: 3px solid #F5043B;
+}
+
+.creators-search__btn:hover { background: #ff3360; }
+
+/* ---------- Strip list ---------- */
+.creators-list {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 1.5rem 1.5rem 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+/* ---------- Single creator strip (viñeta) ---------- */
+.creator-strip {
+  position: relative;
+  display: flex;
+  align-items: stretch;
+  min-height: 220px;
+  border: 4px solid #111;
+  cursor: pointer;
+  transition: transform 0.15s, box-shadow 0.15s;
+  overflow: visible;
+}
+
+.creator-strip--even {
+  flex-direction: row;
+  background: #fff8f5;
+}
+
+.creator-strip--odd {
+  flex-direction: row-reverse;
+  background: #0d0003;
+}
+
+.creator-strip:hover {
+  transform: scale(1.01) translateY(-2px);
+  box-shadow: 6px 6px 0 #F5043B;
+  z-index: 5;
+}
+
+/* Panel number badge */
+.creator-strip__panel-num {
+  position: absolute;
+  top: -0.9rem;
+  left: 1rem;
+  font-family: "Banger", Impact, sans-serif;
+  font-size: 0.9rem;
+  color: #fff;
+  background: #F5043B;
+  border: 2px solid #111;
+  padding: 0.1rem 0.5rem;
+  border-radius: 3px;
+  box-shadow: 2px 2px 0 #000;
+  z-index: 10;
+  letter-spacing: 0.08em;
+}
+
+/* Photo panel */
+.creator-strip__photo-panel {
+  flex-shrink: 0;
+  width: 180px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: #111;
+  border-right: 4px solid #111;
+  padding: 1rem;
+  gap: 0.5rem;
+  position: relative;
+}
+
+.creator-strip--odd .creator-strip__photo-panel {
+  border-right: none;
+  border-left: 4px solid #111;
+}
+
+.creator-strip__photo-frame {
+  width: 130px;
+  height: 160px;
+  border: 3px solid #F5043B;
+  box-shadow: 4px 4px 0 #F5043B;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+
+.creator-strip__photo {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top;
+  display: block;
+  filter: grayscale(20%) contrast(1.1);
+  transition: filter 0.3s, transform 0.3s;
+}
+
+.creator-strip:hover .creator-strip__photo {
+  filter: grayscale(0%) contrast(1.1);
+  transform: scale(1.05);
+}
+
+.creator-strip__issue-count {
+  font-family: "Banger", Impact, sans-serif;
+  font-size: 0.75rem;
+  color: #F5043B;
+  letter-spacing: 0.08em;
+  text-align: center;
+  text-shadow: 1px 1px 0 #000;
+}
+
+/* Info panel (caption box) */
+.creator-strip__info-panel {
+  flex: 1;
+  display: flex;
+  align-items: stretch;
+  position: relative;
+  padding: 0;
+}
+
+/* Arrow pointing to photo for even rows */
+.creator-strip--even .creator-strip__bubble-arrow {
+  width: 0;
+  height: 0;
+  border-top: 12px solid transparent;
+  border-bottom: 12px solid transparent;
+  border-right: 16px solid #F5043B;
+  position: absolute;
+  left: -16px;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 5;
+}
+
+.creator-strip--odd .creator-strip__bubble-arrow {
+  width: 0;
+  height: 0;
+  border-top: 12px solid transparent;
+  border-bottom: 12px solid transparent;
+  border-left: 16px solid #F5043B;
+  position: absolute;
+  right: -16px;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 5;
+}
+
+.creator-strip__caption-box {
+  flex: 1;
+  padding: 1.25rem 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  justify-content: center;
+}
+
+.creator-strip__name {
+  font-family: "Banger", Impact, sans-serif;
+  font-size: clamp(1.5rem, 4vw, 2.4rem);
+  margin: 0;
+  letter-spacing: 0.05em;
+  line-height: 1;
+}
+
+.creator-strip--even .creator-strip__name { color: #111; text-shadow: 2px 2px 0 rgba(245,4,59,0.3); }
+.creator-strip--odd  .creator-strip__name { color: #F5043B; text-shadow: 2px 2px 0 #000; }
+
+.creator-strip__meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+}
+
+.creator-strip__meta-item {
+  font-size: 0.78rem;
+  color: #888;
+  font-family: monospace;
+  letter-spacing: 0.04em;
+}
+
+.creator-strip--odd .creator-strip__meta-item { color: #aaa; }
+
+.creator-strip__desc {
+  font-size: 0.88rem;
+  line-height: 1.55;
+  margin: 0;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 4;
+  -webkit-box-orient: vertical;
+}
+
+.creator-strip--even .creator-strip__desc { color: #333; }
+.creator-strip--odd  .creator-strip__desc { color: #ccc; }
+
+.creator-strip__read-more {
+  font-family: "Banger", Impact, sans-serif;
+  font-size: 0.85rem;
+  color: #F5043B;
+  letter-spacing: 0.12em;
+  margin-top: 0.25rem;
+  transition: letter-spacing 0.2s;
+}
+
+.creator-strip:hover .creator-strip__read-more { letter-spacing: 0.2em; }
+
+/* ---------- Loader ---------- */
+.creators-loader {
+  display: flex;
+  justify-content: center;
+  padding: 2.5rem 1rem 4rem;
+  min-height: 80px;
+}
+
+.creators-loader__spinner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.creators-loader__ring {
+  display: block;
+  width: 56px;
+  height: 56px;
+  border: 5px solid #111;
+  border-top-color: #F5043B;
+  border-radius: 50%;
+  animation: creators-spin 0.8s linear infinite;
+  box-shadow: 0 0 0 3px #1a0005, 0 0 16px rgba(245,4,59,0.5);
+}
+
+@keyframes creators-spin { to { transform: rotate(360deg); } }
+
+.creators-loader__text {
+  font-family: "Banger", Impact, sans-serif;
+  font-size: 1.4rem;
+  color: #F5043B;
+  letter-spacing: 0.15em;
+  text-shadow: 2px 2px 0 #000;
+  animation: creators-pulse 0.9s ease-in-out infinite alternate;
+}
+
+@keyframes creators-pulse { from { opacity: 0.5; } to { opacity: 1; } }
+
+.creators-loader__end {
+  font-family: "Banger", Impact, sans-serif;
+  font-size: 1.4rem;
+  color: #F5043B;
+  letter-spacing: 0.12em;
+  text-align: center;
+  padding: 1rem 2rem;
+  border: 3px dashed #5a0010;
+  border-radius: 8px;
+  text-shadow: 2px 2px 0 #000;
+}
+
+/* ---------- Responsive ---------- */
+@media (max-width: 640px) {
+  .creator-strip,
+  .creator-strip--even,
+  .creator-strip--odd {
+    flex-direction: column;
+  }
+
+  .creator-strip__photo-panel {
+    width: 100%;
+    flex-direction: row;
+    border-right: none;
+    border-left: none;
+    border-bottom: 4px solid #111;
+    padding: 0.75rem 1rem;
+    gap: 1rem;
+  }
+
+  .creator-strip__photo-frame { width: 80px; height: 100px; }
+
+  .creator-strip--even .creator-strip__bubble-arrow,
+  .creator-strip--odd .creator-strip__bubble-arrow { display: none; }
+}

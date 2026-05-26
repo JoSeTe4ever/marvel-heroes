@@ -9,6 +9,8 @@ import Stories from "../stories/Stories";
 import Comics from "../comics/Comics";
 import Series from "../series/Series";
 import Events from "../events/Events";
+import Creators from "../creators/Creators";
+import CreatorDetail from "../creators/CreatorDetail";
 
 const Dashboard: React.FC = () => {
   return (
@@ -22,6 +24,8 @@ const Dashboard: React.FC = () => {
       <Route path="/stories" component={Stories} />
       <Route path="/series" component={Series} />
       <Route path="/events" component={Events} />
+      <Route path="/creators/:id" component={CreatorDetail} />
+      <Route path="/creators" component={Creators} />
       <Route path="*">
         <NoMatch></NoMatch>
       </Route>
