@@ -38,6 +38,9 @@ footer {
   display: flex;
   flex-direction: column;
   gap: 0.25rem;
+  font-family: "Banger", Impact, sans-serif;
+  letter-spacing: 0.08em;
+  font-size: 1.05rem;
 }
 
 footer a {

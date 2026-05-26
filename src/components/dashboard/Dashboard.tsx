@@ -7,6 +7,8 @@ import { FavouritesCharacters } from "../character-favourites/FavouritesCharacte
 import Characters from "../characters/Characters";
 import Stories from "../stories/Stories";
 import Comics from "../comics/Comics";
+import Series from "../series/Series";
+import Events from "../events/Events";
 
 const Dashboard: React.FC = () => {
   return (
@@ -18,6 +20,8 @@ const Dashboard: React.FC = () => {
       <Route path="/comics" component={Comics} />
       <Route path="/favourites" component={FavouritesCharacters} />
       <Route path="/stories" component={Stories} />
+      <Route path="/series" component={Series} />
+      <Route path="/events" component={Events} />
       <Route path="*">
         <NoMatch></NoMatch>
       </Route>

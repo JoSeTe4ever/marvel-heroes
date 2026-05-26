@@ -33,7 +33,9 @@ export const ComicPage = () => {
                 </div>
             </div>
             <div className="row">
-                <div className="row__strip70 stonePower">
+                <div className="row__strip70 stonePower" onClick={() => {
+                    history.push(`/series`);
+                }}>
                     <div className="strip__mask">
                         <img src="img/avengers-infinity-war-how-this-story-ended-in-the-infinity-gauntlet-comics-story.jpg" alt="events" className="strip__img" />
                     </div>
@@ -51,7 +53,9 @@ export const ComicPage = () => {
                 </div>
             </div>
             <div className="row">
-                <div className="row__strip30 stoneMind">
+                <div className="row__strip30 stoneMind" onClick={() => {
+                    history.push(`/events`);
+                }}>
                 <div className="strip__mask">
                     <img src="img/marvelEvents.jpg" alt="characters" className="strip__img" />
                     </div>

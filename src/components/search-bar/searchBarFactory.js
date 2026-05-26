@@ -14,9 +14,9 @@ const searchBarFactory = (type) => {
     case "comics":
       return <ComicsSearchBar />;
     case "events":
-      return <CreatorsSearchBar />;
-    case "creators":
       return <EventsSearchBar />;
+    case "creators":
+      return <CreatorsSearchBar />;
     case "series":
       return <SeriesSearchBar />;
     default:

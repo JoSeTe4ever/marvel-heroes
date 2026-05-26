@@ -106,6 +106,16 @@ const normalizeStoryArc = (storyArc) => ({
   thumbnail: createImage(storyArc.image),
 });
 
+const normalizeEvent = (event) => ({
+  id: event.id,
+  name: event.name || "Untitled Event",
+  description: stripHtml(event.deck || event.description) || "No description available.",
+  thumbnail: createImage(event.image),
+  issueCount: event.count_of_issue_appearances || 0,
+  publisher: event.publisher?.name || null,
+  siteDetailUrl: event.site_detail_url || comicVineSiteUrl,
+});
+
 const toMarvelResponse = (response, results, limit = 20, offset = 0) => ({
   ...attribution,
   data: {
@@ -230,12 +240,23 @@ export const getEventsByCreatorId = async () => [];
 
 export const getComicsByCreatorId = async () => [];
 
+const normalizeSeries = (series) => ({
+  id: series.id,
+  name: series.name || "Untitled Series",
+  description: stripHtml(series.deck || series.description) || "No description available.",
+  thumbnail: createImage(series.image),
+  startYear: series.start_year || null,
+  episodeCount: series.count_of_episodes || 0,
+  publisher: series.publisher?.name || null,
+  siteDetailUrl: series.site_detail_url || comicVineSiteUrl,
+});
+
 export const getSeries = async (options = {}) => {
   const { nameStartsWith, limit = 20, offset = 0 } = options;
   const params = {
     limit,
     offset,
-    field_list: "id,name,description,deck,image,site_detail_url",
+    field_list: "id,name,deck,image,start_year,count_of_episodes,publisher,site_detail_url",
   };
 
   if (nameStartsWith) {
@@ -243,9 +264,9 @@ export const getSeries = async (options = {}) => {
   }
 
   return getComicVineList(
-    "volumes",
+    "series_list",
     params,
-    normalizeStoryArc
+    normalizeSeries
   );
 };
 
@@ -309,7 +330,18 @@ export const getStoriesByComicId = async (comicId) => {
   );
 };
 
-export const getEvents = async (options) => emptyResponse();
+export const getEvents = async (options = {}) => {
+  const { nameStartsWith, limit = 20, offset = 0 } = options;
+  const params = {
+    limit,
+    offset,
+    field_list: "id,name,deck,image,count_of_issue_appearances,publisher,site_detail_url",
+  };
+  if (nameStartsWith) {
+    params.filter = `name:${nameStartsWith}`;
+  }
+  return getComicVineList("story_arcs", params, normalizeEvent);
+};
 
 export const setCharactersByQuery = async (
   setPagination,
@@ -399,6 +431,14 @@ export const getComicsSearchSuggestions = async (searchCriteria) => {
 export const getSeriesSearchSuggestions = async (searchCriteria) => {
   if (searchCriteria) {
     const result = await getSeries({ nameStartsWith: searchCriteria, limit: 8 });
+    return result.data.results;
+  }
+  return [];
+};
+
+export const getEventsSearchSuggestions = async (searchCriteria) => {
+  if (searchCriteria) {
+    const result = await getEvents({ nameStartsWith: searchCriteria, limit: 8 });
     return result.data.results;
   }
   return [];
