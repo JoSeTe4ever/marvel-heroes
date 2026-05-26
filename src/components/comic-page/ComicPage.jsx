@@ -43,7 +43,9 @@ export const ComicPage = () => {
                         series
                     </div>
                 </div>
-                <div className="row__strip30 stoneReality">
+                <div className="row__strip30 stoneReality" onClick={() => {
+                    history.push(`/creators`);
+                }}>
                     <div className="strip__mask">
                     <img src="img/MarvelCreator.avif" alt="characters" className="strip__img" />
                     </div>

@@ -116,6 +116,24 @@ const normalizeEvent = (event) => ({
   siteDetailUrl: event.site_detail_url || comicVineSiteUrl,
 });
 
+const normalizeCreator = (person) => ({
+  id: person.id,
+  name: person.name || "Unknown Creator",
+  description: stripHtml(person.deck || person.description) || "No description available.",
+  thumbnail: createImage(person.image),
+  birth: person.birth || null,
+  death: person.death || null,
+  country: person.country || null,
+  hometown: person.hometown || null,
+  gender: person.gender || null,
+  issueCount: person.count_of_issue_appearances || 0,
+  comics: toMarvelList(person.issue_credits),
+  volumes: toMarvelList(person.volume_credits),
+  stories: toMarvelList(person.story_arc_credits),
+  createdCharacters: toMarvelList(person.created_characters),
+  siteDetailUrl: person.site_detail_url || comicVineSiteUrl,
+});
+
 const toMarvelResponse = (response, results, limit = 20, offset = 0) => ({
   ...attribution,
   data: {
@@ -228,17 +246,33 @@ export const getStories = async (options = {}) => {
 
 export const getStoriesByEventId = async () => emptyResponse();
 
-export const getCreators = async () => emptyResponse();
+export const getCreators = async (options = {}) => {
+  const { nameStartsWith, limit = 20, offset = 0 } = options;
+  const params = {
+    limit,
+    offset,
+    field_list: "id,name,deck,image,birth,country,hometown,count_of_issue_appearances,site_detail_url",
+  };
+  if (nameStartsWith) params.filter = `name:${nameStartsWith}`;
+  return getComicVineList("people", params, normalizeCreator);
+};
 
-export const getCreatorDetails = async () => emptyResponse(1, 0);
+export const getCreatorDetails = async (creatorId) =>
+  getComicVineDetail(
+    "person",
+    `4040-${creatorId}`,
+    {
+      field_list:
+        "id,name,deck,description,image,birth,death,country,hometown,gender,count_of_issue_appearances,created_characters,issue_credits,volume_credits,story_arc_credits,site_detail_url",
+    },
+    normalizeCreator
+  );
 
 export const getStoriesByCreatorId = async () => [];
 
 export const getSeriesbycreatorId = async () => [];
 
 export const getEventsByCreatorId = async () => [];
-
-export const getComicsByCreatorId = async () => [];
 
 const normalizeSeries = (series) => ({
   id: series.id,
@@ -442,4 +476,48 @@ export const getEventsSearchSuggestions = async (searchCriteria) => {
     return result.data.results;
   }
   return [];
+};
+
+export const getCreatorsSearchSuggestions = async (searchCriteria) => {
+  if (searchCriteria) {
+    const result = await getCreators({ nameStartsWith: searchCriteria, limit: 8 });
+    return result.data.results;
+  }
+  return [];
+};
+
+export const getComicsByCreatorId = async (creatorId) => {
+  const result = await getCreatorDetails(creatorId);
+  return result.data.results[0]?.comics?.items?.map((c) => ({
+    id: c.id,
+    title: c.name,
+    name: c.name,
+    description: "Comic Vine issue credit.",
+    thumbnail: createImage(),
+    resourceURI: c.resourceURI,
+  })) || [];
+};
+
+export const getVolumesByCreatorId = async (creatorId) => {
+  const result = await getCreatorDetails(creatorId);
+  return result.data.results[0]?.volumes?.items?.map((v) => ({
+    id: v.id,
+    title: v.name,
+    name: v.name,
+    description: "Comic Vine volume credit.",
+    thumbnail: createImage(),
+    resourceURI: v.resourceURI,
+  })) || [];
+};
+
+export const getStoryArcsByCreatorId = async (creatorId) => {
+  const result = await getCreatorDetails(creatorId);
+  return result.data.results[0]?.stories?.items?.map((s) => ({
+    id: s.id,
+    title: s.name,
+    name: s.name,
+    description: "Comic Vine story arc credit.",
+    thumbnail: createImage(),
+    resourceURI: s.resourceURI,
+  })) || [];
 };
