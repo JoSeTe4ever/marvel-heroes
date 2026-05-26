@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { useRecoilValue } from 'recoil';
 import { HeroCard } from '../hero-card/HeroCard';
-import { url, apiKey } from "../../utils/api"
+import { getCharacterDetails } from "../../utils/api"
 import { favouritesCharacters } from "../../state";
 import './FavouritesCharacters.css';
 
@@ -10,20 +10,14 @@ export const FavouritesCharacters = () => {
     const favourites = useRecoilValue(favouritesCharacters);
     const [loaded, setLoaded] = useState(false);
     const [fullCharArray, setFullCharArray] = useState([]);
-    const promisesArray = [];
 
     useEffect(() => {
-        favourites.map(charId => {
-            promisesArray.push(fetch(`${url}/characters/${charId}?apikey=${apiKey}`).then(result => {
-                const obtained = result.json();
-                return obtained;
-            }));
-        });
+        const promisesArray = favourites.map(charId => getCharacterDetails(charId));
         Promise.all(promisesArray).then((values) => {
-            setFullCharArray(values.map(e => e.data.results[0]));
+            setFullCharArray(values.map(e => e[0]).filter(Boolean));
             setLoaded(true);
         })
-    }, []); // passing an empty array as the second argument to useEffect makes it only run on mount and unmount 
+    }, [favourites]); // passing an empty array as the second argument to useEffect makes it only run on mount and unmount 
 
     if (loaded && fullCharArray && fullCharArray.length > 0) {
         return (
@@ -35,7 +29,7 @@ export const FavouritesCharacters = () => {
                             key={e.id.toString()}
                             heroName={e.name}
                             heroId={e.id.toString()}
-                            imgUrl={`${e.thumbnail.path}.${e.thumbnail.extension}`}></HeroCard>
+                            imgUrl={e.thumbnail.url || `${e.thumbnail.path}.${e.thumbnail.extension}`}></HeroCard>
                     })}
                 </div>
             </div>

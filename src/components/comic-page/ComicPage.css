@@ -155,9 +155,39 @@
 }
 
 @media only screen and (max-width: 959px) {
+  .comic__container {
+    width: min(100vw - 1rem, 60rem);
+  }
+
   .row {
     cursor: pointer;
-    display: table;
+    display: flex;
+    flex-direction: column;
     height: 20rem;
+  }
+
+  .row__strip30,
+  .row__strip70 {
+    height: 10rem;
+  }
+
+  .strip__mask {
+    height: 10rem;
+  }
+
+  .strip__img {
+    width: 100%;
+    object-fit: cover;
+  }
+
+  .strip__info,
+  .strip__info.strip__info-character-position,
+  .strip__info.strip__info-character-position-new {
+    opacity: 1;
+    top: 35%;
+    left: 10%;
+    right: auto;
+    font-size: 3rem;
+    z-index: 9;
   }
 }

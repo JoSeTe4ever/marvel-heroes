@@ -33,10 +33,15 @@ function Comics() {
   useEffect(() => {
     async function fetchData() {
       // You can await here
-      const response = await getComics({ offset, limit });
-      const comicsArray = response.data.results;
-      setComics([...comics, ...comicsArray]);
-      setIsLoading(false);
+      try {
+        const response = await getComics({ offset, limit });
+        const comicsArray = response.data.results;
+        setComics([...comics, ...comicsArray]);
+      } catch (error) {
+        setComics([]);
+      } finally {
+        setIsLoading(false);
+      }
     }
     fetchData();
   }, [offset]); // Or [] if effect doesn't need props or state
@@ -68,7 +73,7 @@ function Comics() {
               comicId={e.id}
               comicName={e.title}
               key={e.id.toString()}
-              imgUrl={`${e.thumbnail.path}.${e.thumbnail.extension}`}
+              imgUrl={e.thumbnail.url || `${e.thumbnail.path}.${e.thumbnail.extension}`}
             ></ComicCard>
           );
         })}

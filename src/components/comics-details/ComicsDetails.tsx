@@ -25,16 +25,17 @@ export const ComicsDetails = (props: ComicsDetailsProps) => {
         thumbnail: {
             path: string;
             extension: string;
+            url?: string;
         };
         title: string;
         description: string;
     }
 
     const [comicDetails, setComicDetails] = useState<ComicDetails | undefined>(undefined);
-    const [charactersByComic, setCharactersByComic] = useState([]);
-    const [eventsByComic, setEventsByComic] = useState([]);
-    const [seriesByComic, setSeriesByComic] = useState([]);
-    const [storiesByComic, setStoriesByComic] = useState([]);
+    const [charactersByComic, setCharactersByComic] = useState<any[]>([]);
+    const [eventsByComic, setEventsByComic] = useState<any[]>([]);
+    const [seriesByComic, setSeriesByComic] = useState<any[]>([]);
+    const [storiesByComic, setStoriesByComic] = useState<any[]>([]);
 
     // Use useParams to get the id from the URL if it's defined in the route
     const { id: paramId } = useParams<{ id: string }>();
@@ -50,12 +51,15 @@ export const ComicsDetails = (props: ComicsDetailsProps) => {
 
         let isMounted = true;
 
-        getComicDetails(id).then((details) => {
-            if (details && details.data && Array.isArray(details.data.results) && details.data.results.length > 0) {
-                setComicDetails(details.data.results[0]);
+        getComicDetails(id)
+            .then((details) => {
+                if (details && details.data && Array.isArray(details.data.results) && details.data.results.length > 0) {
+                    setComicDetails(details.data.results[0]);
+                }
+            })
+            .finally(() => {
                 setIsLoading(false);
-            }
-        });
+            });
 
         getCharactersByComicId(id).then((characterDetails) => {
             if (characterDetails && characterDetails.data && Array.isArray(characterDetails.data.results) && characterDetails.data.results.length > 0) {
@@ -87,11 +91,13 @@ export const ComicsDetails = (props: ComicsDetailsProps) => {
         <div>
             {isLoading ? (
                 <Loading />
+            ) : !comicDetails ? (
+                <div className="notFound"><span className="verticalCenter">Comic not found</span></div>
             ) : (
                 <div className="comicDetailsContainer">
                     <div className="comicDetails__left">
                         <img
-                            src={`${comicDetails?.thumbnail?.path}.${comicDetails?.thumbnail?.extension}`}
+                            src={comicDetails?.thumbnail?.url || `${comicDetails?.thumbnail?.path}.${comicDetails?.thumbnail?.extension}`}
                             alt={comicDetails?.title}
                             className="comicDetails__image"
                         />

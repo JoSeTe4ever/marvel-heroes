@@ -4,7 +4,11 @@ const initialSearchText = "";
 
 export const copyrightInfo = atom({
     key: 'copyright',
-    default: {},
+    default: {
+        copyright: 'Data provided by Comic Vine.',
+        attributionText: 'Data provided by Comic Vine.',
+        attributionHTML: '<a href="https://comicvine.gamespot.com" target="_blank" rel="noopener noreferrer">Data provided by Comic Vine</a>',
+    },
 });
 
 export const searchTextState = atom({

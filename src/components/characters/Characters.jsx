@@ -19,15 +19,20 @@ function Characters() {
   useEffect(() => {
     async function fetchData() {
       // You can await here
-      const response = await getCharacters({ offset, limit });
-      const charactersArray = response.data.results;
-      setCharacters([...characters, ...charactersArray]);
-      setIsLoading(false);
-      setCopyright({
-        copyright: response.copyright,
-        attributionText: response.attributionText,
-        attributionHTML: response.attributionHTML,
-      });
+      try {
+        const response = await getCharacters({ offset, limit });
+        const charactersArray = response.data.results;
+        setCharacters([...characters, ...charactersArray]);
+        setCopyright({
+          copyright: response.copyright,
+          attributionText: response.attributionText,
+          attributionHTML: response.attributionHTML,
+        });
+      } catch (error) {
+        setCharacters([]);
+      } finally {
+        setIsLoading(false);
+      }
     }
     fetchData();
   }, [offset]); // passing an empty array as the second argument to useEffect makes it only run on mount and unmount
@@ -67,7 +72,7 @@ function Characters() {
               key={e.id.toString()}
               heroName={e.name}
               heroId={e.id.toString()}
-              imgUrl={`${e.thumbnail.path}.${e.thumbnail.extension}`}
+              imgUrl={e.thumbnail.url || `${e.thumbnail.path}.${e.thumbnail.extension}`}
             ></HeroCard>
           );
         })}

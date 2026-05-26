@@ -1,230 +1,388 @@
-const urlDevelopment = `http://localhost:3004/characters`;
-const urlProduction = `http://gateway.marvel.com/v1/public`;
+const comicVineBaseUrl = "https://comicvine.gamespot.com/api";
+const comicVineSiteUrl = "https://comicvine.gamespot.com";
 
-export const url = urlProduction;
-export const apiKey = `${process.env.REACT_APP_MARVEL_PUBLIC_API_KEY}`;
+export const url = comicVineBaseUrl;
+export const apiKey = `${process.env.REACT_APP_COMICVINE_API_KEY || ""}`;
 
-export const getCharacters = async (options) => {
-  let buildableUrl = `${url}/characters?apikey=${apiKey}`;
-  // append url parameters to url if they exist in options object
-  if (options) {
-    const { nameStartsWith, orderBy, limit, offset } = options;
-    if (nameStartsWith) {
-      buildableUrl += `&nameStartsWith=${nameStartsWith}`;
-    }
-    if (orderBy) {
-      buildableUrl += `&orderBy=${orderBy}`;
-    }
-    if (limit) {
-      buildableUrl += `&limit=${limit}`;
-    }
-    if (offset) {
-      buildableUrl += `&offset=${offset}`;
-    }
+const attribution = {
+  copyright: "Data provided by Comic Vine.",
+  attributionText: "Data provided by Comic Vine.",
+  attributionHTML: `<a href="${comicVineSiteUrl}" target="_blank" rel="noopener noreferrer">Data provided by Comic Vine</a>`,
+};
+
+const emptyResponse = (limit = 20, offset = 0) => ({
+  ...attribution,
+  data: {
+    offset,
+    limit,
+    total: 0,
+    count: 0,
+    results: [],
+  },
+});
+
+const stripHtml = (value) => {
+  if (!value) {
+    return "";
   }
 
-  const apiCall = await fetch(`${buildableUrl}`);
-  return await apiCall.json();
+  const element = document.createElement("div");
+  element.innerHTML = value;
+  return (element.textContent || element.innerText || "").trim();
 };
 
-export const getStories = async (options) => {
-  const apiCall = await fetch(`${url}/stories?apikey=${apiKey}`);
-  return await apiCall.json();
+const createImage = (image) => {
+  const imageUrl =
+    image?.super_url ||
+    image?.screen_large_url ||
+    image?.screen_url ||
+    image?.medium_url ||
+    image?.small_url ||
+    image?.thumb_url ||
+    image?.icon_url ||
+    "/img/1920px-MarvelLogo.svg.jpg";
+
+  return {
+    path: imageUrl.replace(/\.[^/.]+$/, ""),
+    extension: imageUrl.split(".").pop() || "jpg",
+    url: imageUrl,
+  };
 };
 
-//getStoriesByEventId
-export const getStoriesByEventId = async (eventId) => {
-  const apiCall = await fetch(
-    `${url}/events/${eventId}/stories?apikey=${apiKey}`
-  );
-  return await apiCall.json();
-};
+const toMarvelList = (items = []) => ({
+  available: items.length,
+  items: items.map((item) => ({
+    id: item.id,
+    name: item.name || item.title || "Untitled",
+    resourceURI: item.site_detail_url || item.api_detail_url || comicVineSiteUrl,
+  })),
+});
 
-export const getCreators = (options) => {
-  const apiCall = fetch(`${url}/creators?apikey=${apiKey}`);
-  return apiCall.json();
-};
+const normalizeCharacter = (character) => ({
+  id: character.id,
+  name: character.name || "Unknown character",
+  description:
+    stripHtml(character.deck || character.description) || "No description available.",
+  thumbnail: createImage(character.image),
+  comics: {
+    available:
+      character.count_of_issue_appearances || character.issue_credits?.length || 0,
+    items: toMarvelList(character.issue_credits).items,
+  },
+  series: toMarvelList(character.volume_credits),
+  stories: toMarvelList(character.story_arc_credits),
+  events: toMarvelList(character.team_friends),
+  urls: [
+    {
+      type: "detail",
+      url: character.site_detail_url || comicVineSiteUrl,
+    },
+  ],
+  siteDetailUrl: character.site_detail_url || comicVineSiteUrl,
+});
 
-export const getCreatorDetails = async (creatorId) => {
-  const apiCall = await fetch(`${url}/creators/${creatorId}?apikey=${apiKey}`);
-  return await apiCall.json();
-};
+const normalizeIssue = (issue) => ({
+  id: issue.id,
+  title: issue.name || `Issue #${issue.issue_number || issue.id}`,
+  name: issue.name || `Issue #${issue.issue_number || issue.id}`,
+  description: stripHtml(issue.deck || issue.description) || "No description available.",
+  thumbnail: createImage(issue.image),
+  characters: toMarvelList(issue.character_credits),
+  creators: toMarvelList(issue.person_credits),
+  stories: toMarvelList(issue.story_arc_credits),
+  events: toMarvelList(issue.team_credits),
+  resourceURI: issue.site_detail_url || comicVineSiteUrl,
+  siteDetailUrl: issue.site_detail_url || comicVineSiteUrl,
+});
 
-export const getStoriesByCreatorId = async (creatorId) => {
-  const apiCall = await fetch(
-    `${url}/creators/${creatorId}/stories?apikey=${apiKey}`
-  );
-  return await apiCall.json();
-};
+const normalizeStoryArc = (storyArc) => ({
+  id: storyArc.id,
+  title: storyArc.name || "Untitled story arc",
+  name: storyArc.name || "Untitled story arc",
+  description:
+    stripHtml(storyArc.deck || storyArc.description) || "No description available.",
+  type: "Story arc",
+  resourceURI: storyArc.site_detail_url || comicVineSiteUrl,
+  thumbnail: createImage(storyArc.image),
+});
 
-export const getSeriesbycreatorId = async (creatorId) => {
-  const apiCall = await fetch(
-    `${url}/creators/${creatorId}/series?apikey=${apiKey}`
-  );
-  return await apiCall.json();
-};
+const toMarvelResponse = (response, results, limit = 20, offset = 0) => ({
+  ...attribution,
+  data: {
+    offset: response.offset || offset,
+    limit: response.limit || limit,
+    total: response.number_of_total_results || results.length,
+    count: response.number_of_page_results || results.length,
+    results,
+  },
+});
 
-export const getEventsByCreatorId = async (creatorId) => {
-  const apiCall = await fetch(
-    `${url}/creators/${creatorId}/events?apikey=${apiKey}`
-  );
-  return await apiCall.json();
-};
-
-export const getComicsByCreatorId = async (creatorId) => {
-  const apiCall = await fetch(
-    `${url}/creators/${creatorId}/comics?apikey=${apiKey}`
-  );
-  return await apiCall.json();
-};
-
-export const getSeries = async (options) => {
-  const apiCall = await fetch(`${url}/series?apikey=${apiKey}`);
-  return await apiCall.json();
-};
-
-export const getComics = async (options) => {
-  // append url parameters to url if they exist in options object
-  let buildableUrl = `${url}/comics?apikey=${apiKey}`;
-
-  if (options) {
-    const { titleStartsWith, orderBy, limit, offset } = options;
-    if (titleStartsWith) {
-      buildableUrl += `&titleStartsWith=${titleStartsWith}`;
-    }
-    if (orderBy) {
-      buildableUrl += `&orderBy=${orderBy}`;
-    }
-    if (limit) {
-      buildableUrl += `&limit=${limit}`;
-    }
-    if (offset) {
-      buildableUrl += `&offset=${offset}`;
-    }
+const comicVineJsonp = (resource, params = {}) => {
+  if (!apiKey) {
+    return Promise.resolve(emptyResponse(params.limit, params.offset));
   }
 
-  const apiCall = await fetch(`${buildableUrl}`);
-  return await apiCall.json();
+  return new Promise((resolve, reject) => {
+    const callbackName = `comicVineCallback_${Date.now()}_${Math.random()
+      .toString(36)
+      .slice(2)}`;
+    const searchParams = new URLSearchParams({
+      api_key: apiKey,
+      format: "jsonp",
+      json_callback: callbackName,
+      ...params,
+    });
+    const script = document.createElement("script");
+    const cleanUp = () => {
+      script.remove();
+      delete window[callbackName];
+    };
+
+    window[callbackName] = (response) => {
+      cleanUp();
+      if (response.status_code && response.status_code !== 1) {
+        reject(new Error(response.error || "Comic Vine API error"));
+        return;
+      }
+      resolve(response);
+    };
+
+    script.onerror = () => {
+      cleanUp();
+      reject(new Error("Comic Vine API request failed"));
+    };
+
+    script.src = `${comicVineBaseUrl}/${resource}/?${searchParams.toString()}`;
+    document.body.appendChild(script);
+  });
 };
 
-export const getComicDetails = async (comicId) => {
-  const apiCall = await fetch(`${url}/comics/${comicId}?apikey=${apiKey}`);
-  return await apiCall.json();
+const getComicVineList = async (resource, params, normalize) => {
+  const response = await comicVineJsonp(resource, params);
+  const rawResults = Array.isArray(response.results) ? response.results : [];
+  return toMarvelResponse(
+    response,
+    rawResults.map(normalize),
+    params.limit,
+    params.offset
+  );
 };
+
+const getComicVineDetail = async (resource, id, params, normalize) => {
+  const response = await comicVineJsonp(`${resource}/${id}`, params);
+  const result = response.results ? [normalize(response.results)] : [];
+  return toMarvelResponse(response, result, 1, 0);
+};
+
+export const getCharacters = async (options = {}) => {
+  const { nameStartsWith, orderBy, limit = 20, offset = 0 } = options;
+  const params = {
+    limit,
+    offset,
+    field_list:
+      "id,name,description,deck,image,count_of_issue_appearances,site_detail_url,publisher",
+  };
+
+  params.filter = `name:${nameStartsWith || "Spider"}`;
+
+  if (orderBy) {
+    params.sort = orderBy.replace("name", "name");
+  }
+
+  const response = await comicVineJsonp("characters", params);
+  const rawResults = Array.isArray(response.results) ? response.results : [];
+  const marvelResults = rawResults.filter(
+    (character) => !character.publisher || character.publisher.id === 31
+  );
+  return toMarvelResponse(
+    response,
+    marvelResults.map(normalizeCharacter),
+    params.limit,
+    params.offset
+  );
+};
+
+export const getStories = async (options = {}) => {
+  const { nameStartsWith, limit = 20, offset = 0 } = options;
+  return getComicVineList(
+    "story_arcs",
+    {
+      limit,
+      offset,
+      filter: `name:${nameStartsWith || "Avengers"}`,
+      field_list: "id,name,description,deck,image,site_detail_url",
+    },
+    normalizeStoryArc
+  );
+};
+
+export const getStoriesByEventId = async () => emptyResponse();
+
+export const getCreators = async () => emptyResponse();
+
+export const getCreatorDetails = async () => emptyResponse(1, 0);
+
+export const getStoriesByCreatorId = async () => [];
+
+export const getSeriesbycreatorId = async () => [];
+
+export const getEventsByCreatorId = async () => [];
+
+export const getComicsByCreatorId = async () => [];
+
+export const getSeries = async (options = {}) => {
+  const { nameStartsWith, limit = 20, offset = 0 } = options;
+  const params = {
+    limit,
+    offset,
+    field_list: "id,name,description,deck,image,site_detail_url",
+  };
+
+  if (nameStartsWith) {
+    params.filter = `name:${nameStartsWith}`;
+  }
+
+  return getComicVineList(
+    "volumes",
+    params,
+    normalizeStoryArc
+  );
+};
+
+export const getComics = async (options = {}) => {
+  const { titleStartsWith, orderBy, limit = 20, offset = 0 } = options;
+  const params = {
+    limit,
+    offset,
+    field_list:
+      "id,name,description,deck,image,issue_number,site_detail_url,character_credits,person_credits,story_arc_credits,team_credits",
+  };
+
+  params.filter = `name:${titleStartsWith || "Spider-Man"}`;
+
+  if (orderBy) {
+    params.sort = orderBy.replace("title", "name");
+  }
+
+  return getComicVineList("issues", params, normalizeIssue);
+};
+
+export const getComicDetails = async (comicId) =>
+  getComicVineDetail(
+    "issue",
+    `4000-${comicId}`,
+    {
+      field_list:
+        "id,name,description,deck,image,issue_number,site_detail_url,character_credits,person_credits,story_arc_credits,team_credits",
+    },
+    normalizeIssue
+  );
 
 export const getCharactersByComicId = async (comicId) => {
-  const apiCall = await fetch(
-    `${url}/comics/${comicId}/characters?apikey=${apiKey}`
+  const details = await getComicDetails(comicId);
+  return toMarvelResponse(
+    {},
+    details.data.results[0]?.characters?.items?.map((character) => ({
+      id: character.id,
+      name: character.name,
+      description: "Comic Vine character credit.",
+      thumbnail: createImage(),
+    })) || []
   );
-  return await apiCall.json();
 };
 
-export const getCreatorsByComicId = async (comicId) => {
-  const apiCall = await fetch(
-    `${url}/comics/${comicId}/creators?apikey=${apiKey}`
-  );
-  return await apiCall.json();
-};
+export const getCreatorsByComicId = async (comicId) => emptyResponse();
 
-export const getEventsByComicId = async (comicId) => {
-  const apiCall = await fetch(
-    `${url}/comics/${comicId}/events?apikey=${apiKey}`
-  );
-  return await apiCall.json();
-};
-
+export const getEventsByComicId = async (comicId) => emptyResponse();
 
 export const getStoriesByComicId = async (comicId) => {
-  const apiCall = await fetch(
-    `${url}/comics/${comicId}/stories?apikey=${apiKey}`
+  const details = await getComicDetails(comicId);
+  return toMarvelResponse(
+    {},
+    details.data.results[0]?.stories?.items?.map((story) => ({
+      id: story.id,
+      title: story.name,
+      description: "Comic Vine story arc credit.",
+      type: "Story arc",
+      resourceURI: story.resourceURI,
+    })) || []
   );
-  return await apiCall.json();
 };
 
-export const getEvents = (options) => {
-  const apiCall = fetch(`${url}/events?apikey=${apiKey}`);
-  return apiCall.json();
-};
+export const getEvents = async (options) => emptyResponse();
 
 export const setCharactersByQuery = async (
   setPagination,
   setCharacters,
   query
 ) => {
-  const apiCall = await fetch(
-    `${url}/characters?apikey=${apiKey}&nameStartsWith=${query}`
-  );
-  const result = await apiCall.json();
-  debugger; // TODO aqui hay que meter la info de la oaginacion.
-  if (result.data) {
-    const { offset, limit, total, count } = result.data;
-    if (setPagination) {
-      setPagination({
-        offset,
-        limit,
-        total,
-        count,
-      });
-    }
-    setCharacters(result.data.results);
-  } else {
-    setCharacters([]);
+  const result = await getCharacters({ nameStartsWith: query, limit: 20, offset: 0 });
+  const { offset, limit, total, count, results } = result.data;
+  if (setPagination) {
+    setPagination({ offset, limit, total, count });
   }
+  setCharacters(results);
 };
 
 export const getCharacterDetails = async (characterId) => {
-  const apiCall = await fetch(
-    `${url}/characters/${characterId}?apikey=${apiKey}`
+  const result = await getComicVineDetail(
+    "character",
+    `4005-${characterId}`,
+    {
+      field_list:
+        "id,name,description,deck,image,count_of_issue_appearances,issue_credits,volume_credits,story_arc_credits,site_detail_url",
+    },
+    normalizeCharacter
   );
-  const result = await apiCall.json();
   return result.data.results;
 };
 
-// Fetches lists of characters filtered by a story id.
-export const getCharactersByStoryId = async (storyId) => {
-  const apiCall = await fetch(`${url}/characters/${storyId}?apikey=${apiKey}`);
-  const result = await apiCall.json();
-  return result.data.results;
-};
+export const getCharactersByStoryId = async (storyId) => [];
 
 export const getComicsByCharacterId = async (characterId) => {
-  const apiCall = await fetch(
-    `${url}/characters/${characterId}/comics?apikey=${apiKey}`
+  const details = await getCharacterDetails(characterId);
+  return (
+    details[0]?.comics?.items?.map((comic) => ({
+      id: comic.id,
+      title: comic.name,
+      description: "Comic Vine issue credit.",
+      thumbnail: createImage(),
+      resourceURI: comic.resourceURI,
+    })) || []
   );
-  const result = await apiCall.json();
-  return result.data.results;
 };
 
-export const getEventsByCharacterId = async (characterId) => {
-  const apiCall = await fetch(
-    `${url}/characters/${characterId}/events?apikey=${apiKey}`
-  );
-  const result = await apiCall.json();
-  return result.data.results;
-};
+export const getEventsByCharacterId = async (characterId) => [];
 
 export const getSeriesByCharacterId = async (characterId) => {
-  const apiCall = await fetch(
-    `${url}/characters/${characterId}/series?apikey=${apiKey}`
+  const details = await getCharacterDetails(characterId);
+  return (
+    details[0]?.series?.items?.map((series) => ({
+      id: series.id,
+      title: series.name,
+      description: "Comic Vine volume credit.",
+      thumbnail: createImage(),
+      resourceURI: series.resourceURI,
+    })) || []
   );
-  const result = await apiCall.json();
-  return result.data.results;
 };
 
 export const getStoriesByCharacterId = async (characterId) => {
-  const apiCall = await fetch(
-    `${url}/characters/${characterId}/stories?apikey=${apiKey}`
+  const details = await getCharacterDetails(characterId);
+  return (
+    details[0]?.stories?.items?.map((story) => ({
+      id: story.id,
+      title: story.name,
+      description: "Comic Vine story arc credit.",
+      type: "Story arc",
+      resourceURI: story.resourceURI,
+    })) || []
   );
-  const result = await apiCall.json();
-  return result.data.results;
 };
 
 export const getCharactersSearchSuggestions = async (searchCriteria) => {
   if (searchCriteria) {
-    const apiCall = await fetch(
-      `${url}/characters?apikey=${apiKey}&nameStartsWith=${searchCriteria}&limit=8`
-    );
-    const result = await apiCall.json();
+    const result = await getCharacters({ nameStartsWith: searchCriteria, limit: 8 });
     return result.data.results;
   }
   return [];
@@ -232,10 +390,7 @@ export const getCharactersSearchSuggestions = async (searchCriteria) => {
 
 export const getComicsSearchSuggestions = async (searchCriteria) => {
   if (searchCriteria) {
-    const apiCall = await fetch(
-      `${url}/comics?apikey=${apiKey}&titleStartsWith=${searchCriteria}&limit=8`
-    );
-    const result = await apiCall.json();
+    const result = await getComics({ titleStartsWith: searchCriteria, limit: 8 });
     return result.data.results;
   }
   return [];
@@ -243,10 +398,7 @@ export const getComicsSearchSuggestions = async (searchCriteria) => {
 
 export const getSeriesSearchSuggestions = async (searchCriteria) => {
   if (searchCriteria) {
-    const apiCall = await fetch(
-      `${url}/comics?apikey=${apiKey}&titleStartsWith=${searchCriteria}&limit=8`
-    );
-    const result = await apiCall.json();
+    const result = await getSeries({ nameStartsWith: searchCriteria, limit: 8 });
     return result.data.results;
   }
   return [];

@@ -35,6 +35,13 @@ footer {
   padding: 15px;
   background-color: #282c34;
   color: white;
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+footer a {
+  color: #f5d547;
 }
 
 .App-link {
@@ -56,5 +63,23 @@ footer {
 
   to {
     transform: rotate(360deg);
+  }
+}
+
+@media only screen and (max-width: 640px) {
+  .App-header {
+    height: auto;
+    min-height: 5rem;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    padding: 0.5rem 0;
+  }
+
+  .logo {
+    width: 120px;
+  }
+
+  .favourites {
+    padding: 0;
   }
 }
