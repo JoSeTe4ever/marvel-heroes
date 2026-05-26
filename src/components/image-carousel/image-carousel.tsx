@@ -19,7 +19,7 @@ const ImageCarousel: React.FC<ImageCarouselProps> = ({
   let marvelType = getMarvelObjectType(type);
   let images = marvelObjects.map((marvelObject: any) => {
     return {
-      src: `${marvelObject.thumbnail.path}.${marvelObject.thumbnail.extension}`,
+      src: marvelObject.thumbnail.url || `${marvelObject.thumbnail.path}.${marvelObject.thumbnail.extension}`,
     };
   });
 

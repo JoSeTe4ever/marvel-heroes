@@ -8,6 +8,7 @@ interface CircleAvatarProps {
         thumbnail: {
             path: string;
             extension: string;
+            url?: string;
         };
     };
     type: MarvelObjectType;
@@ -39,7 +40,7 @@ const CircleAvatar: React.FC<CircleAvatarProps> = ({ marvelResponseObject, type 
             }}
         >
             <img
-                src={`${marvelResponseObject.thumbnail.path}.${marvelResponseObject.thumbnail.extension}`}
+                src={marvelResponseObject.thumbnail.url || `${marvelResponseObject.thumbnail.path}.${marvelResponseObject.thumbnail.extension}`}
                 alt="Marvel Avatar"
                 style={{ width: '100%', height: '100%', objectFit: 'cover' }}
             />

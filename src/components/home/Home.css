@@ -19,3 +19,9 @@
 .verticalCenter {
   vertical-align: middle;
 }
+
+@media only screen and (max-width: 640px) {
+  .home {
+    padding-top: 8.5rem;
+  }
+}

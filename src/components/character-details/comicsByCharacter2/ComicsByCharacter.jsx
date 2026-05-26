@@ -16,7 +16,7 @@ export const ComicsByCharacter = ({ comics }) => {
                             history.push(`/comics/${comic.id}`);
                         }
                     }>
-                        <img className='comic__img' src={`${comic.thumbnail.path}.${comic.thumbnail.extension}`} alt={comic.title} />
+                        <img className='comic__img' src={comic.thumbnail.url || `${comic.thumbnail.path}.${comic.thumbnail.extension}`} alt={comic.title} />
                         <div className='comic__title'>{comic.title}</div>
                     </div>
                 );

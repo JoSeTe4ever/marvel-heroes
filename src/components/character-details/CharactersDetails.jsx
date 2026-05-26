@@ -48,12 +48,15 @@ export const CharactersDetails = (props) => {
   };
 
   useEffect(() => {
-    getCharacterDetails(id).then((details) => {
-      if (details && details.length > 0) {
-        setCharacterDetails(details[0]);
+    getCharacterDetails(id)
+      .then((details) => {
+        if (details && details.length > 0) {
+          setCharacterDetails(details[0]);
+        }
+      })
+      .finally(() => {
         setIsLoading(false);
-      }
-    });
+      });
 
     getComicsByCharacterId(id).then((comicDetails) => {
       if (comicDetails && comicDetails.length > 0) {
@@ -140,7 +143,7 @@ export const CharactersDetails = (props) => {
         <Loading></Loading>
       ) : (
         <>
-          <div className="infoCharacter__header">
+          {characterDetails ? <div className="infoCharacter__header">
             {isFixed ? (
               <CircleAvatar
                 marvelResponseObject={characterDetails}
@@ -150,11 +153,12 @@ export const CharactersDetails = (props) => {
             <span className="infoCharacter__name" ref={setElement}>
               {characterDetails.name}
             </span>
-          </div>
+          </div> : null}
+          {characterDetails ? (
           <div
             className="infoCharacterDetailsContainer"
             style={{
-              backgroundImage: `url(${characterDetails?.thumbnail?.path}.${characterDetails?.thumbnail?.extension})`,
+              backgroundImage: `url(${characterDetails?.thumbnail?.url || `${characterDetails?.thumbnail?.path}.${characterDetails?.thumbnail?.extension}`})`,
             }}
           >
             <div className="infoCharacter__left">
@@ -164,7 +168,9 @@ export const CharactersDetails = (props) => {
               </div>
             </div>
           </div>
+          ) : <div className="notFound"><span className="verticalCenter">Character not found</span></div>}
 
+          {characterDetails ? (
           <ul className="navigation__list">
             <li
               className="navigation__item comics"
@@ -191,7 +197,9 @@ export const CharactersDetails = (props) => {
               stories
             </li>
           </ul>
+          ) : null}
 
+          {characterDetails ? (
           <div className="infoCharacterDetailsContainer">
             {activeTab === "comics" ? (
               <ComicsByCharacter comics={comicsByCharacter}></ComicsByCharacter>
@@ -204,6 +212,7 @@ export const CharactersDetails = (props) => {
               ></StoriesByCharacter>
             ) : null}
           </div>
+          ) : null}
         </>
       )}
     </div>

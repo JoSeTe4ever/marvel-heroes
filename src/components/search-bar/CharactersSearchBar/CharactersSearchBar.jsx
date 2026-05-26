@@ -80,11 +80,11 @@ const CharactersSearchBar = (props) => {
             <li
               className="suggestions__list--final-element"
               onClick={() => {
-                setCharactersByQuery(
-                  setPagination,
-                  setCharacters,
-                  text + "&limit=20&offset=20"
-                );
+                  setCharactersByQuery(
+                    setPagination,
+                    setCharacters,
+                    text
+                  );
               }}
             >
               All search results

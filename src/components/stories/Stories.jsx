@@ -24,10 +24,15 @@ function Stories() {
   useEffect(() => {
     async function fetchData() {
       // You can await here
-      const response = await getStories();
-      const storiesArray = response.data.results;
-      setIsLoading(false);
-      setStories(storiesArray);
+      try {
+        const response = await getStories();
+        const storiesArray = response.data.results;
+        setStories(storiesArray);
+      } catch (error) {
+        setStories([]);
+      } finally {
+        setIsLoading(false);
+      }
     }
     fetchData();
   }, []); // Or [] if effect doesn't need props or state
