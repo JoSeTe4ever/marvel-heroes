@@ -1,3 +1,8 @@
+@font-face {
+  font-family: "Banger";
+  src: url(../public/fonts/Bangers-Regular.ttf) format("truetype");
+}
+
 :root {
   --infinity-stone-space: #101974; /* Purple - Space Stone */
   --infinity-stone-reality: #F5043B; /* Red - Reality Stone */
