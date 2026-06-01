@@ -10,16 +10,25 @@ function ComicCard(props) {
   const history = useHistory();
 
   return (
-    <div className="comic__item" onClick={
+    <article className="comic-card" tabIndex="0" onClick={
       () => {
         history.push(`/comics/${props.comicId}`);
       }
-    }>
-      <div>
-        <img className="comic__image" src={props.imgUrl} alt={props.comicName}></img>
+    } onKeyDown={(event) => {
+      if (event.key === "Enter") {
+        history.push(`/comics/${props.comicId}`);
+      }
+    }}>
+      <span className="comic-card__burst">BAM!</span>
+      <div className="comic-card__image-wrap">
+        <img className="comic-card__image" src={props.imgUrl} alt={props.comicName}></img>
+        <div className="comic-card__halftone"></div>
       </div>
-      <div className="comic__name">{props.comicName}</div>
-    </div>
+      <div className="comic-card__body">
+        <span className="comic-card__label">Issue file</span>
+        <h2 className="comic-card__title">{props.comicName}</h2>
+      </div>
+    </article>
   );
 }
 
@@ -64,21 +73,42 @@ function Comics() {
   };
 
   return (
-    <>
-      <div className="comics__container">
-        {isLoading ? <Loading></Loading> : null}
-        {comics.map((e) => {
+    <main className="comics-page">
+      <section className="comics-hero">
+        <div className="comics-hero__dots"></div>
+        <div className="comics-hero__blast"></div>
+        <p className="comics-hero__kicker">Comic Vine Archives</p>
+        <h1 className="comics-hero__title">
+          <span>Marvel</span>
+          <strong>Comics</strong>
+        </h1>
+        <p className="comics-hero__subtitle">Portadas, tinta, grapas y caos superheroico</p>
+      </section>
+
+      <section className="comics-rack" aria-label="Comics list">
+        {comics.map((e, index) => {
           return (
             <ComicCard
               comicId={e.id}
               comicName={e.title}
-              key={e.id.toString()}
+              key={`${e.id}-${index}`}
               imgUrl={e.thumbnail.url || `${e.thumbnail.path}.${e.thumbnail.extension}`}
             ></ComicCard>
           );
         })}
-      </div>
-    </>
+
+        {isLoading ? (
+          <div className="comics-loader">
+            <Loading></Loading>
+            <span>Loading panels...</span>
+          </div>
+        ) : null}
+
+        {!isLoading && comics.length === 0 ? (
+          <div className="comics-empty">No comics found in this multiverse.</div>
+        ) : null}
+      </section>
+    </main>
   );
 }
 

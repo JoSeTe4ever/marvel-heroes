@@ -6,9 +6,7 @@ import {
     getEventsByComicId, getStoriesByComicId
 } from '../../utils/api';
 import { Loading } from '../loading/Loading';
-import { MarvelObjectType } from '../../models/marvelObjectType';
 import './ComicsDetails.css';
-import ImageCarousel from '../image-carousel/image-carousel';
 
 interface ComicsDetailsProps {
     match?: {
@@ -22,19 +20,26 @@ export const ComicsDetails = (props: ComicsDetailsProps) => {
     const [activeTab, setActiveTab] = useState('characters');
     const [isLoading, setIsLoading] = useState(true);
     interface ComicDetails {
+        id?: number;
         thumbnail: {
             path: string;
             extension: string;
             url?: string;
         };
         title: string;
+        name?: string;
         description: string;
+        characters?: { available?: number };
+        stories?: { available?: number };
+        events?: { available?: number };
+        siteDetailUrl?: string;
+        resourceURI?: string;
     }
 
     const [comicDetails, setComicDetails] = useState<ComicDetails | undefined>(undefined);
     const [charactersByComic, setCharactersByComic] = useState<any[]>([]);
     const [eventsByComic, setEventsByComic] = useState<any[]>([]);
-    const [seriesByComic, setSeriesByComic] = useState<any[]>([]);
+    const [seriesByComic] = useState<any[]>([]);
     const [storiesByComic, setStoriesByComic] = useState<any[]>([]);
 
     // Use useParams to get the id from the URL if it's defined in the route
@@ -47,9 +52,28 @@ export const ComicsDetails = (props: ComicsDetailsProps) => {
         setActiveTab(tabIdString);
     };
 
-    useEffect(() => {
+    const getImageUrl = (item: any) => {
+        return item?.thumbnail?.url || `${item?.thumbnail?.path}.${item?.thumbnail?.extension}`;
+    };
 
-        let isMounted = true;
+    const relatedPanels: { [key: string]: any[] } = {
+        characters: charactersByComic,
+        events: eventsByComic,
+        series: seriesByComic,
+        stories: storiesByComic,
+    };
+
+    const tabs = [
+        { id: 'characters', label: 'Characters', items: charactersByComic },
+        { id: 'events', label: 'Events', items: eventsByComic },
+        { id: 'series', label: 'Series', items: seriesByComic },
+        { id: 'stories', label: 'Stories', items: storiesByComic },
+    ];
+
+    const activeItems = relatedPanels[activeTab] || [];
+    const comicImageUrl = getImageUrl(comicDetails);
+
+    useEffect(() => {
 
         getComicDetails(id)
             .then((details) => {
@@ -80,44 +104,78 @@ export const ComicsDetails = (props: ComicsDetailsProps) => {
 
             
         });
-
-        return () => {
-            isMounted = false;
-        };
-
     }, [id]);
 
     return (
-        <div>
+        <main className="comic-detail-page">
             {isLoading ? (
-                <Loading />
+                <div className="comic-detail-loader">
+                    <Loading />
+                    <span>Loading secret issue...</span>
+                </div>
             ) : !comicDetails ? (
-                <div className="notFound"><span className="verticalCenter">Comic not found</span></div>
+                <div className="comic-detail-notfound"><span>Comic not found</span></div>
             ) : (
                 <div className="comicDetailsContainer">
-                    <div className="comicDetails__left">
+                    <div className="comicDetails__left" style={{ backgroundImage: `url(${comicImageUrl})` }}>
+                        <span className="comicDetails__stamp">Collector File</span>
                         <img
-                            src={comicDetails?.thumbnail?.url || `${comicDetails?.thumbnail?.path}.${comicDetails?.thumbnail?.extension}`}
+                            src={comicImageUrl}
                             alt={comicDetails?.title}
                             className="comicDetails__image"
                         />
                     </div>
                     <div className="comicDetails__right">
-                        <span className="comicDetails__title">{comicDetails?.title}</span>
-                        <span className="comicDetails__description">{comicDetails?.description}</span>
-                        <ul className="comicDetails__navigation">
-                            <li onClick={() => handleTabClick('characters')}>
-                                <span>Characters</span>
-                                <ImageCarousel type={MarvelObjectType.Character} marvelObjects={charactersByComic}></ImageCarousel>
-                            </li>
-                            <li onClick={() => handleTabClick('events')}>Events</li>
-                            <li onClick={() => handleTabClick('series')}>Series</li>
-                            <li onClick={() => handleTabClick('stories')}>Stories</li>
-                        </ul>
+                        <p className="comicDetails__eyebrow">Issue dossier</p>
+                        <h1 className="comicDetails__title">{comicDetails?.title}</h1>
+                        <p className="comicDetails__description">{comicDetails?.description || 'No classified notes available for this comic.'}</p>
+
+                        <div className="comicDetails__stats" aria-label="Comic related content summary">
+                            <span><strong>{charactersByComic.length}</strong> Characters</span>
+                            <span><strong>{storiesByComic.length}</strong> Story arcs</span>
+                            <span><strong>{eventsByComic.length}</strong> Events</span>
+                        </div>
+
+                        <div className="comicDetails__navigation" role="tablist" aria-label="Comic details sections">
+                            {tabs.map((tab) => (
+                                <button
+                                    key={tab.id}
+                                    className={`comicDetails__tab ${activeTab === tab.id ? 'comicDetails__tab--active' : ''}`}
+                                    onClick={() => handleTabClick(tab.id)}
+                                    type="button"
+                                    role="tab"
+                                    aria-selected={activeTab === tab.id}
+                                >
+                                    {tab.label}
+                                    <span>{tab.items.length}</span>
+                                </button>
+                            ))}
+                        </div>
+
+                        <section className="comicDetails__content" aria-live="polite">
+                            {activeItems.length > 0 ? (
+                                <div className="comicDetails__grid">
+                                    {activeItems.map((item, index) => (
+                                        <article className="comicDetails__panel" key={`${activeTab}-${item.id || index}`}>
+                                            {item.thumbnail ? (
+                                                <img src={getImageUrl(item)} alt={item.name || item.title} />
+                                            ) : null}
+                                            <div>
+                                                <span>{activeTab}</span>
+                                                <h2>{item.name || item.title || 'Untitled file'}</h2>
+                                                {item.description ? <p>{item.description}</p> : null}
+                                            </div>
+                                        </article>
+                                    ))}
+                                </div>
+                            ) : (
+                                <div className="comicDetails__empty">No {activeTab} registered for this issue.</div>
+                            )}
+                        </section>
 
                     </div>
                 </div>
             )}
-        </div>
+        </main>
     );
 };
